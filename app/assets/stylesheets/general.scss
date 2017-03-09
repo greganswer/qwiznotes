@@ -1,0 +1,69 @@
+body {
+    background: color($primary-color-name, "lighten-4");
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+a.brand-logo {
+  span {
+     font-weight: 100;
+     font-style: italic;
+  }
+}
+
+footer {
+  // $color: desaturate(color($primary-color-name, "darken-4"), 10%);
+  // background: $color !important;
+  ul li {
+    display: inline;
+    margin: 0 8px;
+  }
+  .footer-copyright {
+    // background: darken($color, 5%) !important;
+  }
+}
+
+.breadcrumbs {
+  .current {
+    // color: color('grey', 'lighten-4');
+  }
+}
+
+.margin2 {
+  margin: 2px;
+}
+.margin4 {
+  margin: 4px;
+}
+.margin8 {
+  margin: 8px;
+}
+.margin12 {
+  margin: 12px;
+}
+.margin16 {
+  margin: 16px;
+}
+.margin20 {
+  margin: 20px;
+}
+.margin24 {
+  margin: 24px;
+}
+.margin28 {
+  margin: 28px;
+}
+.margin32 {
+  margin: 32px;
+}
+
+@media screen and (max-width: 600px) {
+  .s-no-margin {
+    margin: 0 !important;
+  }
+}

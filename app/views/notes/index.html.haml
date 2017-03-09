@@ -1,0 +1,16 @@
+- breadcrumb :notes
+
+.card.margin8.s-no-margin
+  %table.highlight
+    %thead
+      %tr
+        %th= Note.human_attribute_name(:title)
+        %th Actions
+
+    %tbody
+      - @notes.each do |note|
+        %tr[note]
+          %td= link_to note.title, note
+          %td
+            = link_to 'Edit', edit_note_path(note)
+            = link_to 'Destroy', note, :method => :delete, :data => { :confirm => 'Are you sure?' }

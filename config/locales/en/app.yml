@@ -1,0 +1,23 @@
+en:
+  app:
+    copyright: Copyright
+    enable_javascript_html: Please enable Javascript to view this site. For instructions %{link}.
+    skip_to_content: Skip to main content
+    home: Home
+  helpers:
+    page_entries_info:
+      more_pages:
+        display_entries: Showing <b>%{first} - %{last}</b> of <b>%{total}</b> %{entry_name}
+      one_page:
+        display_entries:
+          one: Showing 1 %{entry_name}
+          other: Showing <b>%{count}</b> %{entry_name}
+          zero: No %{entry_name} found
+  pundit:
+    default: Permission denied
+  time:
+    formats:
+      default: "%a, %b %e, %Y at %l:%M%P"
+      long: "%A, %B %e, %Y at %l:%M%P"
+      short: "%a, %b %e, %Y"
+      short_parameterized: "%b-%d-%Y"

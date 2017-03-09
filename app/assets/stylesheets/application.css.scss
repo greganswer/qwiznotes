@@ -1,0 +1,14 @@
+// IMPORTS (ORDER IS IMPORTANT)
+
+// COLORS
+@import "materialize/components/color";
+$primary-color-name: "light-blue";
+$secondary-color-name: "light-green";
+$primary-color: color($primary-color-name, "darken-2") !default;
+$secondary-color: color($secondary-color-name, "base") !default;
+
+// ADDITIONAL
+@import "materialize";
+@import "material_icons";
+@import "materialize_custom";
+@import "general";
