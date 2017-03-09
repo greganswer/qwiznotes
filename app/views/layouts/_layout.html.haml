@@ -1,0 +1,23 @@
+.navbar-fixed
+  %nav
+    .nav-wrapper
+      %a.brand-logo{href: root_path}
+        = site_name.split[0]
+        %span>= site_name.split[1]
+      %ul.right.hide-on-med-and-down
+        %li= link_to t('notes.index.link'), notes_path
+
+- if current_page?(root_path)
+  = render 'layouts/parallax'
+- else
+  %h4= breadcrumbs
+  = yield
+
+%footer.page-footer
+  .container
+    %ul
+      %li= link_to 'Home', root_path, class: 'grey-text text-lighten-3'
+      %li= link_to t('notes.index.link'), notes_path, class: 'grey-text text-lighten-3'
+  .footer-copyright
+    .container.center
+      %small &copy; #{t("app.copyright")} #{Date.today.year} #{site_owner}

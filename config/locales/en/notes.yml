@@ -1,0 +1,9 @@
+en:
+  notes:
+    index:
+        title: Notes
+        link: Notes
+    show:
+        link: View
+        link_title: View this note
+        title: View this note

@@ -1,0 +1,47 @@
+!!!
+%html{ lang: I18n.locale }
+%head
+  - if @meta_no_follow.present? || !Rails.env.production?
+    %meta{ content: "noindex, nofollow", name: "robots" }
+
+  %meta{ charset: "utf-8" }
+  %meta{ content: "IE=edge", "http-equiv" => "X-UA-Compatible" }
+  %meta{ content: "chrome=1", "http-equiv" => "X-UA-Compatible" }
+  %meta{ content: "text/html; charset=utf-8", "http-equiv" => "content-type" }
+
+  %meta{ content: "english", name: "language" }
+  %meta{ content: "global", name: "distribution" }
+  %meta{ content: "2 days", name: "revisit-after" }
+  %meta{ content: site_owner, name: "author" }
+  %meta{ content: site_owner, name: "publisher" }
+  %meta{ content: "#{Time.current.year}. #{site_name} by #{site_owner}", name: "copyright" }
+  %meta{ content: "width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes", name: "viewport" }
+
+
+  %meta{ content: Rails.application.secrets.stripe_public_key, name: "stripe-key" }
+  %meta{ content: page_meta(:meta_description), name: "description" }
+  %title= "#{page_meta} | #{site_name}"
+
+
+  = favicon_link_tag("favicon.ico")
+  = stylesheet_link_tag("application", media: "all")
+  = csrf_meta_tags
+
+
+%body{ role: :document }
+  = link_to(t("app.skip_to_content"), "#content-wrapper", class: "hide")
+
+
+  %noscript
+    .alert.alert-danger.z-index-1000
+      - link = link_to("click here", "http://www.enable-javascript.com/", target: "_blank")
+      = t("app.enable_javascript_html", link: link)
+
+
+  = render "layouts/layout"
+
+
+  = javascript_include_tag("application")
+  - if Rails.env.development?
+    -#= debug(params)
+    -#= console
