@@ -1,11 +1,28 @@
-.parallax-container
+-#.parallax-container
   .parallax
     -# = image_tag 'main_header.jpg', alt: 'Main header', width: '100%'
     %img.responsive-img{:src => "images/main_header.jpg"}
 
   -#.valign-wrapper{style: 'height: 500px' }
     %h4.valign.white-text.center
-      %em= t('marketing.tagline')
+      %em
+
+
+#index-banner.parallax-container
+  .section.no-pad-bot
+    .container
+      %br
+      %br
+      %br
+      %h1.header.center.white-text.text-darken-2 Stay focused
+      .row.center
+        %h5.header.col.s12.white-text.light= t('marketing.tagline')
+      .row.center= link_to 'Get Started', "#", class: 'btn-large'
+      %br/
+      %br/
+  .parallax
+    %img.responsive-img{:src => "images/main_header.jpg"}
+
 
 .section.white
   .row.container

@@ -1,6 +1,11 @@
 - breadcrumb :notes
 
-.card.margin8.s-no-margin
+.row.margin-2percent.m-no-margin
+  - @notes.each do |note|
+    .col.s12.m6.l4.xl3
+      = render note
+
+-#.card.margin-2percent.s-no-margin
   %table.highlight
     %thead
       %tr

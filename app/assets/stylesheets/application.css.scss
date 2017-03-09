@@ -2,13 +2,24 @@
 
 // COLORS
 @import "materialize/components/color";
+
 $primary-color-name: "light-blue";
-$secondary-color-name: "light-green";
+$secondary-color-name: "orange";
 $primary-color: color($primary-color-name, "darken-2") !default;
-$secondary-color: color($secondary-color-name, "base") !default;
+$secondary-color: color($secondary-color-name, "darken-1") !default;
+
+// SCREEN SIZES
+$xlarge-screen-up: 1501px !default;
+$xlarge-screen: 1500px !default;
+$large-screen: 1200px !default; // NOTE: Do note change this one
+
+
+$xlarge-and-up: "only screen and (min-width : #{$xlarge-screen-up})" !default;
+$large-and-down: "only screen and (max-width : #{$large-screen})" !default;
 
 // ADDITIONAL
 @import "materialize";
 @import "material_icons";
 @import "materialize_custom";
 @import "general";
+@import "utility";

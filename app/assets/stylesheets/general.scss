@@ -29,41 +29,11 @@ footer {
 }
 
 .breadcrumbs {
+    color: color('blue-grey', 'lighten-1');
+    a {
+      color: $secondary-color;
+    }
   .current {
     // color: color('grey', 'lighten-4');
-  }
-}
-
-.margin2 {
-  margin: 2px;
-}
-.margin4 {
-  margin: 4px;
-}
-.margin8 {
-  margin: 8px;
-}
-.margin12 {
-  margin: 12px;
-}
-.margin16 {
-  margin: 16px;
-}
-.margin20 {
-  margin: 20px;
-}
-.margin24 {
-  margin: 24px;
-}
-.margin28 {
-  margin: 28px;
-}
-.margin32 {
-  margin: 32px;
-}
-
-@media screen and (max-width: 600px) {
-  .s-no-margin {
-    margin: 0 !important;
   }
 }
