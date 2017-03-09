@@ -62,6 +62,7 @@ end
 
 group :test do
   gem 'database_cleaner' # Cleans DB before/after tests
+  gem 'launchy' # Launch the current view in browser/image
   gem 'shoulda-matchers', '~> 3.1' # Rspec one-liners
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'

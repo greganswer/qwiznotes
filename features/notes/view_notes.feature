@@ -7,4 +7,4 @@ Scenario: Guest views notes
   Given I'm on the home page
   And 2 notes were already created
   When I click on Notes
-  Then I see 2 note rows
+  Then I see 2 note items

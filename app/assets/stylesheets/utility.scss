@@ -1,0 +1,41 @@
+// MARGIN
+
+.margin2 {margin: 2px; }
+.margin4 {margin: 4px; }
+.margin8 {margin: 8px; }
+.margin12 {margin: 12px; }
+.margin16 {margin: 16px; }
+.margin20 {margin: 20px; }
+.margin24 {margin: 24px; }
+.margin28 {margin: 28px; }
+.margin32 {margin: 32px; }
+
+.margin-1percent {margin: 1%; }
+.margin-2percent {margin: 2%; }
+.margin-3percent {margin: 3%; }
+.margin-4percent {margin: 4%; }
+
+
+// PADDING
+
+.padding2 {padding: 2px; }
+.padding4 {padding: 4px; }
+.padding8 {padding: 8px; }
+.padding12 {padding: 12px; }
+.padding16 {padding: 16px; }
+.padding20 {padding: 20px; }
+.padding24 {padding: 24px; }
+.padding28 {padding: 28px; }
+.padding32 {padding: 32px; }
+
+@media #{$medium-and-down} {
+  .s-no-margin {
+    margin: 0 !important;
+  }
+}
+
+@media #{$large-and-down}  {
+  .m-no-margin {
+    margin: 0 !important;
+  }
+}

@@ -1,8 +1,9 @@
 ignore([%r{^(bin|config|db|lib|log|public|tmp)/*}])
-# ignore([%r{^bin/*}, %r{^config/*}, %r{^db/*}, %r{^lib/*}, %r{^log/*}, %r{^public/*}, %r{^tmp/*}])
 
 # Terminal notifier for OSX
 notification :terminal_notifier, activate: 'com.googlecode.iTerm2' if `uname` =~ /Darwin/
+
+## RSPEC
 
 guard :rspec, cmd: "bundle exec rspec" do
   ## Application  classes
@@ -18,7 +19,13 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(%r{^lib/(.+)\.rb$}) { |m| "spec/lib/#{m[1]}_spec.rb" }
 end
 
-guard 'cucumber', cmd: 'bundle exec cucumber' do
+## CUCUMBER
+
+cucumber_options = {
+  cmd: 'bundle exec cucumber',
+  cmd_additional_args: '--format html --out cucumber_features.html'
+}
+guard :cucumber,  cucumber_options do
   watch(%r{^features/.+\.feature$})
   watch(%r{^features/support/.+$}) { 'features' }
   watch(%r{^app/controllers/(.+)_controller\.rb$}) { |m| "features/#{m[1]}" }
