@@ -1,9 +1,16 @@
 en:
   notes:
+    concept:
+        one: Concept
+        other: Concepts
+    count:
+      one: 1 note
+      other: "%{count} notes"
+      zero: No notes found
     index:
         title: Notes
         link: Notes
     show:
         link: View
         link_title: View this note
-        title: View this note
+        title: "Viewing note: %{note}"

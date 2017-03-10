@@ -44,10 +44,11 @@ end
 
 group :development do
   # Capistrano for automatic deployment
-  gem 'capistrano', '~> 3.7', '>= 3.7.1'
-  gem 'capistrano-passenger', '~> 0.2.0'
-  gem 'capistrano-rails', '~> 1.2'
-  gem 'capistrano-rbenv', '~> 2.1'
+  gem 'capistrano', '~> 3.7.1'
+  gem 'capistrano-passenger', '0.2.0'
+  gem 'capistrano-rails', '1.2.0'
+  gem 'capistrano-rbenv', '2.1.0'
+  gem 'capistrano-bundler', '1.2.0'
   # Additional
   gem 'better_errors' # Replaces the standard Rails error page
   gem 'brakeman', require: false # Check for security vulnerabilities

@@ -9,6 +9,10 @@ module ApplicationHelper
     instance_variable_get("@#{controller_name}".singularize)
   end
 
+  def hashids
+    Hashids.new(Rails.application.secrets.secret_key_base, 8)
+  end
+
   ## SITE
 
   def site_name
@@ -17,11 +21,6 @@ module ApplicationHelper
 
   def site_owner
     'Banana Simplicity Inc.'
-  end
-
-
-  def hashids
-    Hashids.new(Rails.application.secrets.secret_key_base, 8)
   end
 
   ## PAGE
@@ -47,7 +46,7 @@ module ApplicationHelper
         :"devise.#{scope.partition(".").last}.title"
       ],
       site_name: site_name,
-      :"#{controller_name.singularize}" => controller_member_instance,
+      "#{controller_name.singularize}": controller_member_instance,
     }
   end
 end

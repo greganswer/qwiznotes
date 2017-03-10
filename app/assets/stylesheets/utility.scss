@@ -28,6 +28,13 @@
 .padding28 {padding: 28px; }
 .padding32 {padding: 32px; }
 
+// POSITION
+
+.down4 {
+  position: relative;
+  top: 4px;
+}
+
 @media #{$medium-and-down} {
   .s-no-margin {
     margin: 0 !important;

@@ -17,21 +17,21 @@ a.brand-logo {
 }
 
 footer {
-  // $color: desaturate(color($primary-color-name, "darken-4"), 10%);
-  // background: $color !important;
+  $color: desaturate($primary-color, 40%);
+  background: $color !important;
   ul li {
     display: inline;
     margin: 0 8px;
   }
   .footer-copyright {
-    // background: darken($color, 5%) !important;
+    background: darken($color, 5%) !important;
   }
 }
 
 .breadcrumbs {
     color: color('blue-grey', 'lighten-1');
     a {
-      color: $secondary-color;
+      // color: $secondary-color;
     }
   .current {
     // color: color('grey', 'lighten-4');

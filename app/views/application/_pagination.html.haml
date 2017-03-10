@@ -1,0 +1,6 @@
+- if records.present? && records.try(:total_count)
+  %br.clear-both
+  .pagination-info.center
+    - if records.total_count > records.count
+      %h5= page_entries_info records
+    = paginate records#, params: filtered_params.merge(_method: nil, authenticity_token: nil)
