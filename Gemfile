@@ -29,7 +29,14 @@ gem 'ransack' # Object-based searching
 gem 'redis', '~> 3.0'
 gem 'roadie', '~> 3.1.1' # Inline CSS for mailers
 gem 'sass-rails', '~> 5.0'
+gem "sidekiq" # Background processing
 gem 'uglifier', '>= 1.3.0'
+
+# Capistrano for automatic deployment
+gem 'capistrano', '~> 3.7', '>= 3.7.1'
+gem 'capistrano-rails', '~> 1.2'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -43,13 +50,6 @@ group :development, :test do
 end
 
 group :development do
-  # Capistrano for automatic deployment
-  gem 'capistrano', '~> 3.7.1'
-  gem 'capistrano-passenger', '0.2.0'
-  gem 'capistrano-rails', '1.2.0'
-  gem 'capistrano-rbenv', '2.1.0'
-  gem 'capistrano-bundler', '1.2.0'
-  # Additional
   gem 'better_errors' # Replaces the standard Rails error page
   gem 'brakeman', require: false # Check for security vulnerabilities
   gem 'bullet' # Warn about N+1 queries and unused eager loading
