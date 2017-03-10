@@ -1,9 +1,13 @@
 en:
   app:
     copyright: Copyright
+    required_fields: "* indicates required fields"
     enable_javascript_html: Please enable Javascript to view this site. For instructions %{link}.
     skip_to_content: Skip to main content
+    submit: Submit
     home: Home
+    click_link_below_if_button_not_working: 'If for some reason the button does not work, click the link below:'
+
   helpers:
     page_entries_info:
       more_pages:

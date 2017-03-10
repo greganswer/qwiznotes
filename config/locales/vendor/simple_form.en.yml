@@ -1,9 +1,0 @@
----
-en:
-  simple_form:
-    hints:
-      defaults:
-        current_password: we need your current password to confirm your changes
-        edit:
-          password: leave it blank if you don't want to change it
-        password: 6 characters minimum

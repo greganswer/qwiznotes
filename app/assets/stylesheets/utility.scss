@@ -15,6 +15,10 @@
 .margin-3percent {margin: 3%; }
 .margin-4percent {margin: 4%; }
 
+.margin-horizontal {
+  margin-left: auto;
+  margin-right: auto;
+}
 
 // PADDING
 
@@ -44,5 +48,18 @@
 @media #{$large-and-down}  {
   .m-no-margin {
     margin: 0 !important;
+  }
+}
+
+.max-width600 {
+  max-width: 600px;
+}
+
+.width-100percent {
+  width: 100%;
+}
+@media #{$small-and-down} {
+  .s-full-width {
+    width: 100%;
   }
 }

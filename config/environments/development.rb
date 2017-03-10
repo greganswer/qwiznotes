@@ -1,3 +1,5 @@
+host_string = 'qwiznotes.dev'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -26,11 +28,6 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = true
-
-  config.action_mailer.perform_caching = false
-
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -58,6 +55,26 @@ Rails.application.configure do
   # Raises error for missing translations
   config.action_view.raise_on_missing_translations = true
 
+  ## ACTION MAILER
+
+  config.action_mailer.default_url_options = { host: host_string }
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
+  config.action_mailer.raise_delivery_errors = true
+
+  ## BULLET - monitor and alert us of N+1 queries
+
+  config.after_initialize do
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
+    Bullet.enable = false
+    Bullet.bullet_logger = false
+    Bullet.airbrake = false
+    Bullet.console = false
+    Bullet.alert = false
+    Bullet.growl = false
+  end
+
   ## GENERATORS
 
   config.generators do |generate|
@@ -73,3 +90,7 @@ Rails.application.configure do
     }
   end
 end
+
+## ROUTES
+
+Rails.application.routes.default_url_options = { host: host_string }

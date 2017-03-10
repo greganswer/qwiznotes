@@ -9,8 +9,22 @@ en:
       zero: No notes found
     index:
         title: Notes
+        link_title: View all notes
         link: Notes
     show:
         link: View
         link_title: View this note
         title: "Viewing note: %{note}"
+    edit:
+        title: "Editing note: %{note}"
+        link_title: Edit this note
+        link: Edit
+    new:
+        link: Add
+        link_title: Add a note
+        title: Add a note
+    destroy:
+        title: "Deleting note: %{note}"
+        link_title: Delete this note
+        link: Delete
+

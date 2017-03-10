@@ -4,9 +4,9 @@
 
 .row.margin-2percent.m-no-margin
   - unless @notes.present?
-    .row.center
-      .panel.card.col.l6.push-l3
-        %h4.padding16= t("notes.count", count: 0)
+    .container
+      .card.col.s12.m6.push-m3
+        %h4.center.padding16= t("notes.count", count: 0)
   - else
     - @notes.each do |note|
       .col.s12.m6.l4.xl3

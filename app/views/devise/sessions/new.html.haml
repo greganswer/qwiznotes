@@ -1,0 +1,20 @@
+- breadcrumb :new_user_session
+
+.container
+  .card.padding32.max-width600.margin-horizontal
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input :email, required: false, autofocus: true
+        = f.input :password, required: false
+        - if devise_mapping.rememberable?
+          = f.input :remember_me, as: :boolean, label: t('devise.sessions.new.remember_me')
+
+          -#.input-field
+            %input#test5{:type => "checkbox"}/
+            %label{:for => "test5"} Red
+
+      %br
+      .form-actions= f.button :submit, t('devise.sessions.new.submit'), class: 'width-100percent'
+      %br
+    = render "devise/shared/links"
