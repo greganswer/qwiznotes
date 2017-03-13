@@ -27,7 +27,7 @@ module ApplicationHelper
 
   # Create a page title using I18n
   def page_meta(key = :title)
-    return t("marketing.tagline") if current_page?(root_path) #&& !user_signed_in?
+    return t("marketing.tagline") if current_page?(root_path) && !user_signed_in?
     action = action_name.sub(/create/, "new").sub(/update/, "edit")
     scope = "#{controller_path.tr "/", "."}.#{action}"
     translation = "#{scope}.#{key}"

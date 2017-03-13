@@ -1,1 +1,1 @@
-FactoryGirl.create_list(:note, 21)
+FactoryGirl.create_list(:note, 25)

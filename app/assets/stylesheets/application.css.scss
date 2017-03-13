@@ -19,6 +19,7 @@ $large-and-down: "only screen and (max-width : #{$large-screen})" !default;
 // ADDITIONAL
 @import "materialize";
 @import "material_icons";
+@import "mixins";
 @import "materialize_custom";
 @import "general";
 @import "utility";

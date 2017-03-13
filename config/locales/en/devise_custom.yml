@@ -6,7 +6,6 @@ en:
           link_title: Activate your account
           submit: Activate account
     registrations:
-      signed_up: "Welcome! You have signed up successfully. A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
       new:
         link: Sign up
         title: Sign up

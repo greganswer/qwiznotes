@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   ## VALIDATIONS
 
   validates :email, :name, uniqueness: { case_sensitive: false }, presence: true

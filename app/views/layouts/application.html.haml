@@ -1,6 +1,7 @@
 !!!
 %html{ lang: I18n.locale }
   %head
+    -# We don't want robots indexing the staging environment
     - if @meta_no_follow.present? || !Rails.env.production?
       %meta{ content: "noindex, nofollow", name: "robots" }
     %meta{ charset: "utf-8" }
@@ -29,9 +30,10 @@
     = link_to(t("app.skip_to_content"), "#content-wrapper", class: "hide")
 
     %noscript
-      .alert.alert-danger.z-index-1000
-        - link = link_to("click here", "http://www.enable-javascript.com/", target: "_blank")
-        = t("app.enable_javascript_html", link: link)
+      .card.padding8.red.lighten-4
+        %h5.red-text.text-darken-3
+          - link = link_to("click here", "http://www.enable-javascript.com/", target: "_blank")
+          = t("app.enable_javascript_html", link: link)
 
 
     -## HEADER
@@ -40,7 +42,7 @@
       .navbar-fixed
         %nav
           .nav-wrapper
-            %a.brand-logo{href: root_path}
+            %a#site-name.brand-logo{href: root_path}
               &nbsp;
               = site_name.split[0]
               %span>= site_name.split[1]
@@ -49,14 +51,22 @@
             %ul.right.hide-on-med-and-down
               %li= link_to t('notes.index.link'), notes_path
               - if user_signed_in?
+                -#%li.search
+                  %label{for: :search}= mi.search
+                  %input.browser-default{id: :search, type: "text", value: params[:search]}
                 %li= link_to t('devise.sessions.destroy.link'), destroy_user_session_path, method: :delete
               - else
                 %li= link_to t('devise.sessions.new.link'), new_user_session_path
                 %li= link_to t('devise.registrations.new.link'), new_user_registration_path, class: 'btn'
 
+      -## SIDE NAV
+
       %ul#menu-mobile-side.side-nav
         %li= link_to t('notes.index.link'), notes_path
         - if user_signed_in?
+          -#%li.input-field.search
+            = mi.search.css_class('prefix')
+            %input{type: "text", value: params[:search]}
           %li= link_to t('devise.sessions.destroy.link'), destroy_user_session_path, method: :delete
         - else
           %li= link_to t('devise.sessions.new.link'), new_user_session_path
@@ -80,7 +90,7 @@
     %footer.page-footer
       .container
         %ul
-          %li= link_to 'Home', root_path
+          %li= link_to t('home.index.link'), root_path
           %li= link_to t('notes.index.link'), notes_path
           - if user_signed_in?
             %li= link_to t('devise.sessions.destroy.link'), destroy_user_session_path, method: :delete
@@ -97,12 +107,12 @@
     = javascript_include_tag("application")
     - if Rails.env.development?
       / = debug(params)
-      = console
+      /= console
 
     - if flash[:success]
       :javascript
         Materialize.toast("#{flash[:success]}", 4000)
 
-    - if flash[:notice] && flash[:notice].size < 30
+    - if flash[:notice] && flash[:notice].size < 50
       :javascript
         Materialize.toast("#{flash[:notice]}", 4000)

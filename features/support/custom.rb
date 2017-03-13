@@ -15,7 +15,16 @@ rescue NameError
 
 end
 
-World(FactoryGirl::Syntax::Methods)
+module Helper
+   include ApplicationHelper
+   include FactoryGirl::Syntax::Methods
+end
+
+World(Helper)
+
+Transform(/^(-?\d+)$/) do |num|
+  num.to_i
+end
 
 Before do
   DatabaseCleaner.start
