@@ -5,7 +5,7 @@ notification :terminal_notifier, activate: 'com.googlecode.iTerm2' if `uname` =~
 
 ## RSPEC
 
-guard :rspec, cmd: "bundle exec rspec" do
+guard :rspec, cmd: "spring rspec -fd --color" do
   ## Application  classes
   watch("app/actions/application_action.rb") { |_m| "spec/actions" }
   watch("app/controllers/application_controller.rb") { "spec/controllers" }
@@ -22,7 +22,7 @@ end
 ## CUCUMBER
 
 cucumber_options = {
-  cmd: 'bundle exec cucumber',
+  cmd: 'spring cucumber',
   cmd_additional_args: '--format html --out cucumber_features.html'
 }
 guard :cucumber,  cucumber_options do

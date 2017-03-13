@@ -1,0 +1,9 @@
+- if flash[:notice] && flash[:notice].size >= 30
+  #flash-message.card.padding8.blue.lighten-4
+    %h5.blue-text.text-darken-3= raw flash[:notice]
+  %br
+
+- if flash[:alert]
+  #flash-message.card.padding8.red.lighten-4
+    %h5.red-text.text-darken-3= raw flash[:alert]
+  %br

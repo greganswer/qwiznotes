@@ -30,6 +30,7 @@ gem 'redis', '~> 3.0'
 gem 'roadie', '~> 3.1.1' # Inline CSS for mailers
 gem 'sass-rails', '~> 5.0'
 gem "sidekiq" # Background processing
+gem 'simple_form'
 gem 'uglifier', '>= 1.3.0'
 
 # Capistrano for automatic deployment
@@ -38,13 +39,17 @@ gem 'capistrano-rails', '~> 1.2'
 gem 'capistrano-passenger', '~> 0.2.0'
 gem 'capistrano-rbenv', '~> 2.1'
 
+group :development, :test, :staging do
+  gem 'factory_girl_rails' # Set up objects as test data
+end
+
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'cucumber-rails', require: false
-  gem 'factory_girl_rails' # Set up objects as test data
   gem 'guard-cucumber' # Automated testing
   gem 'guard-rspec', require: false # Automated testing
   gem 'i18n-tasks', '~> 0.9.12' # Manage translation and localization
+  gem "letter_opener" # Open email in browser instead of sending
   gem 'rspec-rails', '~> 3.5'
   gem 'terminal-notifier-guard', '~> 1.6.1' # For OS X based notifications
 end
@@ -62,7 +67,10 @@ group :development do
 end
 
 group :test do
+  gem "capybara-webkit"  # "headless" browswer testing
+  gem 'capybara-screenshot'
   gem 'database_cleaner' # Cleans DB before/after tests
+  gem 'email_spec' # Rspec email matchers
   gem 'launchy' # Launch the current view in browser/image
   gem 'shoulda-matchers', '~> 3.1' # Rspec one-liners
   gem 'spring-commands-cucumber'

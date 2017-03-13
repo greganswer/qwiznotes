@@ -1,28 +1,24 @@
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
-  # GET /notes
-  # GET /notes.json
+  # GET
+
   def index
     @notes = Note.page(params[:page]).per(params[:per_page])
   end
 
-  # GET /notes/1
-  # GET /notes/1.json
   def show
   end
 
-  # GET /notes/new
   def new
     @note = Note.new
   end
 
-  # GET /notes/1/edit
   def edit
   end
 
-  # POST /notes
-  # POST /notes.json
+  # POST
+
   def create
     @note = Note.new(note_params)
 
@@ -37,8 +33,8 @@ class NotesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /notes/1
-  # PATCH/PUT /notes/1.json
+  # PATCH/PUT
+
   def update
     respond_to do |format|
       if @note.update(note_params)
@@ -51,8 +47,8 @@ class NotesController < ApplicationController
     end
   end
 
-  # DELETE /notes/1
-  # DELETE /notes/1.json
+  # DELETE
+
   def destroy
     @note.destroy
     respond_to do |format|
@@ -62,13 +58,12 @@ class NotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_note
-      @note = Note.find(hashid_decode(params[:id]))
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def note_params
-      params.fetch(:note, {})
-    end
+  def set_note
+    @note = Note.find(hashid_decode(params[:id]))
+  end
+
+  def note_params
+    params.fetch(:note, {})
+  end
 end

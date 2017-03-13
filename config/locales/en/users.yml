@@ -1,0 +1,28 @@
+en:
+  activerecord:
+    attributes:
+      user:
+        created_at: Joined
+        deleted_at: Deactivated
+        name: Member name
+        email: Email
+        name: Username
+        updated_at: Last updated
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              invalid: only allows letters, numbers, underscores, and dashes
+  users:
+    count:
+      one: 1 user
+      other: "%{count} users"
+      zero: No users found
+    index:
+        title: Users
+        link: Users
+    show:
+        link: View
+        link_title: View this user
+        title: "Viewing user: %{user}"

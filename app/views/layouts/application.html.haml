@@ -3,12 +3,10 @@
   %head
     - if @meta_no_follow.present? || !Rails.env.production?
       %meta{ content: "noindex, nofollow", name: "robots" }
-
     %meta{ charset: "utf-8" }
     %meta{ content: "IE=edge", "http-equiv" => "X-UA-Compatible" }
     %meta{ content: "chrome=1", "http-equiv" => "X-UA-Compatible" }
     %meta{ content: "text/html; charset=utf-8", "http-equiv" => "content-type" }
-
     %meta{ content: "english", name: "language" }
     %meta{ content: "global", name: "distribution" }
     %meta{ content: "2 days", name: "revisit-after" }
@@ -16,21 +14,19 @@
     %meta{ content: site_owner, name: "publisher" }
     %meta{ content: "#{Time.current.year}. #{site_name} by #{site_owner}", name: "copyright" }
     %meta{ content: "width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes", name: "viewport" }
-
-
     %meta{ content: Rails.application.secrets.stripe_public_key, name: "stripe-key" }
     %meta{ content: page_meta(:meta_description), name: "description" }
     %title= "#{page_meta} | #{site_name}"
-
 
     = favicon_link_tag("favicon.ico")
     = stylesheet_link_tag("application", media: "all")
     = csrf_meta_tags
 
 
+  -## BODY
+
   %body{ role: :document }
     = link_to(t("app.skip_to_content"), "#content-wrapper", class: "hide")
-
 
     %noscript
       .alert.alert-danger.z-index-1000
@@ -38,10 +34,75 @@
         = t("app.enable_javascript_html", link: link)
 
 
-    = render "layouts/layout"
+    -## HEADER
 
+    %header
+      .navbar-fixed
+        %nav
+          .nav-wrapper
+            %a.brand-logo{href: root_path}
+              &nbsp;
+              = site_name.split[0]
+              %span>= site_name.split[1]
+
+            %a.button-collapse{href: '#', 'data-activates': 'menu-mobile-side'}=material_icon.menu
+            %ul.right.hide-on-med-and-down
+              %li= link_to t('notes.index.link'), notes_path
+              - if user_signed_in?
+                %li= link_to t('devise.sessions.destroy.link'), destroy_user_session_path, method: :delete
+              - else
+                %li= link_to t('devise.sessions.new.link'), new_user_session_path
+                %li= link_to t('devise.registrations.new.link'), new_user_registration_path, class: 'btn'
+
+      %ul#menu-mobile-side.side-nav
+        %li= link_to t('notes.index.link'), notes_path
+        - if user_signed_in?
+          %li= link_to t('devise.sessions.destroy.link'), destroy_user_session_path, method: :delete
+        - else
+          %li= link_to t('devise.sessions.new.link'), new_user_session_path
+          %li= link_to t('devise.registrations.new.link'), new_user_registration_path, class: 'btn'
+
+
+    -## MAIN
+
+    %main
+      - if current_page?(root_path) && !user_signed_in?
+        = render 'layouts/parallax'
+        = render 'layouts/flash_static'
+      - else
+        %h4.margin20= breadcrumbs
+        = render 'layouts/flash_static'
+        = yield
+
+
+    -## FOOTER
+
+    %footer.page-footer
+      .container
+        %ul
+          %li= link_to 'Home', root_path
+          %li= link_to t('notes.index.link'), notes_path
+          - if user_signed_in?
+            %li= link_to t('devise.sessions.destroy.link'), destroy_user_session_path, method: :delete
+          - else
+            %li= link_to t('devise.sessions.new.link'), new_user_session_path
+            %li= link_to t('devise.registrations.new.link'), new_user_registration_path
+      .footer-copyright
+        .container.center
+          %small &copy; #{t("app.copyright")} #{Date.today.year} #{site_owner}
+
+
+    -## JAVASCRIPT & JAVASCRIPT FLASH MESSAGES
 
     = javascript_include_tag("application")
     - if Rails.env.development?
-      -#= debug(params)
-      -#= console
+      / = debug(params)
+      = console
+
+    - if flash[:success]
+      :javascript
+        Materialize.toast("#{flash[:success]}", 4000)
+
+    - if flash[:notice] && flash[:notice].size < 30
+      :javascript
+        Materialize.toast("#{flash[:notice]}", 4000)

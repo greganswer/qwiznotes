@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Note do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "#to_s" do
+      note = build(:note)
+      expect(note.to_s).to eq(note.title)
+    end
 end

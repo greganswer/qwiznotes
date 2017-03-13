@@ -1,24 +1,40 @@
 body {
-    background: color($primary-color-name, "lighten-4");
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
+  background: desaturate(color($primary-color-name, "lighten-4"), 60%);
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
-  main {
-    flex: 1 0 auto;
-  }
+main {
+  flex: 1 0 auto;
+}
 
-a.brand-logo {
-  span {
-     font-weight: 100;
-     font-style: italic;
+form {
+  .input-field {
+    margin-bottom: 2rem;
+  }
+  .error {
+    color: color('red', 'base');
+  }
+  .hint {
+    color: color('grey', 'base');
   }
 }
 
+a.brand-logo {
+  span {
+   font-weight: 100;
+   font-style: italic;
+ }
+}
+
 footer {
-  $color: desaturate($primary-color, 40%);
+  $color: desaturate($primary-color, 50%);
   background: $color !important;
+  margin-top: 10em;
+  a {
+    color: color('grey', 'lighten-3');
+  }
   ul li {
     display: inline;
     margin: 0 8px;
@@ -29,11 +45,11 @@ footer {
 }
 
 .breadcrumbs {
-    color: color('blue-grey', 'lighten-1');
-    a {
+  color: color('blue-grey', 'lighten-1');
+  a {
       // color: $secondary-color;
     }
-  .current {
+    .current {
     // color: color('grey', 'lighten-4');
   }
 }

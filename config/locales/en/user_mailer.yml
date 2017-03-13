@@ -1,0 +1,10 @@
+---
+en:
+  user_mailer:
+    closing_text_html: If you haven't already, please take a look at our %{demo_url} and if you have any question take a look at our %{help_url}. If you're still having trouble, you can simply reply to this email for further assistance. Thank you for choosing %{site_name}.
+    greeting: Hello %{user},
+    account_registration_create:
+      subject: Account Confirmation Instructions
+    email_notification_create:
+      subject: Recent Activities (%{count})
+      description: Here is a short list of recent %{site_name} activities from people you follow

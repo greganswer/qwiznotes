@@ -1,0 +1,31 @@
+en:
+  devise:
+    confirmations:
+      edit:
+          link: Activate
+          link_title: Activate your account
+          submit: Activate account
+    registrations:
+      signed_up: "Welcome! You have signed up successfully. A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+      new:
+        link: Sign up
+        title: Sign up
+        submit: Sign up
+    sessions:
+      new:
+        remember_me: Keep me signed in
+        link: Log in
+        title: Log in
+        submit: Log in
+      destroy:
+        link: Log out
+    mailer:
+      confirmation_instructions:
+        click_link: Before you get started, please click the button below to activate your account.
+        description: We see that you've signed up for an account with us and we just wanted to welcome you and verify your account information.
+      reset_password_instructions:
+        click_link: Click the button below to change your password.
+        description: Someone has requested a link to change your password. If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one.
+      unlock_instructions:
+        click_link: Click the button below to unlock your account.
+        description: Your account has been locked due to an excessive number of unsuccessful sign in attempts.

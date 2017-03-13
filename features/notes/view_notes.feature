@@ -1,16 +1,16 @@
 Feature: View notes
-  As a guest or a user
-  I want to see a list of all the notes
-  so I can see if someone else already created the notes I require
+  As a user
+  In order to see if someone else already created the notes I require
+  I need to see a list of all the notes
 
-Scenario: There are no notes yet
-  Given I'm on the home page
-  And no notes were created yet
-  When I click on Notes
-  Then I see "No notes found" message
+  Background: A user on the home page
+    Given I'm on the home page
 
-Scenario: Guest views notes
-  Given I'm on the home page
-  And 2 notes were already created
-  When I click on Notes
-  Then I see 2 note items
+  Scenario: There are no notes yet
+    When I click the "Notes" button
+    Then I should see the "No notes found" message
+
+  Scenario: Guest views notes
+    Given 2 notes were already created
+    When I click the "Notes" button
+    Then I should see 2 notes
