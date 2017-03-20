@@ -14,7 +14,6 @@ class User < ApplicationRecord
 
   devise *%i(
     database_authenticatable
-    confirmable
     lockable
     recoverable
     registerable
