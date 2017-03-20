@@ -107,7 +107,7 @@
     = javascript_include_tag("application")
     - if Rails.env.development?
       / = debug(params)
-      /= console
+      = console
 
     - if flash[:success]
       :javascript
