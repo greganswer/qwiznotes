@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  let(:current_user) { create :user }
-
   ## VALIDATIONS
 
   it { should validate_presence_of(:name) }
@@ -36,6 +34,7 @@ RSpec.describe User do
   end
 
   it "#to_s" do
-      expect(current_user.to_s).to eq(current_user.name)
-    end
+    user = User.new(name: "Mike")
+    expect(user.to_s).to eq(user.name)
+  end
 end
