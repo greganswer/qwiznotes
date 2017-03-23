@@ -1,3 +1,19 @@
+## METHODS
+
+def submit_login_form(email: @user.email, password: 'secret')
+  fill_in User.human_attribute_name(:email), with: email
+  fill_in User.human_attribute_name(:password), with: password
+  click_button I18n.t('devise.sessions.new.submit')
+end
+
+def submit_sign_up_form(email: 'mjones@example.com', password: 'secret')
+  fill_in User.human_attribute_name(:email), with: email
+  fill_in User.human_attribute_name(:password), with: password
+  click_button I18n.t('devise.registrations.new.submit')
+end
+
+## STEPS
+
 Given(/^I click the "Sign up" button$/) do
   within('nav') { click_on I18n.t('devise.registrations.new.link') }
 end
@@ -5,9 +21,7 @@ end
 Given(/^I am logged in$/) do
   @current_user = create(:user)
   visit new_user_session_path
-  fill_in User.human_attribute_name(:email), with: @current_user.email
-  fill_in User.human_attribute_name(:password), with: 'secret'
-  click_button I18n.t('devise.sessions.new.submit')
+  submit_login_form(email: @current_user.email)
 end
 
 Given(/^I click the "Log in" button$/) do
@@ -29,33 +43,31 @@ Given(/^I see the "Log in to view mentors" message and I click it$/) do
 end
 
 When(/^I fill out the sign up form correctly$/) do
-  fill_in :user_email, with: 'mjones@example.com'
-  fill_in :user_password, with: 'secret'
-  click_button I18n.t('devise.registrations.new.submit')
+  submit_sign_up_form
 end
 
 When(/^I log in with valid credentials$/) do
-  fill_in User.human_attribute_name(:email), with: @user.email
-  fill_in User.human_attribute_name(:password), with: 'secret'
-  click_button I18n.t('devise.sessions.new.submit')
+  submit_login_form
 end
 
 When(/^I enter the wrong password (\d+) times$/) do |count|
-  count.times do
-    step "I enter the wrong password"
-  end
+  count.times { step "I enter the wrong password" }
 end
 
 When(/^I enter the wrong email address$/) do
-  fill_in User.human_attribute_name(:email), with: 'wrong@mail.com'
-  fill_in User.human_attribute_name(:password), with: 'secret'
-  click_button I18n.t('devise.sessions.new.submit')
+  submit_login_form(email: 'wrong@mail.com')
 end
 
 When(/^I enter the wrong password$/) do
-    fill_in User.human_attribute_name(:email), with: @user.email
-    fill_in User.human_attribute_name(:password), with: 'wrong password'
-    click_button I18n.t('devise.sessions.new.submit')
+  submit_login_form(password: 'wrong password')
+end
+
+When(/^I leave the email address blank$/) do
+  submit_sign_up_form(email: '')
+end
+
+When(/^I leave the password blank$/) do
+  submit_sign_up_form(password: '')
 end
 
 Then(/^I should see that I signed up successfully$/) do
@@ -91,4 +103,9 @@ end
 
 Then(/^I should see some users$/) do
   expect(page).to have_css('.users')
+end
+
+Then(/^I should see that I'm not signed up$/) do
+  expect(page).to have_content(I18n.t('simple_form.error_notification.default_message'))
+  step "I should see that I'm not logged in"
 end
