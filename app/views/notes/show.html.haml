@@ -2,4 +2,17 @@
 
 .container.s-full-width
   .card-panel.m-no-margin
+
+    -# DATES
+
+    %p.grey-text
+      %b #{Note.human_attribute_name(:created_at)}:
+      #{local_time(@note.created_at, :medium)}
+    - if @note.updated_at != @note.created_at
+      %p.grey-text
+        %b #{Note.human_attribute_name(:created_at)}:
+        #{local_time(@note.created_at, :medium)}
+
+    -# CONTENT
+
     %p= @note.content

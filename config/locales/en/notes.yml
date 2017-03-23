@@ -1,5 +1,15 @@
 en:
+  activerecord:
+    attributes:
+      note:
+        concepts: Concepts
+        concepts_count: Concepts
+        title: Note title
+        review: Review
+        quiz: Quiz
+        quiz_results: Quiz results
   notes:
+    untitled_note: Untitled note
     concept:
         one: Concept
         other: Concepts
@@ -11,6 +21,9 @@ en:
         title: Notes
         link_title: View all notes
         link: Notes
+    create:
+        success: Created note
+        success_with_title_html: 'created note titled: %{title}'
     show:
         link: View
         link_title: View this note
@@ -23,6 +36,7 @@ en:
         link: Add
         link_title: Add a note
         title: Add a note
+        submit: Save this note
     destroy:
         title: "Deleting note: %{note}"
         link_title: Delete this note

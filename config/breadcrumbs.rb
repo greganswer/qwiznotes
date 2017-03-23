@@ -24,7 +24,7 @@ crumb :notes do
 end
 
 crumb :new_note do
-  link t('notes.new.link'), new_note_path
+  link t('notes.new.link_title'), new_note_path
   parent :notes
 end
 

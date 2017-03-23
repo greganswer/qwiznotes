@@ -70,6 +70,10 @@ When(/^I leave the password blank$/) do
   submit_sign_up_form(password: '')
 end
 
+When(/^I log out$/) do
+  within('footer') { click_on I18n.t('devise.sessions.destroy.link') }
+end
+
 Then(/^I should see that I signed up successfully$/) do
   expect(page.current_path).to eq(root_path)
   expect(page).to have_content(I18n.t('devise.registrations.signed_up'))

@@ -1,4 +1,12 @@
 module ApplicationHelper
+  include ActionView::Helpers::OutputSafetyHelper
+
+  ## CONSTANTS
+
+  SAFE_HTML_TAGS = %w(
+    a abbr acronym address area b bdo big blockquote br button caption center cite code col colgroup dd del dfn dir div dl dt em fieldset font form h1 h2 h3 h4 h5 h6 hr i img input ins kbd label legend li map mark menu ol optgroup option p pre q s samp select small span strike strong sub sup table tbody td textarea tfoot th thead u tr tt u ul var
+  )
+
   ## CONTROLLER
 
   def controller_collection_instance
@@ -11,6 +19,12 @@ module ApplicationHelper
 
   def hashids
     Hashids.new(Rails.application.secrets.secret_key_base, 8)
+  end
+
+  ## HTML
+
+  def html_clean(html)
+    raw(ActionController::Base.helpers.sanitize(html, tags: SAFE_HTML_TAGS, attributes: %w(id class style href)).strip)
   end
 
   ## SITE

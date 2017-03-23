@@ -4,7 +4,7 @@ class NotesController < ApplicationController
   # GET
 
   def index
-    @notes = Note.page(params[:page]).per(params[:per_page])
+    @notes = Note.order('updated_at DESC').page(params[:page]).per(params[:per_page])
   end
 
   def show
@@ -24,7 +24,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to @note, notice: 'Note was successfully created.' }
+        format.html { redirect_to @note, notice: t('.success') }
         format.json { render :show, status: :created, location: @note }
       else
         format.html { render :new }
@@ -38,7 +38,7 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to @note, notice: 'Note was successfully updated.' }
+        format.html { redirect_to @note, notice: t('.success') }
         format.json { render :show, status: :ok, location: @note }
       else
         format.html { render :edit }
@@ -52,7 +52,7 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to notes_url, notice: 'Note was successfully destroyed.' }
+      format.html { redirect_to notes_url, notice: t('.success') }
       format.json { head :no_content }
     end
   end
@@ -64,6 +64,6 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.fetch(:note, {})
+    params.require(:note).permit(:title, :content)
   end
 end
