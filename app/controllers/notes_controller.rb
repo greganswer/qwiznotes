@@ -1,10 +1,10 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:show, :edit, :update, :destroy, :review]
+  before_action :set_note, only: %i(show edit update destroy review quiz quiz_results)
 
   # GET
 
   def index
-    @notes = Note.order('updated_at DESC').page(params[:page]).per(params[:per_page])
+    @notes = Note.recently_updated.page(params[:page]).per(params[:per_page])
   end
 
   def show
@@ -18,6 +18,21 @@ class NotesController < ApplicationController
   end
 
   def review
+  end
+
+  def quiz
+  end
+
+  def quiz_results
+    return unless @note
+    if !request.post? || params[:user_answers].blank?
+      link = url_for[/demo/] ? [:demo, :quiz] : [:quiz, @note]
+      return redirect_to link, danger: t("records.quizzes.not_taken")
+    end
+    @quiz = @note.quiz_results(
+      quiz_input: JSON[params[:quiz]].with_indifferent_access,
+      user_answers: params[:user_answers],
+    )
   end
 
   # POST

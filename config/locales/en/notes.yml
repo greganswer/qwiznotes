@@ -18,9 +18,10 @@ en:
       other: "%{count} notes"
       zero: No notes found
     index:
-        title: Notes
-        link_title: View all notes
-        link: Notes
+      title: Notes
+      link_title: View all notes
+      link: Notes
+      mine: My notes
     create:
         success: Created note
         success_with_title_html: 'created note titled: %{title}'
@@ -47,9 +48,11 @@ en:
         title: Quiz this note
     quiz_results:
       link: Results
-      link_title: Get your quiz results
+      link_title: Get your results
       title: Quiz results
+      retake: Generate a new quiz
     recent: Recent note
+    you_have_no_note_html: You currently have no notes. Please %{create_link} to create your first note or %{notes_link} to view notes in the community.
     restore:
       flash:
         danger: Unable to restore note
@@ -69,6 +72,6 @@ en:
         heading: No term/defintion pairs were created in this note
       not_enough_terms:
         description_html: This note has %{terms_count} terms and we need %{needed_count} more so we can generate a quiz from this note.
-        heading: Not enough terms
+        heading: Not enough term/defintions pairs were created in this note
         settings_description_html: Please check your %{link} to make sure that they are compatible with the way this note was formatted.
 

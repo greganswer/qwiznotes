@@ -5,6 +5,7 @@ en:
     item: Item
     content: Content
     created_at: Created
+    viewed_on: Viewed
     current_password: Current password
     deleted_at: Deleted
     email: Email address

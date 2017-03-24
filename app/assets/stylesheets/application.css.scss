@@ -7,6 +7,7 @@ $primary-color-name: "light-blue";
 $secondary-color-name: "orange";
 $primary-color: color($primary-color-name, "darken-2") !default;
 $secondary-color: color($secondary-color-name, "darken-1") !default;
+$body-bg-color: desaturate(color($primary-color-name, "lighten-4"), 60%);
 
 // SCREEN SIZES
 $xlarge-screen-up: 1501px !default;

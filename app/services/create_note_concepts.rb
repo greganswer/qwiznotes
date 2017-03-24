@@ -35,10 +35,10 @@ class CreateNoteConcepts
 
   HTML_TAGS = {bold: %w(b strong), definition_list: %w(dt)}
 
-  def initialize(content_input, settings_attributes = nil)
+  def initialize(content, settings_attributes = nil)
     @term = @definition = ""
     @settings = settings_attributes.try(:symbolize_keys).try(:slice, *SETTINGS.keys) || SETTINGS
-    @lines = content_input.split(%r{<br.*?>|<\/p>})
+    @lines = content.split(%r{<br.*?>|<\/p>})
   end
 
   def call

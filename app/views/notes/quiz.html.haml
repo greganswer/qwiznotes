@@ -1,0 +1,30 @@
+- breadcrumb :quiz_note, @note
+
+.container.m-full-width
+  .card-panel.m-no-margin
+    - unless @note.has_minimum_number_of_concepts?
+      %h5.center= t('notes.text.not_enough_terms.heading')
+
+    - else
+      = render 'notes/info', note: @note
+
+      = form_for :note, url: quiz_results_note_path(@note) do
+        = hidden_field_tag :quiz, @note.quiz.to_json
+
+        - questions = @note.quiz[:questions]
+        - options = @note.quiz[:options]
+
+        -# QUESTION
+        - (0..questions.size-1).each do |q_index|
+          %b #{q_index + 1}) #{questions[q_index]}
+          %br
+          - options[q_index].each_with_index do |option, o_index|
+            - id = "quiz_#{q_index}_#{o_index}"
+            = radio_button :user_answers, q_index, option, id: id
+            = label_tag id, "(#{(o_index+65).chr.downcase}) #{sanitize(option)}", class: 'grey-text text-darken-2'
+            %br
+          %br
+          %br
+
+        .center
+          %button.waves-effect.waves-light.btn-large= t('notes.quiz_results.link_title')

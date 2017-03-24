@@ -23,6 +23,11 @@ crumb :notes do
   parent :root
 end
 
+crumb :note do |note|
+  link note.title, note_path(note)
+  parent :notes
+end
+
 crumb :new_note do
   link t('notes.new.link_title'), new_note_path
   parent :notes
@@ -38,8 +43,12 @@ crumb :review_note do |note|
   parent note
 end
 
-crumb :note do |note|
-  link note.title, note_path(note)
-  parent :notes
+crumb :quiz_note do |note|
+  link t('notes.quiz.link'), quiz_note_path(note)
+  parent note
 end
 
+crumb :quiz_results_note do |note|
+  link t('notes.quiz_results.title'), quiz_results_note_path(note)
+  parent note
+end

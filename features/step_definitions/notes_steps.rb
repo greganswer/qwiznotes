@@ -1,3 +1,5 @@
+include ActionView::Helpers::SanitizeHelper
+
 ## METHODS
 
 def submit_note_form(title: 'My new note', content: 'I am so happy that I get to use this site')
@@ -50,7 +52,7 @@ Then(/^I should see (\d+) notes$/) do |count|
 end
 
 Then(/^I should see the details of the note$/) do
-  expect(page).to have_content(@note.content)
+  expect(page).to have_content(html_unescape(@note.content))
 end
 
 Then(/^I should see that the note was created$/) do

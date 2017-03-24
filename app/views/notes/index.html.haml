@@ -1,30 +1,9 @@
 - breadcrumb :notes
-= render "pagination", records: @notes
 
-
-.row.margin-2percent.m-no-margin
-  - unless @notes.present?
+- if @notes.present?
+  = render 'notes/notes', notes: @notes
+- else
+  .row.margin-2percent.m-no-margin
     .container
       .card.col.s12.m6.push-m3
-        %h4.center.padding16= t("notes.count", count: 0)
-  - else
-    - @notes.each do |note|
-      .col.s12.m6.l4.xl3
-        = render note
-
--#.card.margin-2percent.s-no-margin
-  %table.highlight
-    %thead
-      %tr
-        %th= Note.human_attribute_name(:title)
-        %th Actions
-
-    %tbody
-      - @notes.each do |note|
-        %tr[note]
-          %td= link_to note.title, note
-          %td
-            = link_to 'Edit', edit_note_path(note)
-            = link_to 'Destroy', note, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-= render "pagination", records: @notes
+        %h5.center.padding16= t("notes.count", count: 0)

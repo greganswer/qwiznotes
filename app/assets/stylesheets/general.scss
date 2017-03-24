@@ -1,8 +1,12 @@
 body {
-  background: desaturate(color($primary-color-name, "lighten-4"), 60%);
+  background: $body-bg-color;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+}
+
+.body-bg-color {
+  background: $body-bg-color;
 }
 
 main {

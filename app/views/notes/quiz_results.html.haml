@@ -1,0 +1,26 @@
+- breadcrumb :quiz_results_note, @note
+
+.container.m-full-width
+  .card-panel.m-no-margin
+    - unless @note.has_minimum_number_of_concepts?
+      %h5.center= t('notes.text.not_enough_terms.heading')
+
+    - else
+      = render 'notes/info', note: @note
+
+      - questions = @note.quiz[:questions]
+      - options = @note.quiz[:options]
+
+      -# QUESTION
+      - (0..questions.size-1).each do |q_index|
+        %b #{q_index + 1}) #{questions[q_index]}
+        %br
+        - options[q_index].each_with_index do |option, o_index|
+          .grey-text.text-darken-2{style: 'margin-left: 2em'}
+            %b (#{(o_index+65).chr.downcase})
+            #{sanitize(option)}
+        %br
+        %br
+
+      .center
+        = link_to t('notes.quiz_results.retake'), quiz_note_path(@note), class: 'waves-effect waves-light btn-large'

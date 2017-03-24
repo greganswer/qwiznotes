@@ -1,0 +1,19 @@
+= render "pagination", records: notes
+
+.row.margin-2percent.m-no-margin
+  - notes.each do |note|
+    .col.s12.m6.l4.xl3
+      .card.small[note]
+        .card-content
+          %span.card-title= link_to note, note, class: 'grey-text text-darken-4'
+          %p
+            %b #{Note.human_attribute_name(:user)}:
+            #{note.user}
+          %p.grey-text.text-darken-1= strip_tags(note.content).truncate(180, separator: ' ')
+
+        .card-action
+          = link_to t('notes.show.link'), note
+          = link_to t('notes.review.link'), review_note_path(note)
+          = link_to t('notes.quiz.link'), quiz_note_path(note)
+
+= render "pagination", records: notes

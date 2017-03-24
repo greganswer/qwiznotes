@@ -62,7 +62,7 @@
                   %a.dropdown-button{"data-activates": "dropdown2", href: "#!", 'data-beloworigin': "true"}
                     #{current_user} #{material_icon.arrow_drop_down.css_class(:right)}
                 %ul#dropdown2.dropdown-content
-                  / %li= link_to t('devise.registrations.edit.link_title'), edit_user_registration_path
+                  / %li= link_to t('devise.registrations.edit.link'), edit_user_registration_path
                   %li= link_to t('devise.sessions.destroy.link'), destroy_user_session_path, method: :delete
               - else
                 %li= link_to t('devise.sessions.new.link'), new_user_session_path
@@ -71,12 +71,15 @@
       -## SIDE NAV
 
       %ul#menu-mobile-side.side-nav
-        %li= link_to t('notes.index.link'), notes_path
         - if user_signed_in?
           -#%li.input-field.search
             = mi.search.css_class('prefix')
             %input{type: "text", value: params[:search]}
           %li= link_to t('notes.new.link_title'), new_note_path
+
+        %li= link_to t('notes.index.link'), notes_path
+
+        - if user_signed_in?
           %li= link_to t('devise.sessions.destroy.link'), destroy_user_session_path, method: :delete
         - else
           %li= link_to t('devise.sessions.new.link'), new_user_session_path
@@ -117,14 +120,10 @@
     -## JAVASCRIPT & JAVASCRIPT FLASH MESSAGES
 
     = javascript_include_tag("application")
-    - if Rails.env.development?
-      / = debug(params)
-      / = console
+    / = debug(params) if Rails.env.development?
+    = console if Rails.env.development?
 
-    - if flash[:success]
-      :javascript
-        Materialize.toast("#{flash[:success]}", 4000)
-
-    - if flash[:notice] && flash[:notice].size < 50
-      :javascript
-        Materialize.toast("#{flash[:notice]}", 4000)
+    - [flash[:success], flash[:notice]].each do |message|
+      - if message && message.size < 50
+        :javascript
+          Materialize.toast("#{message}", 4000)

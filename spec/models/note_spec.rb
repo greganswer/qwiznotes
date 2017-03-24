@@ -27,10 +27,25 @@ RSpec.describe Note do
     end
 
     it "#has_minimum_number_of_concepts?" do
-      note = build(:note)
+      note = build(:note, content: 'apple - a fruit')
       expect(note.has_minimum_number_of_concepts?).to be false
-      note = build(:note, content: t("notes.sample.content"))
+      note = build(:note)
       expect(note.has_minimum_number_of_concepts?).to be true
+    end
+  end
+
+  ## QUIZ METHODS
+
+  describe "QUIZ METHODS" do
+    let(:note) { build :note }
+
+    it "#quiz has questions" do
+      expect(note.quiz[:questions][0]).to be_truthy
+    end
+
+    it "#quiz_results has questions" do
+      quiz_results = note.quiz_results(quiz_input: note.quiz)
+      expect(quiz_results[:questions][0]).to be_truthy
     end
   end
 end

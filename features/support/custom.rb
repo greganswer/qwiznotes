@@ -1,6 +1,7 @@
 require 'email_spec' # add this line if you use spork
 require 'email_spec/cucumber'
 require 'capybara-screenshot/cucumber'
+require "cgi"
 
 Capybara.javascript_driver = :webkit
 Capybara.save_and_open_page_path = 'tmp/screenshots'
@@ -12,12 +13,16 @@ begin
 
 rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
-
 end
 
 module Helper
    include ApplicationHelper
    include FactoryGirl::Syntax::Methods
+   include ActionView::Helpers::SanitizeHelper
+
+  def html_unescape(text)
+    CGI.unescapeHTML(strip_tags(text))
+  end
 end
 
 World(Helper)
