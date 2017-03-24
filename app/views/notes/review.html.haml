@@ -1,0 +1,25 @@
+- breadcrumb :review_note, @note
+
+.container.m-full-width
+  .card-panel.m-no-margin
+    - if @note.concepts.blank?
+      %h5.center= t('notes.text.no_terms_or_defintions.heading')
+
+    - else
+      = render 'notes/info', note: @note
+      -# TABLE
+
+      %table.review-table.highlight
+        %thead
+          %tr
+            %th #
+            %th= Note.human_attribute_name(:term)
+            %th= Note.human_attribute_name(:definition)
+        %tbody
+          - @note.concepts.each_with_index do |concept, index|
+            %tr
+              %td.number= index + 1
+              %td.term= concept[:term]
+              %td.definition= concept[:definition]
+
+      = render 'notes/buttons', note: @note

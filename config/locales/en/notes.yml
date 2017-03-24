@@ -41,4 +41,34 @@ en:
         title: "Deleting note: %{note}"
         link_title: Delete this note
         link: Delete
+    quiz:
+        link: Quiz
+        link_title: Take a quiz randomly generated from this note
+        title: Quiz this note
+    quiz_results:
+      link: Results
+      link_title: Get your quiz results
+      title: Quiz results
+    recent: Recent note
+    restore:
+      flash:
+        danger: Unable to restore note
+        success: Restored note
+        success_with_title_html: 'restored note titled: %{title}'
+    review:
+      link: Review
+      link_title: Review this note in table format
+      title: Review this note
+    sample:
+      content: "<b>Sample Content (can be deleted or modified)</b><br><br><strong>Flummox</strong> to perplex or bewilder<br><br>Crest - the highest part of a hill or mountain range; summit.<br><br>Portent -&gt; an indication or omen of something about to happen, especially something momentous.<br><br>Compile ~ to put together (documents, selections, or other materials) in one book or work.<br><br>Lease: a contract renting land, buildings, etc., to another; a contract or instrument conveying property to another for a specified period or for a period determinable at the will of either lessor or lessee in consideration of rent or other compensation.<br><br>Missive = sent or about to be sent, especially of a letter from an official source."
+      title: Note Title
+    text:
+      fix_this_note: Please click the "edit" button below to improve this note.
+      no_terms_or_defintions:
+        description_html: Unfortunately, based on the way the note was formatted, this note cannot be "reviewed" in a table and cannot automatically generate a quiz nor quiz results. If you own this note and you are not sure how to make term/defintion pairs, please see the %{link} for examples.
+        heading: No term/defintion pairs were created in this note
+      not_enough_terms:
+        description_html: This note has %{terms_count} terms and we need %{needed_count} more so we can generate a quiz from this note.
+        heading: Not enough terms
+        settings_description_html: Please check your %{link} to make sure that they are compatible with the way this note was formatted.
 

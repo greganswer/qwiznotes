@@ -41,6 +41,10 @@ When(/^I do not enter the note content$/) do
   submit_note_form(content: '')
 end
 
+When(/^I click on the "Review" button$/) do
+  click_on(I18n.t('notes.review.link'), match: :first)
+end
+
 Then(/^I should see (\d+) notes$/) do |count|
   expect(page).to have_css(".note", count: count.to_i)
 end
@@ -58,6 +62,10 @@ Then(/^I should see that the note was not created$/) do
   expect(page).not_to have_content(I18n.t('notes.create.success'))
 end
 
-When(/^I should not see the "Create Note" button$/) do
+Then(/^I should not see the "Create Note" button$/) do
   expect(page).not_to have_content(I18n.t('notes.new.link_title'))
+end
+
+Then(/^I should see a review table for the note$/) do
+  expect(page).to have_css('.review-table')
 end

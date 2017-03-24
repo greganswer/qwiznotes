@@ -1,18 +1,10 @@
 - breadcrumb :note, @note
 
-.container.s-full-width
-  .card-panel.m-no-margin
+.card-panel.m-no-margin
+  = render 'notes/info', note: @note
 
-    -# DATES
+  -# CONTENT
 
-    %p.grey-text
-      %b #{Note.human_attribute_name(:created_at)}:
-      #{local_time(@note.created_at, :medium)}
-    - if @note.updated_at != @note.created_at
-      %p.grey-text
-        %b #{Note.human_attribute_name(:created_at)}:
-        #{local_time(@note.created_at, :medium)}
+  %p= raw(@note.content)
 
-    -# CONTENT
-
-    %p= @note.content
+  = render 'notes/buttons', note: @note

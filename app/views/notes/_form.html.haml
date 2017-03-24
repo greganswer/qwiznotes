@@ -1,8 +1,8 @@
-.container
+.container.s-full-width
   = simple_form_for note do |f|
     = render 'form_errors', record: note
 
-    .card-panel
+    .card-panel.m-no-margin
       .input-field
         = f.input :title, placeholder: t('notes.untitled_note'), input_html: {style: 'font-size: 2em'}
         = f.input :content, input_html: {class: 'materialize-textarea'}

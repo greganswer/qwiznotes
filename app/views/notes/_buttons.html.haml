@@ -1,0 +1,5 @@
+%br
+.center
+  = link_to t('notes.show.link'), note, class: 'btn waves-effect' unless current_page?(note)
+  = link_to t('notes.review.link'), review_note_path(note), class: 'btn waves-effect' unless current_page?(review_note_path(note))
+  = link_to t('notes.quiz.link'), quiz_note_path(note), class: 'btn waves-effect' unless current_page?(quiz_note_path(note))

@@ -33,6 +33,11 @@ crumb :edit_note do |note|
   parent note
 end
 
+crumb :review_note do |note|
+  link t('notes.review.link'), review_note_path(note)
+  parent note
+end
+
 crumb :note do |note|
   link note.title, note_path(note)
   parent :notes

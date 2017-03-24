@@ -1,0 +1,13 @@
+table.review-table {
+  td {
+    &.number {
+      font-weight: bold;
+    }
+    &.term {
+      font-weight: bold;
+    }
+    &.definition {
+
+    }
+  }
+}

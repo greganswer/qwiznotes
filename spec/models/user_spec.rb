@@ -20,12 +20,12 @@ RSpec.describe User do
 
   # FIXME: the regext which worked in Rails 4.2 is no longer working
   ["bad name", "bad.name", "bad@name"].each do |name|
-    it "displays invalid notice when name is '#{name}'" #do
-      # record = build(:user, name: name)
-      # record.save
-      # invalid_notice = t("activerecord.errors.models.user.attributes.name.invalid")
-      # expect(record.errors[:name]).to eq [invalid_notice]
-    # end
+    it "displays invalid notice when name is '#{name}'" do
+      record = build(:user, name: name)
+      record.save
+      invalid_notice = t("activerecord.errors.models.user.attributes.name.invalid")
+      expect(record.errors[:name]).to eq [invalid_notice]
+    end
   end
 
   it "creates a unique name from email" do

@@ -1,0 +1,28 @@
+-# DATES
+.grey-text
+
+  %p.right
+    %b #{Note.human_attribute_name(:concepts_count)}:
+    #{note.concepts_count}
+
+  %p.left
+    %b #{User.human_attribute_name(:name)}:
+    #{note.user.name}
+    %br
+    %b #{Note.human_attribute_name(:created_at)}:
+    #{local_time(note.created_at, :medium)}
+    - if note.updated_at != note.created_at
+      %br
+      %b #{Note.human_attribute_name(:updated_at)}:
+      #{local_time(note.updated_at, :medium)}
+
+    %br
+    %br
+    = link_to t('notes.show.link'), note, class: 'btn-flat waves-effect' unless current_page?(note)
+    = link_to t('notes.review.link'), review_note_path(note), class: 'btn-flat waves-effect' unless current_page?(review_note_path(note))
+    = link_to t('notes.quiz.link'), quiz_note_path(note), class: 'btn-flat waves-effect' unless current_page?(quiz_note_path(note))
+
+.clear-both
+- unless current_page?(review_note_path(note))
+  .divider
+%br

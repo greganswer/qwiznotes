@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: [:show, :edit, :update, :destroy]
+  before_action :set_note, only: [:show, :edit, :update, :destroy, :review]
 
   # GET
 
@@ -17,11 +17,13 @@ class NotesController < ApplicationController
   def edit
   end
 
+  def review
+  end
+
   # POST
 
   def create
-    @note = Note.new(note_params)
-
+    @note = current_user.notes.build(note_params)
     respond_to do |format|
       if @note.save
         format.html { redirect_to @note, notice: t('.success') }

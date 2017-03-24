@@ -128,6 +128,11 @@
     width: 100%;
   }
 }
+@media #{$medium-and-down} {
+  .m-full-width {
+    width: 100%;
+  }
+}
 
 .empty-space {
   margin-top: 10em;

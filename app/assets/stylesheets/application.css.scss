@@ -22,4 +22,5 @@ $large-and-down: "only screen and (max-width : #{$large-screen})" !default;
 @import "mixins";
 @import "materialize_custom";
 @import "general";
+@import "review_table";
 @import "utility";

@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  ## RELATIONS
+
+  has_many :notes, dependent: :destroy
+
   ## VALIDATIONS
 
   validates :email, :name, uniqueness: { case_sensitive: false }, presence: true
@@ -32,6 +36,7 @@ class User < ApplicationRecord
 
   # Example: john_76@mail.com -> john_76
   def create_unique_name_from_email
+    return unless name.blank?
     name = email.to_s.split("@").first
     last_user = User.where("name LIKE ?", "#{name}%").order(:name).last
     if last_user
