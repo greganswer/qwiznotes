@@ -7,8 +7,8 @@ en:
     submit: Submit
     home: Home
     click_here: click here
+    none: None
     click_link_below_if_button_not_working: 'If for some reason the button does not work, click the link below:'
-
   helpers:
     page_entries_info:
       more_pages:

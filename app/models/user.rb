@@ -1,32 +1,21 @@
 class User < ApplicationRecord
-  ## RELATIONS
-
   has_many :notes, dependent: :destroy
-
-  ## VALIDATIONS
 
   validates :email, :name, uniqueness: { case_sensitive: false }, presence: true
   validates :name, format: { with: /\A[-\w]+\z/ }
 
-  ## CALLBACKS
-
   before_validation :create_unique_name_from_email, on: :create
 
-  ## DEVISE
-
-  # add :omniauthable
-
-  devise *%i(
-    database_authenticatable
-    confirmable
-    lockable
-    recoverable
-    registerable
-    rememberable
-    timeoutable
-    trackable
-    validatable
-  )
+  # TODO: add :omniauthable
+  devise :database_authenticatable,
+    :confirmable,
+    :lockable,
+    :recoverable,
+    :registerable,
+    :rememberable,
+    :timeoutable,
+    :trackable,
+    :validatable
 
   def to_s
     name
@@ -34,10 +23,16 @@ class User < ApplicationRecord
 
   private
 
-  # Example: john_76@mail.com -> john_76
+  # Creates a unique name based on the user's email address
+  #
+  #   @user = User.create(email: "john-76@mail.com")
+  #   @other_user = User.create(email: "john-76@example.com")
+  #   @user.name           # => "john-76"
+  #   @other_user.name # => "john-76-2"
+
   def create_unique_name_from_email
-    return unless name.blank?
-    name = email.to_s.split("@").first
+    return if name.present?
+    name = email.to_s.split("@").first&.gsub('.', '-')
     last_user = User.where("name LIKE ?", "#{name}%").order(:name).last
     if last_user
       number = 2

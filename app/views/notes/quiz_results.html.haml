@@ -1,5 +1,63 @@
 - breadcrumb :quiz_results_note, @note
 
+-# RESULTS
+
+- quiz = @note.quiz_results
+- percent = @note.quiz_results.percent_correct
+
+- if percent == 100
+  .container
+    .card.padding8.center.green.lighten-4
+      %h4.green-text.text-darken-2
+        = t('quizzes.text.perfect_score')
+        = material_icon.sentiment_very_satisfied.md_36
+
+- else
+  - if percent >= 80
+    - icon = 'sentiment_very_satisfied'
+    - text_color = 'green-text'
+  - elsif percent >= 60
+    - icon = 'sentiment_satisfied'
+    - text_color = 'yellow-text text-darken-4'
+  - else
+    - icon = 'sentiment_very_dissatisfied'
+    - text_color = 'red-text'
+
+  .row
+    -# Percentage
+
+    .col.s12.m4
+      #results-percentage.card.padding8.center
+        %h2{class: text_color}
+          %i.material-icons.md-36= icon
+          = percent
+          %span.small-superscript %
+        %p.bold{class: text_color} #{t('quizzes.text.correct_answers', count: 2)}: #{quiz.correct_answers.count} / #{quiz.questions.count}
+
+    -# Incorrect answers
+
+    .col.s12.m4
+      .card.padding8{style: 'min-height: 155px'}
+        %h5.grey-text= t('quizzes.text.incorrect_answers')
+        - if quiz.incorrect_answers.count.zero?
+          %i= t('app.none')
+        - else
+          - quiz.incorrect_answers.each do |question|
+            %a.btn.btn-small.grey{href: "#question_#{question.number}"}= question.number
+
+    -# Unanswered questions
+
+    .col.s12.m4
+      .card.padding8{style: 'min-height: 155px'}
+        %h5.grey-text= t('quizzes.text.unanswered_questions')
+        - if quiz.unanswerd_questions.count.zero?
+          %i= t('app.none')
+        - else
+          - quiz.unanswerd_questions.each do |question|
+            %a.btn.btn-small.grey{href: "#question_#{question.number}"}= question.number
+
+-# QUIZ
+
 .container.m-full-width
   .card-panel.m-no-margin
     - unless @note.has_minimum_number_of_concepts?
@@ -8,19 +66,28 @@
     - else
       = render 'notes/info', note: @note
 
-      - questions = @note.quiz[:questions]
-      - options = @note.quiz[:options]
+      -# Question
 
-      -# QUESTION
-      - (0..questions.size-1).each do |q_index|
-        %b #{q_index + 1}) #{questions[q_index]}
+      -quiz.questions.each do |question|
+        .anchor{id: "question_#{question.number}"}
+        %h5= "#{question.number}) #{question}"
+
+        -# Options
+
+        - question.options.each do |option|
+          - if option.selected? && option.correct_answer?
+            .green-text.text-darken-2.bold= raw "#{fa_icon 'check'} (#{option.letter}) #{sanitize(option.to_s)}"
+          - elsif option.selected?
+            .red-text.text-darken-3.bold= raw "#{fa_icon 'close'} (#{option.letter}) #{sanitize(option.to_s)}"
+          - else
+            .grey-text.text-darken-2{style: 'margin-left: 2em'}= raw "(#{option.letter}) #{sanitize(option.to_s)}"
         %br
-        - options[q_index].each_with_index do |option, o_index|
-          .grey-text.text-darken-2{style: 'margin-left: 2em'}
-            %b (#{(o_index+65).chr.downcase})
-            #{sanitize(option)}
+        %h5= t('quizzes.text.correct_answers', count: 1)
+        %p{style: 'margin: 0 0 2em 2em'}= question.correct_answer
+        .divider
         %br
-        %br
+
+      -# Action buttons
 
       .center
         = link_to t('notes.quiz_results.retake'), quiz_note_path(@note), class: 'waves-effect waves-light btn-large'

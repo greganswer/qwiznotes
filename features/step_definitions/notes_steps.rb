@@ -27,6 +27,10 @@ When(/^I click the "Notes" button$/) do
   within('nav') { click_on I18n.t('notes.index.link') }
 end
 
+When(/^I click the "Quiz" button$/) do
+  click_on I18n.t('notes.quiz.link'), match: :first
+end
+
 When(/^I click the "Create Note" button$/) do
   within('nav') { click_on I18n.t('notes.new.link_title') }
 end
@@ -45,6 +49,13 @@ end
 
 When(/^I click on the "Review" button$/) do
   click_on(I18n.t('notes.review.link'), match: :first)
+end
+
+When(/^I select some answers and submit the quiz$/) do
+  choose "quiz_1_A"
+  choose "quiz_2_A"
+  choose "quiz_3_A"
+  click_button "quiz-submit"
 end
 
 Then(/^I should see (\d+) notes$/) do |count|
@@ -70,4 +81,12 @@ end
 
 Then(/^I should see a review table for the note$/) do
   expect(page).to have_css('.review-table')
+end
+
+Then(/^I should see a quiz for the note$/) do
+  expect(page).to have_field("user_answers[1]")
+end
+
+Then(/^I should see the quiz results$/) do
+  expect(page).to have_css('#results-percentage')
 end

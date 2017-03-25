@@ -24,15 +24,10 @@ class NotesController < ApplicationController
   end
 
   def quiz_results
-    return unless @note
-    if !request.post? || params[:user_answers].blank?
-      link = url_for[/demo/] ? [:demo, :quiz] : [:quiz, @note]
-      return redirect_to link, danger: t("records.quizzes.not_taken")
+    unless request.post? && params[:user_answers].present?
+      return redirect_to [:quiz, @note], alert: t("quizzes.text.not_taken")
     end
-    @quiz = @note.quiz_results(
-      quiz_input: JSON[params[:quiz]].with_indifferent_access,
-      user_answers: params[:user_answers],
-    )
+    @note.quiz_results(params[:quiz], params[:user_answers])
   end
 
   # POST

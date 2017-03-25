@@ -37,7 +37,7 @@ class CreateNoteConcepts
 
   def initialize(content, settings_attributes = nil)
     @term = @definition = ""
-    @settings = settings_attributes.try(:symbolize_keys).try(:slice, *SETTINGS.keys) || SETTINGS
+    @settings = settings_attributes&.symbolize_keys&.slice(*SETTINGS.keys) || SETTINGS
     @lines = content.split(%r{<br.*?>|<\/p>})
   end
 
@@ -116,7 +116,7 @@ class CreateNoteConcepts
 
   def capitalize(_)
     return unless settings[:capitalize]
-    term[0] = term[0].try(:capitalize).to_s unless term[1].to_s[/[A-Z]/]
-    definition[0] = definition[0].try(:capitalize).to_s unless definition[1].to_s[/[A-Z]/]
+    term[0] = term[0]&.capitalize.to_s unless term[1].to_s[/[A-Z]/]
+    definition[0] = definition[0]&.capitalize.to_s unless definition[1].to_s[/[A-Z]/]
   end
 end

@@ -9,7 +9,7 @@ gem 'autoprefixer-rails'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'enumerize' # Enumerated attributes
-gem 'faker'
+gem 'font-awesome-rails'
 gem 'gretel'
 gem 'haml-rails'
 gem 'hashids' # YouTube-like hashes from one or many numbers
@@ -58,6 +58,7 @@ end
 
 group :development do
   gem 'better_errors'
+  gem "binding_of_caller"
   gem 'brakeman', require: false
   gem 'bullet'
   gem 'bundler-audit'

@@ -28,9 +28,21 @@ RSpec.describe User do
     end
   end
 
-  it "creates a unique name from email" do
-    user = create(:user)
-    expect(user.name).to eq(user.email.split("@").first)
+  context "creates a unique name" do
+    it "from email if name is not present" do
+      user = create(:user)
+      expect(user.name).to eq(user.email.split("@").first)
+    end
+
+    it "from email and converts '.' character to '-' character" do
+      user = create(:user, email: 'john.doe@mail.com')
+      expect(user.name).to eq('john-doe')
+    end
+
+    it "accepts a name input" do
+      user = create(:user, name: 'john')
+      expect(user.name).to eq('john')
+    end
   end
 
   it "#to_s" do

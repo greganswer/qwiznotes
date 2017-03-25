@@ -5,24 +5,21 @@ body {
   flex-direction: column;
 }
 
-.body-bg-color {
-  background: $body-bg-color;
+.anchor {
+  display: block;
+  position: relative;
+  top: -80px;
+  visibility: hidden;
 }
 
-main {
-  flex: 1 0 auto;
-}
+.body-bg-color {background: $body-bg-color}
+
+main {flex: 1 0 auto}
 
 form {
-  .input-field {
-    margin-bottom: 2rem;
-  }
-  .error {
-    color: color('red', 'base');
-  }
-  .hint {
-    color: color('grey', 'base');
-  }
+  .input-field {margin-bottom: 2rem}
+  .error {color: color('red', 'base')}
+  .hint {color: color('grey', 'base')}
 }
 
 a.brand-logo {
@@ -50,10 +47,11 @@ footer {
 
 .breadcrumbs {
   color: color('blue-grey', 'lighten-1');
-  a {
-      // color: $secondary-color;
-    }
-    .current {
-    // color: color('grey', 'lighten-4');
-  }
+}
+
+.small-superscript {
+  font-size: 50%;
+  position: relative;
+  top: -20px;
+  left: -10px;
 }

@@ -1,21 +1,11 @@
 class Note < ApplicationRecord
-  ## CONSTANTS
-
-  MINIMUM_NUMBER_OF_CONCEPTS = 5
-
-  ## RELATIONS
+  MINIMUM_NUMBER_OF_CONCEPTS = Quiz::OPTIONS_COUNT + 1
 
   belongs_to :user, counter_cache: true
 
-  ## VALIDATIONS
-
   validates :title, :content, presence: true
 
-  ## CALLBACKS
-
   before_validation :prepare_input
-
-  ## METHODS
 
   def to_s
     title
@@ -26,20 +16,17 @@ class Note < ApplicationRecord
     @concepts = condition ? CreateNoteConcepts.new(content, settings_attributes).call : @concepts
   end
 
-  def quiz(settings_attributes = nil)
-    condition = settings_attributes || !@quiz
-    @quiz = condition ? CreateMultipleChoiceQuiz.new(concepts, settings_attributes).call : @quiz
+  def quiz
+    @quiz ||= Quiz.build_from_concepts(concepts)
   end
 
-  def quiz_results(quiz_input: quiz, user_answers: [])
-    @quiz_results = quiz_input ? CreateMultipleChoiceQuizResults.new(quiz_input, user_answers).call : @quiz_results
+  def quiz_results(quiz_json = nil, user_answers = [])
+    @quiz_results = quiz_json ? Quiz.build_from_quiz_json(quiz_json, user_answers) : @quiz_results
   end
 
   def has_minimum_number_of_concepts?
     concepts.present? && concepts.size >= MINIMUM_NUMBER_OF_CONCEPTS
   end
-
-  ## PRIVATE
 
   private
 

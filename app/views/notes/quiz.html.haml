@@ -11,20 +11,20 @@
       = form_for :note, url: quiz_results_note_path(@note) do
         = hidden_field_tag :quiz, @note.quiz.to_json
 
-        - questions = @note.quiz[:questions]
-        - options = @note.quiz[:options]
-
-        -# QUESTION
-        - (0..questions.size-1).each do |q_index|
-          %b #{q_index + 1}) #{questions[q_index]}
+        -@note.quiz.questions.each do |question|
+          %h5= "#{question.number}) #{question}"
           %br
-          - options[q_index].each_with_index do |option, o_index|
-            - id = "quiz_#{q_index}_#{o_index}"
-            = radio_button :user_answers, q_index, option, id: id
-            = label_tag id, "(#{(o_index+65).chr.downcase}) #{sanitize(option)}", class: 'grey-text text-darken-2'
+          - question.options.each do |option|
+            - id = "quiz_#{question.number}_#{option.letter}"
+            = radio_button :user_answers, question.number, option, id: id
+            = label_tag id, class: 'grey-text text-darken-2' do
+              %b (#{option.letter})
+              #{sanitize(option.to_s)}
             %br
           %br
           %br
+          .divider
+          %br
 
         .center
-          %button.waves-effect.waves-light.btn-large= t('notes.quiz_results.link_title')
+          %button#quiz-submit.waves-effect.waves-light.btn-large= t('notes.quiz_results.link_title')

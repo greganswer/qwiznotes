@@ -121,7 +121,7 @@
 
     = javascript_include_tag("application")
     / = debug(params) if Rails.env.development?
-    = console if Rails.env.development?
+    /= console if Rails.env.development?
 
     - [flash[:success], flash[:notice]].each do |message|
       - if message && message.size < 50

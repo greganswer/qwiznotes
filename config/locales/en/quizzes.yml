@@ -1,0 +1,26 @@
+---
+en:
+  activerecord:
+    attributes:
+      quiz:
+    models:
+      quiz:
+        one: Quiz
+        other: Quizzes
+  quizzes:
+    link: Quiz
+    link_results: Get results
+    link_retake: Retake quiz
+    link_title: Take quiz
+    text:
+      perfect_score: Congratulations! You got all the questions right!
+      not_taken: Please answer at least one question before viewing results
+      correct_answers:
+        one: Correct answer
+        other: Correct answers
+      incorrect_answers: Incorrect answers
+      none_of_the_above: None of the above.
+      question:
+        one: Question
+        other: Questions
+      unanswered_questions: Unanswered questions
