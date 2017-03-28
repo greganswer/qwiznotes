@@ -1,10 +1,10 @@
+---
 en:
   activerecord:
     attributes:
       user:
         created_at: Joined
         deleted_at: Deactivated
-        name: Member name
         email: Email
         name: Username
         updated_at: Last updated
@@ -20,9 +20,9 @@ en:
       other: "%{count} users"
       zero: No users found
     index:
-        title: Users
-        link: Users
+      link: Users
+      title: Users
     show:
-        link: View
-        link_title: View this user
-        title: "Viewing user: %{user}"
+      link: View
+      link_title: View this user
+      title: 'Viewing user: %{user}'

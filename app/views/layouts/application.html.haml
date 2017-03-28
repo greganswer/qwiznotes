@@ -54,7 +54,9 @@
               %li= link_to t('notes.index.link'), notes_path
 
               - if user_signed_in?
+
                 -# USER
+
                 -#%li.search
                   %label{for: :search}= mi.search
                   %input.browser-default{id: :search, type: "text", value: params[:search]}

@@ -1,58 +1,53 @@
+---
 en:
   activerecord:
     attributes:
       note:
         concepts: Concepts
         concepts_count: Concepts
-        title: Note title
-        review: Review
         quiz: Quiz
         quiz_results: Quiz results
+        review: Review
+        title: Note title
   notes:
-    untitled_note: Untitled note
     concept:
-        one: Concept
-        other: Concepts
+      one: Concept
+      other: Concepts
     count:
       one: 1 note
       other: "%{count} notes"
       zero: No notes found
-    index:
-      title: Notes
-      link_title: View all notes
-      link: Notes
-      mine: My notes
     create:
-        success: Created note
-        success_with_title_html: 'created note titled: %{title}'
-    show:
-        link: View
-        link_title: View this note
-        title: "Viewing note: %{note}"
-    edit:
-        title: "Editing note: %{note}"
-        link_title: Edit this note
-        link: Edit
-    new:
-        link: Add
-        link_title: Add a note
-        title: Add a note
-        submit: Save this note
+      success: Created note
+      success_with_title_html: 'created note titled: %{title}'
     destroy:
-        title: "Deleting note: %{note}"
-        link_title: Delete this note
-        link: Delete
+      link: Delete
+      link_title: Delete this note
+      title: 'Deleting note: %{note}'
+    edit:
+      link: Edit
+      link_title: Edit this note
+      title: 'Editing note: %{note}'
+    index:
+      link: Notes
+      link_title: View all notes
+      mine: My notes
+      title: Notes
+    new:
+      link: Add
+      link_title: Add a note
+      submit: Save this note
+      title: Add a note
     quiz:
-        link: Quiz
-        link_title: Take a quiz randomly generated from this note
-        title: Quiz this note
+      link: Quiz
+      link_title: Take a quiz randomly generated from this note
+      title: Quiz this note
     quiz_results:
       link: Results
       link_title: Get your results
-      title: Quiz results
       retake: Generate a new quiz
+      title: Quiz results
     recent: Recent note
-    you_have_no_note_html: You currently have no notes. Please %{create_link} to create your first note or %{notes_link} to view notes in the community.
     restore:
       flash:
         danger: Unable to restore note
@@ -65,6 +60,10 @@ en:
     sample:
       content: "<b>Sample Content (can be deleted or modified)</b><br><br><strong>Flummox</strong> to perplex or bewilder<br><br>Crest - the highest part of a hill or mountain range; summit.<br><br>Portent -&gt; an indication or omen of something about to happen, especially something momentous.<br><br>Compile ~ to put together (documents, selections, or other materials) in one book or work.<br><br>Lease: a contract renting land, buildings, etc., to another; a contract or instrument conveying property to another for a specified period or for a period determinable at the will of either lessor or lessee in consideration of rent or other compensation.<br><br>Missive = sent or about to be sent, especially of a letter from an official source."
       title: Note Title
+    show:
+      link: View
+      link_title: View this note
+      title: 'Viewing note: %{note}'
     text:
       fix_this_note: Please click the "edit" button below to improve this note.
       no_terms_or_defintions:
@@ -74,4 +73,5 @@ en:
         description_html: This note has %{terms_count} terms and we need %{needed_count} more so we can generate a quiz from this note.
         heading: Not enough term/defintions pairs were created in this note
         settings_description_html: Please check your %{link} to make sure that they are compatible with the way this note was formatted.
-
+    untitled_note: Untitled note
+    you_have_no_note_html: You currently have no notes. Please %{create_link} to create your first note or %{notes_link} to view notes in the community.

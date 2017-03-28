@@ -1,23 +1,11 @@
+---
 en:
   devise:
     confirmations:
       edit:
-          link: Activate
-          link_title: Activate your account
-          submit: Activate account
-    registrations:
-      new:
-        link: Sign up
-        title: Sign up
-        submit: Sign up
-    sessions:
-      new:
-        remember_me: Keep me signed in
-        link: Log in
-        title: Log in
-        submit: Log in
-      destroy:
-        link: Log out
+        link: Activate
+        link_title: Activate your account
+        submit: Activate account
     mailer:
       confirmation_instructions:
         click_link: Before you get started, please click the button below to activate your account.
@@ -28,3 +16,16 @@ en:
       unlock_instructions:
         click_link: Click the button below to unlock your account.
         description: Your account has been locked due to an excessive number of unsuccessful sign in attempts.
+    registrations:
+      new:
+        link: Sign up
+        submit: Sign up
+        title: Sign up
+    sessions:
+      destroy:
+        link: Log out
+      new:
+        link: Log in
+        remember_me: Keep me signed in
+        submit: Log in
+        title: Log in

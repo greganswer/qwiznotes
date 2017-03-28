@@ -1,0 +1,10 @@
+---
+en:
+  user_mailer:
+    account_registration_create:
+      subject: Account Confirmation Instructions
+    closing_text_html: If you haven't already, please take a look at our %{demo_url} and if you have any question take a look at our %{help_url}. If you're still having trouble, you can simply reply to this email for further assistance. Thank you for choosing %{site_name}.
+    email_notification_create:
+      description: Here is a short list of recent %{site_name} activities from people you follow
+      subject: Recent Activities (%{count})
+    greeting: Hello %{user},
