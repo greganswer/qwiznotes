@@ -72,7 +72,7 @@ class NotesController < ApplicationController
   private
 
   def set_note
-    @note = Note.find(hashid_decode(params[:id]))
+    @note = Note.find_by_hashid(params[:id])
   end
 
   def note_params

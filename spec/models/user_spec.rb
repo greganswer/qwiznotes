@@ -6,6 +6,13 @@ RSpec.describe User do
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:email) }
 
+  it "can be found by hashid" do
+    user = create(:user)
+    hashid = Hashids.new(Rails.application.secrets.secret_key_base, 8).encode(user.id)
+    expect(user.to_param).to eq(hashid)
+    expect(User.find_by_hashid(hashid)).to eq(user)
+  end
+
   context "validates uniqueness of" do
     let(:users) { create_list :user, 2 }
 

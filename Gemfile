@@ -8,37 +8,30 @@ end
 gem 'autoprefixer-rails'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
-gem 'enumerize' # Enumerated attributes
+gem 'enumerize'
 gem 'font-awesome-rails'
 gem 'gretel'
 gem 'haml-rails'
-gem 'hashids' # YouTube-like hashes from one or many numbers
-gem 'jbuilder', '~> 2.5' # JSON builder
+gem 'hashids'
 gem 'jquery-rails'
-gem 'kaminari' # Pagination gem
-gem 'local_time' # Time helper with javascript
-gem 'lograge' # Convert request logs to one line
+gem 'kaminari'
+gem 'local_time'
+gem 'lograge'
 gem 'material_icons'
 gem 'materialize-sass'
-gem 'paranoia', '~> 2.2' # Adds soft deletion to models
-gem 'pg', '~> 0.18' # Postgresql
-gem 'puma', '~> 3.0' # Puma server
-gem 'pundit' # Object oriented authorization
+gem 'paranoia', '~> 2.2'
+gem 'pg', '~> 0.18'
+gem 'puma', '~> 3.0'
+gem 'pundit'
 gem 'rails', '~> 5.0.2'
-gem 'ransack' # Object-based searching
+gem 'ransack'
 gem 'redis', '~> 3.0'
-gem 'roadie', '~> 3.1.1' # Inline CSS for mailers
+gem 'roadie', '~> 3.1.1'
 gem 'sass-rails', '~> 5.0'
-gem "sidekiq" # Background processing
+gem "sidekiq"
 gem 'simple_form'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'uglifier', '>= 1.3.0'
-
-# Capistrano for automatic deployment
-gem 'capistrano', '~> 3.7', '>= 3.7.1'
-gem 'capistrano-rails', '~> 1.2'
-gem 'capistrano-passenger', '~> 0.2.0'
-gem 'capistrano-rbenv', '~> 2.1'
 
 group :development, :test, :staging do
   gem 'factory_girl_rails'
@@ -57,11 +50,15 @@ group :development, :test do
 end
 
 group :development do
-  gem 'better_errors'
   gem "binding_of_caller"
+  gem 'better_errors'
   gem 'brakeman', require: false
   gem 'bullet'
   gem 'bundler-audit'
+  gem 'capistrano', '~> 3.7', '>= 3.7.1'
+  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano-rails', '~> 1.2'
+  gem 'capistrano-rbenv', '~> 2.1'
   gem 'listen', '~> 3.0.5'
   gem 'meta_request'
   gem 'spring'
@@ -81,92 +78,18 @@ group :test do
 end
 
 # Annotations
-# Open links in Sublime text editor -> Right click the link
 # Open links in Atom text editor -> Place cursor in the link and pres CTRL-SHIFT-O
-#
-# acts-as-taggable-on -> A tagging plugin
-# https://github.com/mbleigh/acts-as-taggable-on
+# Open links in Atom editor -> Place cursor in the link and pres CTRL-SHIFT-O
+#------------------------------------------------------------------------------------------------------------------
 #
 # autoprefixer-rails -> Parse CSS and add vendor prefixes
 # https://github.com/ai/autoprefixer-rails
 #
-# coffee-rails -> CoffeeScript adapter for Rails
-# https://github.com/rails/coffee-rails
-#
-# devise -> User authentication solution
-# https://github.com/plataformatec/devise
-#
-# haml-rails -> Haml generators for Rails
-# https://github.com/indirect/haml-rails
-#
-# jquery-rails -> jQuery for Rails
-# https://github.com/rails/jquery-rails
-#
-# kaminari -> Pagination
-# https://github.com/kaminari/kaminari
-#
-# lograge -> Minimize Rails' default request logging
-# https://github.com/roidrage/lograge
-#
-# material_icons -> Google Material Design Icons Rails wrapper
-# https://github.com/Angelmmiguel/material_icons
-#
-# materialize-sass -> Google Material Design SCSS
-# https://github.com/mkhairi/materialize-sass
-#
-# pg -> PostgreSQL RDBMS
-# https://bitbucket.org/ged/ruby-pg/wiki/Home
-#
-# puma -> A ruby web server built for concurrency
-# https://github.com/puma/puma
-#
-# rails -> Ruby on Rails web framework
-# https://github.com/rails/rails
-#
-# sass-rails -> Official Ruby-on-Rails Integration with Sass
-# https://github.com/rails/sass-rails
-#
-# simple_form -> Simplified form DSL
-# https://github.com/plataformatec/simple_form
-#
-# tzinfo-data -> Include Timezone zoneinfo files for Windows operating system
-# https://github.com/tzinfo/tzinfo-data
-#
-# uglifier -> UglifyJS JavaScript compressor
-# https://github.com/lautis/uglifier
-#
-# factory_girl_rails -> Set up objects as test data
-# https://github.com/thoughtbot/factory_girl_rails
-#
-# faker -> Fake data generator
-# https://github.com/stympy/faker
-#
-# byebug -> Ruby debugger
-# https://github.com/deivid-rodriguez/byebug
-#
-# cucumber-rails -> Rails Generators for Cucumber feature testing framework
-# https://github.com/cucumber/cucumber-rails
-#
-# guard-cucumber -> Automated feature testing
-# https://github.com/guard/guard-cucumber
-#
-# guard-rspec -> Automated unit/feature testing
-# https://github.com/guard/guard-rspec
-#
-# i18n-tasks -> Manage translation and localization
-# https://github.com/glebm/i18n-tasks
-#
-# letter_opener -> Preview email in browser instead of sending it
-# https://github.com/ryanb/letter_opener
-#
-# rspec-rails -> Rails integration for Rspec testing framework
-# https://github.com/rspec/rspec-rails
-#
-# terminal-notifier-guard -> Mac OS X User Notifications for Guard
-# https://github.com/Codaisseur/terminal-notifier-guard
-#
 # better_errors -> Replaces the standard Rails error page
 # https://github.com/charliesome/better_errors
+#
+# binding_of_caller -> Grab bindings from higher up the call stack and evaluate code in that context
+# https://github.com/banister/binding_of_caller
 #
 # brakeman -> Check for security vulnerabilities
 # https://github.com/presidentbeef/brakeman
@@ -177,42 +100,157 @@ end
 # bundler-audit -> Checks for vulnerable versions of gems
 # https://github.com/rubysec/bundler-audit
 #
-# listen -> Listens to file modifications and notifies you about the changes
-# https://github.com/guard/listen
+# byebug -> Ruby debugger
+# https://github.com/deivid-rodriguez/byebug
 #
-# meta_request -> RailsPanel is a Chrome extension
-# https://github.com/dejan/rails_panel
+# capistrano -> Automated deployment scripts
+# https://github.com/capistrano/capistrano
 #
-# spring -> Rails application preloader
-# https://github.com/rails/spring
+# capistrano-passenger -> Passenger support for Capistrano 3.x
+# https://github.com/capistrano/passenger
 #
-# spring-watcher-listen -> Make Spring watch the filesystem for changes using Listen rather than by polling the filesystem.
-# https://github.com/jonleighton/spring-watcher-listen
+# capistrano-rails -> Ruby on Rails specific tasks for Capistrano
+# https://github.com/capistrano/rails
 #
-# web-console -> In-page console window
-# https://github.com/rails/web-console
-#
-# capybara-webkit -> Capybara driver for headless WebKit to test JavaScript
-# https://github.com/thoughtbot/capybara-webkit
+# capistrano-rbenv -> Idiomatic rbenv support for Capistrano 3.x
+# https://github.com/capistrano/rbenv
 #
 # capybara-screenshot -> Automatically save screen shots when a Capybara scenario fails
 # https://github.com/mattheworiordan/capybara-screenshot
 #
+# capybara-webkit -> Capybara driver for headless WebKit to test JavaScript
+# https://github.com/thoughtbot/capybara-webkit
+#
+# coffee-rails -> CoffeeScript adapter for Rails
+# https://github.com/rails/coffee-rails
+#
+# cucumber-rails -> Rails Generators for Cucumber feature testing framework
+# https://github.com/cucumber/cucumber-rails
+#
 # database_cleaner -> Cleans DB before/after tests
 # https://github.com/DatabaseCleaner/database_cleaner
+#
+# devise -> User authentication solution
+# https://github.com/plataformatec/devise
 #
 # email_spec -> Rspec email matchers
 # https://github.com/email-spec/email-spec
 #
+# enumerize -> Enumerated attributes
+# https://github.com/brainspec/enumerize
+#
+# factory_girl_rails -> Set up objects as test data
+# https://github.com/thoughtbot/factory_girl_rails
+#
+# faker -> Fake data generator
+# https://github.com/stympy/faker
+#
+# gretel -> Flexible Ruby on Rails breadcrumbs plugin.
+# https://github.com/lassebunk/gretel
+#
+# guard-cucumber -> Automated feature testing
+# https://github.com/guard/guard-cucumber
+#
+# guard-rspec -> Automated unit/feature testing
+# https://github.com/guard/guard-rspec
+#
+# haml-rails -> Haml generators for Rails
+# https://github.com/indirect/haml-rails
+#
+# hashids -> generate YouTube-like hashes from one or many numbers
+# https://github.com/peterhellberg/hashids.rb
+#
+# i18n-tasks -> Manage translation and localization
+# https://github.com/glebm/i18n-tasks
+#
+# jquery-rails -> jQuery for Rails
+# https://github.com/rails/jquery-rails
+#
+# kaminari -> Pagination
+# https://github.com/kaminari/kaminari
+#
 # launchy -> Launch the current view in browser/image
 # https://github.com/copiousfreetime/launchy
 #
+# letter_opener -> Preview email in browser instead of sending it
+# https://github.com/ryanb/letter_opener
+#
+# listen -> Listens to file modifications and notifies you about the changes
+# https://github.com/guard/listen
+#
+# local_time -> Rails engine for cache-friendly, client-side local time
+# https://github.com/basecamp/local_time
+#
+# lograge -> Minimize Rails' default request logging
+# https://github.com/roidrage/lograge
+#
+# material_icons -> Google Material Design Icons Rails wrapper
+# https://github.com/Angelmmiguel/material_icons
+#
+# materialize-sass -> Google Material Design SCSS
+# https://github.com/mkhairi/materialize-sass
+#
+# meta_request -> RailsPanel is a Chrome extension
+# https://github.com/dejan/rails_panel
+#
+# paranoia -> Adds soft deletion to models
+# https://github.com/rubysherpas/paranoia
+#
+# pg -> PostgreSQL RDBMS
+# https://bitbucket.org/ged/ruby-pg/wiki/Home
+#
+# puma -> A ruby web server built for concurrency
+# https://github.com/puma/puma
+#
+# pundit -> Minimal authorization through OO design and pure Ruby classes
+# https://github.com/elabs/pundit
+#
+# rails -> Ruby on Rails web framework
+# https://github.com/rails/rails
+#
+# ransack -> Object-based searching.
+# https://github.com/activerecord-hackery/ransack
+#
+# redis -> A Ruby client library for Redis
+# https://github.com/redis/redis-rb
+#
+# roadie -> Making HTML emails comfortable for Ruby
+# https://github.com/Mange/roadie
+#
+# rspec-rails -> Rails integration for Rspec testing framework
+# https://github.com/rspec/rspec-rails
+#
+# sass-rails -> Official Ruby-on-Rails Integration with Sass
+# https://github.com/rails/sass-rails
+#
 # shoulda-matchers -> Rspec one-line test matchers
 # https://github.com/thoughtbot/shoulda-matchers
+#
+# sidekiq -> background processing for Ruby
+# https://github.com/mperham/sidekiq
+#
+# simple_form -> Simplified form DSL
+# https://github.com/plataformatec/simple_form
+#
+# spring -> Rails application preloader
+# https://github.com/rails/spring
 #
 # spring-commands-cucumber -> Implement the Cucumber command for Spring.
 # https://github.com/jonleighton/spring-commands-cucumber
 #
 # spring-commands-rspec -> Implement the Rspec command for Spring.
 # https://github.com/jonleighton/spring-commands-rspec
-
+# spring-watcher-listen -> Make Spring watch the filesystem for changes using Listen rather than by polling the filesystem.
+# https://github.com/jonleighton/spring-watcher-listen
+#
+# terminal-notifier-guard -> Mac OS X User Notifications for Guard
+# https://github.com/Codaisseur/terminal-notifier-guard
+#
+# tzinfo-data -> Include Timezone zoneinfo files for Windows operating system
+# https://github.com/tzinfo/tzinfo-data
+#
+# uglifier -> UglifyJS JavaScript compressor
+# https://github.com/lautis/uglifier
+#
+# web-console -> In-page console window
+# https://github.com/rails/web-console
