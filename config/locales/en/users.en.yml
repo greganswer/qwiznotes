@@ -20,9 +20,6 @@ en:
       other: "%{count} users"
       zero: No users found
     index:
-      link: Users
       title: Users
     show:
-      link: View
-      link_title: View this user
       title: 'Viewing user: %{user}'

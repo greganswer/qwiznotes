@@ -10,6 +10,7 @@
     - [System requirements](#system-requirements)
     - [Installation](#installation)
     - [Running tests](#running-tests)
+    - [Additional resources](#additional-resources)
 - [The Project](#the-project)
     - [Proposal](#proposal)
     - [Target](#target)
@@ -52,6 +53,11 @@ bundle exec rspec
 # Automated testing for Cucumber and Rspec
 bundle exec guard
 ```
+
+### Additional resources
+
+- [List of Google Material Icons](https://material.io/icons/)
+- [List of Font Awesome Icons](http://fontawesome.io/icons/)
 
 ## The Project
 

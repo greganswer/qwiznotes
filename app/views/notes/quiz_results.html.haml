@@ -9,7 +9,7 @@
   .container
     .card.padding8.center.green.lighten-4
       %h4.green-text.text-darken-2
-        = t('quizzes.text.perfect_score')
+        = t('quizzes.perfect_score')
         = material_icon.sentiment_very_satisfied.md_36
 
 - else
@@ -20,50 +20,44 @@
     - icon = 'sentiment_satisfied'
     - text_color = 'yellow-text text-darken-4'
   - else
-    - icon = 'sentiment_very_dissatisfied'
+    - icon = 'sentiment_dissatisfied'
     - text_color = 'red-text'
 
-  .row
-    -# Percentage
+  .container.m-full-width
+    .card.padding8
+      -# Percentage
 
-    .col.s12.m4
-      #results-percentage.card.padding8.center
-        %h2{class: text_color}
-          %i.material-icons.md-36= icon
-          = percent
-          %span.small-superscript %
-        %p.bold{class: text_color} #{t('quizzes.text.correct_answers', count: 2)}: #{quiz.correct_answers.count} / #{quiz.questions.count}
+      .row
+        .col.s12.m4#results-percentage.center
+          %h2{class: text_color}
+            %i.material-icons.md-36= icon
+            = percent
+            %span.small-superscript %
+          %p.bold{class: text_color} #{t('quizzes.correct_answers', count: 2)}: #{quiz.correct_answers.count} / #{quiz.questions.count}
 
-    -# Incorrect answers
+        -# Incorrect answers
 
-    .col.s12.m4
-      .card.padding8{style: 'min-height: 155px'}
-        %h5.grey-text= t('quizzes.text.incorrect_answers')
-        - if quiz.incorrect_answers.count.zero?
-          %i= t('app.none')
-        - else
-          - quiz.incorrect_answers.each do |question|
-            %a.btn.btn-small.grey{href: "#question_#{question.number}"}= question.number
+        .col.s12.m4
+          %h5.grey-text= t('quizzes.incorrect_answers', count: quiz.incorrect_answers.count)
+          - if quiz.incorrect_answers.count.zero?
+            %i= t('app.none')
+          - else
+            - quiz.incorrect_answers.each do |question|
+              %a.btn.btn-small.grey{href: "#question_#{question.number}"}= question.number
 
-    -# Unanswered questions
+        -# Unanswered questions
 
-    .col.s12.m4
-      .card.padding8{style: 'min-height: 155px'}
-        %h5.grey-text= t('quizzes.text.unanswered_questions')
-        - if quiz.unanswerd_questions.count.zero?
-          %i= t('app.none')
-        - else
-          - quiz.unanswerd_questions.each do |question|
-            %a.btn.btn-small.grey{href: "#question_#{question.number}"}= question.number
+        .col.s12.m4
+          %h5.grey-text= t('quizzes.unanswered_questions', count: quiz.unanswerd_questions.count)
+          - if quiz.unanswerd_questions.count.zero?
+            %i= t('app.none')
+          - else
+            - quiz.unanswerd_questions.each do |question|
+              %a.btn.btn-small.grey{href: "#question_#{question.number}"}= question.number
 
--# QUIZ
+    -# QUIZ
 
-.container.m-full-width
-  .card-panel.m-no-margin
-    - unless @note.has_minimum_number_of_concepts?
-      %h5.center= t('notes.text.not_enough_terms.heading')
-
-    - else
+    .card-panel.m-no-margin
       = render 'notes/info', note: @note
 
       -# Question
@@ -80,9 +74,9 @@
           - elsif option.selected?
             .red-text.text-darken-3.bold= raw "#{fa_icon 'close'} (#{option.letter}) #{sanitize(option.to_s)}"
           - else
-            .grey-text.text-darken-2{style: 'margin-left: 2em'}= raw "(#{option.letter}) #{sanitize(option.to_s)}"
+            .grey-text.text-darken-2{style: 'margin-left: 1.2em'}= raw "(#{option.letter}) #{sanitize(option.to_s)}"
         %br
-        %h5= t('quizzes.text.correct_answers', count: 1)
+        %h5= t('quizzes.correct_answers', count: 1)
         %p{style: 'margin: 0 0 2em 2em'}= question.correct_answer
         .divider
         %br

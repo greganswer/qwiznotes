@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root "home#index"
   devise_for :users, path: :account
   resources :notes do
     member do
@@ -9,4 +8,5 @@ Rails.application.routes.draw do
         end
       end
   end
+  root "home#index"
 end

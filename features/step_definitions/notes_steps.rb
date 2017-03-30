@@ -19,20 +19,20 @@ Given(/^(\d+) notes were already created$/) do |count|
 end
 
 When(/^I click on the note titled "([^"]*)" in the notes list$/) do |title|
-  within('nav') { click_on I18n.t('notes.index.link') }
+  within('nav') { click_on Note.model_name.human(count: 2) }
   click_on title
 end
 
 When(/^I click the "Notes" button$/) do
-  within('nav') { click_on I18n.t('notes.index.link') }
+  within('nav') { click_on Note.model_name.human(count: 2) }
 end
 
 When(/^I click the "Quiz" button$/) do
-  click_on I18n.t('notes.quiz.link'), match: :first
+  click_on Quiz.model_name.human, match: :first
 end
 
 When(/^I click the "Create Note" button$/) do
-  within('nav') { click_on I18n.t('notes.new.link_title') }
+  within('nav') { click_on I18n.t('notes.new.link') }
 end
 
 When(/^I fill in the note form$/) do
@@ -48,7 +48,7 @@ When(/^I do not enter the note content$/) do
 end
 
 When(/^I click on the "Review" button$/) do
-  click_on(I18n.t('notes.review.link'), match: :first)
+  click_on(I18n.t('app.review'), match: :first)
 end
 
 When(/^I select some answers and submit the quiz$/) do
@@ -67,12 +67,12 @@ Then(/^I should see the details of the note$/) do
 end
 
 Then(/^I should see that the note was created$/) do
-  expect(page).to have_content(I18n.t('notes.create.success'))
+  expect(page).to have_content(I18n.t('notes.create.success_message'))
 end
 
 Then(/^I should see that the note was not created$/) do
   expect(page).to have_content(I18n.t('simple_form.error_notification.default_message'))
-  expect(page).not_to have_content(I18n.t('notes.create.success'))
+  expect(page).not_to have_content(I18n.t('notes.create.success_message'))
 end
 
 Then(/^I should not see the "Create Note" button$/) do

@@ -1,22 +1,22 @@
-.clear-both {clear: both}
-.bold {font-weight: bold}
-.empty-space {margin-top: 10em}
+.clear-both { clear: both }
+.bold { font-weight: bold }
+.empty-space { margin-top: 10em }
 
 // MARGIN
 
-.margin2 {margin: 2px}
-.margin4 {margin: 4px}
-.margin8 {margin: 8px}
-.margin12 {margin: 12px}
-.margin16 {margin: 16px}
-.margin20 {margin: 20px}
-.margin24 {margin: 24px}
-.margin28 {margin: 28px}
-.margin32 {margin: 32px}
-.margin-1percent {margin: 1%}
-.margin-2percent {margin: 2%}
-.margin-3percent {margin: 3%}
-.margin-4percent {margin: 4%}
+.margin2 { margin: 2px }
+.margin4 { margin: 4px }
+.margin8 { margin: 8px }
+.margin12 { margin: 12px }
+.margin16 { margin: 16px }
+.margin20 { margin: 20px }
+.margin24 { margin: 24px }
+.margin28 { margin: 28px }
+.margin32 { margin: 32px }
+.margin-1percent { margin: 1% }
+.margin-2percent { margin: 2% }
+.margin-3percent { margin: 3% }
+.margin-4percent { margin: 4% }
 
 .margin-horizontal {
   margin-left : auto;
@@ -24,15 +24,15 @@
 }
 
 // PADDING
-.padding2 {padding: 2px}
-.padding4 {padding: 4px}
-.padding8 {padding: 8px}
-.padding12 {padding: 12px}
-.padding16 {padding: 16px}
-.padding20 {padding: 20px}
-.padding24 {padding: 24px}
-.padding28 {padding: 28px}
-.padding32 {padding: 32px}
+.padding2 { padding: 2px }
+.padding4 { padding: 4px }
+.padding8 { padding: 8px }
+.padding12 { padding: 12px }
+.padding16 { padding: 16px }
+.padding20 { padding: 20px }
+.padding24 { padding: 24px }
+.padding28 { padding: 28px }
+.padding32 { padding: 32px }
 
 // POSITION
 
@@ -41,25 +41,24 @@
   top: 4px;
 }
 
-.max-width600 {max-width: 600px}
-.width-100percent {width: 100%}
+.v-center-h-center {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 auto;
+  text-align: center;
+}
 
+.max-width600 { max-width: 600px }
+.width-100percent { width: 100% }
 
-// MEDIA QUERIES
+.s-no-margin {@media #{$medium-and-down} { margin: 0 !important } }
+.m-no-margin {@media #{$large-and-down} { margin: 0 !important } }
+.l-no-margin {@media #{$xlarge-and-down} { margin: 0 !important } }
 
-@media #{$medium-and-down} {
-  .s-no-margin {
-    margin: 0 !important;
-  }
-}
-@media #{$large-and-down} {
-  .m-no-margin {
-    margin: 0 !important;
-  }
-}
-@media #{$small-and-down} {
-  .s-full-width {width: 100%}
-}
-@media #{$medium-and-down} {
-  .m-full-width {width: 100%}
-}
+.s-full-width {@media #{$small-and-down} { width: 100% } }
+.m-full-width {@media #{$medium-and-down} { width: 100% } }
+.l-full-width {@media #{$large-and-down} { width: 100% } }

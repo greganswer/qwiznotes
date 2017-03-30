@@ -21,6 +21,11 @@ class User < ApplicationRecord
     name
   end
 
+  def owns?(model)
+    id == model.try(:user_id)
+  end
+
+
   private
 
   # Creates a unique name based on the user's email address

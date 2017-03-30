@@ -1,30 +1,29 @@
 ---
 en:
   marketing:
-    descriptions:
-      add_notes:
-        heading: Add your notes
-        image_alt: Sample of note editor
-        text_html: Effortlessly add a variety of notes using the text editor here on %{site_name}. When you're done, <b>save them to your account</b> and share them with your friends. Don't worry, we got you covered with formatting and spell check.
-      community:
-        heading: Share with the community
-        image_alt: Sample of community notes
-        text_html: Not only can you write notes and take quizzes, you can also share them with your friends. The notes and quizzes that you save are available to the community and guess what? <b>It's totaly free!</b>
-      review_table:
-        heading: Review your notes
-        image_alt: Sample of review table
-        text_html: If you entered your term/definition pairs correctly, you get to see the magic of %{site_name}. Your notes can be automatically <b>converted to a review table</b> to help you study more efficiently.
-      take_quiz:
-        heading: Take a quiz and get results
-        image_alt: Sample of quiz results
-        text_html: Now that you've reviewed your notes, it's time for a quiz! %{site_name} can <b>randomly generate questions and options from your notes</b>
-          for you to select. Your results are displayed at the end of the quiz.
-      term_definition:
-        heading: Use Term/Definition Separators
-        image_alt: Sample of term defintion pairs
-        text_html: In order to magically generate a quiz from your notes, enter your notes as term/definition pairs. You can "separate" the pair by making the term <b>bold or by adding one of the following separator symbols:</b>
-          dash, equal, colon, tilde, or arrow.
-      title: How does %{site_name} work?
+    add_notes:
+      heading: Add your notes
+      image_alt: Sample of note editor
+      text_html: Effortlessly add a variety of notes using the text editor here on %{site_name}. When you're done, <b>save them to your account</b> and share them with your friends. Don't worry, we got you covered with formatting and spell check.
+    community:
+      heading: Share with the community
+      image_alt: Sample of community notes
+      text_html: Not only can you write notes and take quizzes, you can also share them with your friends. The notes and quizzes that you save are available to the community and guess what? <b>It's totaly free!</b>
+    review_table:
+      heading: Review your notes
+      image_alt: Sample of review table
+      text_html: If you entered your term/definition pairs correctly, you get to see the magic of %{site_name}. Your notes can be automatically <b>converted to a review table</b> to help you study more efficiently.
+    take_quiz:
+      heading: Take a quiz and get results
+      image_alt: Sample of quiz results
+      text_html: Now that you've reviewed your notes, it's time for a quiz! %{site_name} can <b>randomly generate questions and options from your notes</b>
+        for you to select. Your results are displayed at the end of the quiz.
+    term_definition:
+      heading: Use Term/Definition Separators
+      image_alt: Sample of term defintion pairs
+      text_html: In order to magically generate a quiz from your notes, enter your notes as term/definition pairs. You can "separate" the pair by making the term <b>bold or by adding one of the following separator symbols:</b>
+        dash, equal, colon, tilde, or arrow.
+    title: How does %{site_name} work?
     link_demo: Show me a demo
     link_signup: Want better grades?
     tagline: Effortlessly add notes, create quizzes, and share them with your peers.

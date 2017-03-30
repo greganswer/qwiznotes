@@ -49,7 +49,7 @@ class Quiz
 
     def build_options_from_array_of_strings(selection)
       selection.each_with_index do |option, index|
-        none_is_correct_answer =  (option == I18n.t('quizzes.text.none_of_the_above')) && !@options.map(&:text).include?(correct_answer)
+        none_is_correct_answer =  (option == I18n.t('quizzes.none_of_the_above')) && !@options.map(&:text).include?(correct_answer)
         is_correct_answer = (option == correct_answer) || none_is_correct_answer
         add_option(text: option, letter: (index + 65).chr, is_correct_answer: is_correct_answer)
       end

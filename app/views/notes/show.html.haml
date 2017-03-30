@@ -3,9 +3,5 @@
 .container.m-full-width
   .card-panel.m-no-margin
     = render 'notes/info', note: @note
-
-    -# CONTENT
-
     %p= raw(@note.content)
-
     = render 'notes/buttons', note: @note

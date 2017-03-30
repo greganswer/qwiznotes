@@ -16,16 +16,16 @@ class Note < ApplicationRecord
     @concepts = condition ? CreateNoteConcepts.new(content, settings_attributes).call : @concepts
   end
 
+  def has_minimum_number_of_concepts?
+    concepts.present? && concepts.size >= MINIMUM_NUMBER_OF_CONCEPTS
+  end
+
   def quiz
     @quiz ||= Quiz.build_from_concepts(concepts)
   end
 
   def quiz_results(quiz_json = nil, user_answers = [])
     @quiz_results = quiz_json ? Quiz.build_from_quiz_json(quiz_json, user_answers) : @quiz_results
-  end
-
-  def has_minimum_number_of_concepts?
-    concepts.present? && concepts.size >= MINIMUM_NUMBER_OF_CONCEPTS
   end
 
   private

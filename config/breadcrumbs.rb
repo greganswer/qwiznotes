@@ -1,25 +1,39 @@
-## HOME
+#
+# Home
+#
 
 crumb :root do
-  link t('app.home'), root_path
+  title = user_signed_in? ? t('notes.my_notes') : t('app.home')
+  link title, root_path
 end
 
-## DEVISE
+#
+# Devise
+#
 
-crumb :new_user_registration do
-  link t('devise.registrations.new.title'), new_user_registration_path
-  parent :root
+args = {
+  new_user_registration: 'devise.registrations.new.title',
+  edit_user_registration: 'devise.registrations.edit.title',
+  new_user_password: 'devise.passwords.new.title',
+  edit_user_password: 'devise.passwords.edit.title',
+  new_user_confirmation: 'devise.confirmations.new.title',
+  new_user_unlock: 'devise.unlocks.new.title',
+  new_user_session: 'devise.sessions.new.title',
+}
+
+args.each do |route, translation|
+  crumb route do
+    link t(translation), send("#{route}_path")
+    parent :root
+  end
 end
 
-crumb :new_user_session do
-  link t('devise.sessions.new.title'), new_user_session_path
-  parent :root
-end
-
-## NOTES
+#
+# Notes
+#
 
 crumb :notes do
-  link t('notes.index.link'), notes_path
+  link Note.model_name.human(count: 2), notes_path
   parent :root
 end
 
@@ -29,26 +43,26 @@ crumb :note do |note|
 end
 
 crumb :new_note do
-  link t('notes.new.link_title'), new_note_path
+  link t('app.new'), new_note_path
   parent :notes
 end
 
 crumb :edit_note do |note|
-  link t('notes.edit.link'), edit_note_path(note)
+  link t('app.edit'), edit_note_path(note)
   parent note
 end
 
 crumb :review_note do |note|
-  link t('notes.review.link'), review_note_path(note)
+  link t('app.review'), review_note_path(note)
   parent note
 end
 
 crumb :quiz_note do |note|
-  link t('notes.quiz.link'), quiz_note_path(note)
+  link Quiz.model_name.human, quiz_note_path(note)
   parent note
 end
 
 crumb :quiz_results_note do |note|
-  link t('notes.quiz_results.title'), quiz_results_note_path(note)
-  parent note
+  link t('app.results'), quiz_results_note_path(note)
+  parent :quiz_note, note
 end

@@ -1,14 +1,3 @@
--# breadcrumb :root
+- breadcrumb :root
 
-
-%h4.padding8.grey-text= t('notes.index.mine')
-
-- if @notes.present?
-  = render 'notes/notes', notes: @notes
-- else
-  .row.margin-2percent.m-no-margin
-    .container
-      .card-panel
-        - create_link = link_to t('app.click_here'), new_note_path
-        - notes_link = link_to t('app.click_here'), notes_path
-        %h5.center.padding16= t("notes.you_have_no_note_html", create_link: create_link, notes_link: notes_link)
+= render 'notes/notes', notes: @notes

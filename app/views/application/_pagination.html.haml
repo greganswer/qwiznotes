@@ -1,6 +1,5 @@
-- if records.present? && records.try(:total_count)
+- if records
   %br.clear-both
   .pagination-info.center
-    - if records.total_count > records.count
-      %h5= page_entries_info records
+    %h5.blue-grey-text.text-lighten-1= page_entries_info records
     = paginate records

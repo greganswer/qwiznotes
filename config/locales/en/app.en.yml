@@ -1,6 +1,7 @@
 ---
 en:
   app:
+    add: Add
     click_here: click here
     click_link_below_if_button_not_working: 'If for some reason the button does not work, click the link below:'
     copyright: Copyright
@@ -10,6 +11,11 @@ en:
     required_fields: "* indicates required fields"
     skip_to_content: Skip to main content
     submit: Submit
+    new: New
+    edit: Edit
+    review: Review
+    home: Home
+    results: Results
   attributes:
     comment: Comment
     content: Content
@@ -32,6 +38,14 @@ en:
     viewed_on: Viewed
     voted_by: Favorited by
     votes_count: Favorites
+  mailer:
+    greeting: Hello %{user},
+    closing_text_html: If you have any questions, you can simply reply to this email for further assistance. Thank you for choosing %{site_name}.
+    # closing_text_html: If you haven't already, please take a look at our %{demo_url} and if you have any question take a look at our %{help_url}. If you're still having trouble, you can simply reply to this email for further assistance. Thank you for choosing %{site_name}.
+  buttons:
+    view: View
+    delete: Delete
+    edit: Edit
   helpers:
     page_entries_info:
       more_pages:

@@ -1,10 +1,11 @@
-.container.m-full-width
-  - if flash[:notice] && flash[:notice].size >= 50
+- if flash[:notice] && flash[:notice].size >= 50
+  .container.m-full-width
     #flash-message.card.padding8.blue.lighten-4
       %h5.blue-text.text-darken-3= raw flash[:notice]
     %br
 
-  - if flash[:alert]
+- if flash[:alert]
+  .container.m-full-width
     #flash-message.card.padding8.red.lighten-4
       %h5.red-text.text-darken-3= raw flash[:alert]
     %br

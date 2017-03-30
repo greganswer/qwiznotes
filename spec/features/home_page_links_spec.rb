@@ -5,46 +5,71 @@ feature "Home pages" do
   before(:each) { visit root_path }
 
   GUEST_LINKS = {
-    'nav' => ['notes.index', 'devise.registrations.new', 'devise.sessions.new'],
-    'footer' => ['notes.index', 'devise.registrations.new', 'devise.sessions.new'],
-  }.freeze
+    'nav' => [
+      { link: Note.model_name.human(count: 2), page_translation_scope: 'notes.index' },
+      { link: I18n.t('devise.registrations.new.link'), page_translation_scope: 'devise.registrations.new' },
+      { link: I18n.t('devise.sessions.new.link'), page_translation_scope: 'devise.sessions.new' },
+    ],
+    'footer' => [
+      { link: Note.model_name.human(count: 2), page_translation_scope: 'notes.index' },
+      { link: I18n.t('devise.registrations.new.link'), page_translation_scope: 'devise.registrations.new' },
+      { link: I18n.t('devise.sessions.new.link'), page_translation_scope: 'devise.sessions.new' },
+    ],
+  }
 
   USER_LINKS = {
-    'nav' => ['notes.index', 'devise.sessions.destroy'],
-    'footer' => ['notes.index', 'devise.sessions.destroy'],
-  }.freeze
+    'nav' => [
+      { link: I18n.t('notes.new.link'), page_translation_scope: 'notes.new' },
+      { link: Note.model_name.human(count: 2), page_translation_scope: 'notes.index' },
+      { link: I18n.t('devise.sessions.destroy.link'), page_translation_scope: 'devise.sessions.destroy' },
+    ],
+    'footer' => [
+      { link: I18n.t('notes.new.link'), page_translation_scope: 'notes.new' },
+      { link: Note.model_name.human(count: 2), page_translation_scope: 'notes.index' },
+      { link: I18n.t('devise.sessions.destroy.link'), page_translation_scope: 'devise.sessions.destroy' },
+    ],
+  }
 
-  ## GUEST
+  #
+  # Guest
+  #
 
   feature "GUEST" do
-    GUEST_LINKS.each do |location, scopes|
-      scopes.each do |scope|
-        scenario "clicks #{scope} link from #{location.upcase}" do
-          within(location) { click_link t("#{scope}.link") }
-          expect(page).to have_title(t("#{scope}.title"))
-          within("nav") { click_link 'site-name' }
+    GUEST_LINKS.each do |location, items|
+      items.each do |item|
+        scenario "clicks #{item[:link]} link from #{location.upcase}" do
+          within(location) { click_link item[:link] }
+          expect(page).to have_title(t("#{item[:page_translation_scope]}.title"))
+          if location == GUEST_LINKS.first && item == location.first
+            within("footer") { click_link t('app.home') }
+          else
+            within("nav") { click_link 'site-name' }
+          end
           expect(page).to have_title(t("marketing.tagline"))
         end
       end
     end
   end
 
-  ## USER
+  #
+  # User
+  #
 
   feature "USER" do
     before(:each) { sign_in_as(current_user) }
 
-    USER_LINKS.each do |location, scopes|
-      scopes.each do |scope|
-        scenario "clicks #{scope} link from #{location.upcase}" do
-          within(location) { click_link t("#{scope}.link") }
-          if scope.include?('destroy')
-            expect(page).to have_title(t("marketing.tagline"))
+    USER_LINKS.each do |location, items|
+      items.each do |item|
+        scenario "clicks #{item[:link]} link from #{location.upcase}" do
+          within(location) { click_link item[:link] }
+          title_scope = item[:page_translation_scope].include?('destroy') ? "marketing.tagline" : "#{item[:page_translation_scope]}.title"
+          expect(page).to have_title(t(title_scope))
+          if location == USER_LINKS.first && item == location.first
+            within("footer") { click_link t('app.home') }
           else
-            expect(page).to have_title(t("#{scope}.title"))
+            within("nav") { click_link 'site-name' }
           end
-          within("nav") { click_link 'site-name' }
-          title_scope = scope.include?('destroy') ? "marketing.tagline" : "home.index.title"
+          title_scope = item[:page_translation_scope].include?('destroy') ? "marketing.tagline" : "home.index.title"
           expect(page).to have_title(t(title_scope))
         end
       end

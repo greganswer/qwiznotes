@@ -1,19 +1,32 @@
-= render "pagination", records: notes
+.container.l-full-width
+  = render "pagination", records: notes
 
-.row.margin-2percent.m-no-margin
-  - notes.each do |note|
-    .col.s12.m6.l4.xl3
-      .card.small[note]
-        .card-content
-          %span.card-title= link_to note, note, class: 'grey-text text-darken-4'
-          %p
-            %b #{Note.human_attribute_name(:user)}:
-            #{note.user}
-          %p.grey-text.text-darken-1= strip_tags(note.content).truncate(180, separator: ' ')
+  .row.margin-2percent.s-no-margin
+    .col.s12.m6.l4.xl4
+      %a{href: new_note_path}
+        .card.small.valign-wrapper.padding32.grey.lighten-4.green-text
+          .center.margin-horizontal
+            = fa_icon 'plus', class: "fa-4x"
+            %br
+            %h3= t('notes.new.link')
 
-        .card-action
-          = link_to t('notes.show.link'), note
-          = link_to t('notes.review.link'), review_note_path(note)
-          = link_to t('notes.quiz.link'), quiz_note_path(note)
+    - if notes.present?
+      - notes.each do |note|
+        .col.s12.m6.l4.xl4
+          .card.small[note]
+            .card-content
+              %span.card-title= link_to note, note, class: 'grey-text text-darken-3'
+              %p.grey-text.text-darken-2
+                %b #{Note.human_attribute_name(:user)}:
+                #{note.user}
+                %br
+                %b #{Note.human_attribute_name(:concepts_count)}:
+                #{note.concepts_count}
+              %p.grey-text.text-darken-1= strip_tags(note.content).truncate(180, separator: ' ')
 
-= render "pagination", records: notes
+            .card-action
+              = link_to t('buttons.view'), note
+              = link_to t('app.review'), review_note_path(note)
+              = link_to Quiz.model_name.human, quiz_note_path(note)
+
+  = render "pagination", records: notes

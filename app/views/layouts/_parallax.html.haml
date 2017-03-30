@@ -15,17 +15,17 @@
   .parallax= image_tag "main_header.jpg", alt: 'Main header', class: 'responsive-img'
 
 .section.body-bg-color.padding16
-  %h1.center.grey-text.text-darken-3= t("marketing.descriptions.title", site_name: site_name)
+  %h1.center= t("marketing.title", site_name: site_name)
   %br
   %br
   - parts = %i(add_notes term_definition review_table take_quiz community)
   - parts.each_with_index do |part, index|
     .row
       .col.m12.l9{class: index.even? ? '' : "push-l3"}
-        = image_tag "sample/#{part}.png", width: "100%", alt: t("marketing.descriptions.#{part}.image_alt")
+        = image_tag "sample/#{part}.png", width: "100%", alt: t("marketing.#{part}.image_alt")
       .col.m12.l3{class: index.even? ? '' : "pull-l9"}
-        %h3.grey-text.text-darken-3= t("marketing.descriptions.#{part}.heading")
-        %h5.grey-text.text-darken-3= t("marketing.descriptions.#{part}.text_html", site_name: site_name)
+        %h3= t("marketing.#{part}.heading")
+        %h5= t("marketing.#{part}.text_html", site_name: site_name)
     %br
     %br
 

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User do
+  let(:current_user) { create(:user) }
+
   ## VALIDATIONS
 
   it { should validate_presence_of(:name) }
@@ -25,7 +27,6 @@ RSpec.describe User do
     end
   end
 
-  # FIXME: the regext which worked in Rails 4.2 is no longer working
   ["bad name", "bad.name", "bad@name"].each do |name|
     it "displays invalid notice when name is '#{name}'" do
       record = build(:user, name: name)
@@ -55,5 +56,15 @@ RSpec.describe User do
   it "#to_s" do
     user = User.new(name: "Mike")
     expect(user.to_s).to eq(user.name)
+  end
+
+  context "#owns?" do
+    it "it returns true if the user owns the model" do
+      expect(current_user.owns?(create(:note, user: current_user))).to be true
+    end
+
+    it "returns false if the user DOES NOT own the model" do
+      expect(current_user.owns?(create(:note))).to be false
+    end
   end
 end

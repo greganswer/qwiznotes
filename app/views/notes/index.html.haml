@@ -1,9 +1,3 @@
 - breadcrumb :notes
 
-- if @notes.present?
-  = render 'notes/notes', notes: @notes
-- else
-  .row.margin-2percent.m-no-margin
-    .container
-      .card.col.s12.m6.push-m3
-        %h5.center.padding16= t("notes.count", count: 0)
+= render 'notes/notes', notes: @notes

@@ -1,15 +1,20 @@
 - breadcrumb :review_note, @note
 
 .container.m-full-width
-  .card-panel.m-no-margin
+  .card-panel.m-no-margin.center
     - if @note.concepts.blank?
-      %h5.center= t('notes.text.no_terms_or_defintions.heading')
+      %h5
+        = t('notes.no_terms_or_defintions')
+        - if current_user.owns?(@note)
+          %br
+          %br
+          = t('notes.fix_this_note')
+          %br
+          %br
+          = link_to t('app.edit'), edit_note_path(@note), class: 'btn waves-effect'
 
     - else
       = render 'notes/info', note: @note
-
-      -# TABLE
-
       %table.review-table.highlight
         %thead
           %tr

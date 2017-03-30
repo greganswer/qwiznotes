@@ -30,6 +30,18 @@ module ApplicationHelper
   end
 
   #
+  # Links
+  #
+
+  # If the URL is for the current page, set the URL to '#'. This way an 'a' tag is displayed, which maintains page formating
+
+  def link_to_hash_if_current(name = nil, options = nil, html_options = nil, &block)
+    options = '#' if !block && options.present? && request.fullpath == options
+    name = '#' if block && name.present? && request.fullpath == name
+    link_to(name, options, html_options, &block)
+  end
+
+  #
   # Site
   #
 

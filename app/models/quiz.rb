@@ -1,4 +1,6 @@
 class Quiz
+  extend ActiveModel::Naming
+
   attr_reader :questions
 
   OPTIONS_COUNT = 5
@@ -81,7 +83,7 @@ class Quiz
   def self.create_options_from_option_texts(option_texts, correct_answer)
     option_texts.tap do |option_texts|
       none_is_an_option = rand(2).zero?
-      option_texts[-1] = I18n.t('quizzes.text.none_of_the_above') if none_is_an_option
+      option_texts[-1] = I18n.t('quizzes.none_of_the_above') if none_is_an_option
       random_index = rand(0..option_texts.count - 1)
       option_texts[random_index] = correct_answer unless none_is_an_option && rand(3).zero?
     end

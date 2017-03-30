@@ -21,6 +21,10 @@ en:
         link: Sign up
         submit: Sign up
         title: Sign up
+      edit:
+        link: Update account
+        submit: Update account
+        title: Update account
     sessions:
       destroy:
         link: Log out

@@ -1,7 +1,9 @@
 class NotesController < ApplicationController
   before_action :set_note, only: %i(show edit update destroy review quiz quiz_results)
 
-  # GET
+  #
+  # Get methods
+  #
 
   def index
     @notes = Note.recently_updated.page(params[:page]).per(params[:per_page])
@@ -25,18 +27,20 @@ class NotesController < ApplicationController
 
   def quiz_results
     unless request.post? && params[:user_answers].present?
-      return redirect_to [:quiz, @note], alert: t("quizzes.text.not_taken")
+      return redirect_to [:quiz, @note], alert: t("quizzes.not_taken")
     end
     @note.quiz_results(params[:quiz], params[:user_answers])
   end
 
-  # POST
+  #
+  # Post methods
+  #
 
   def create
     @note = current_user.notes.build(note_params)
     respond_to do |format|
       if @note.save
-        format.html { redirect_to @note, notice: t('.success') }
+        format.html { redirect_to @note, notice: t('notes.create.success_message') }
         format.json { render :show, status: :created, location: @note }
       else
         format.html { render :new }
@@ -45,12 +49,14 @@ class NotesController < ApplicationController
     end
   end
 
-  # PATCH/PUT
+  #
+  # Patch/put methods
+  #
 
   def update
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to @note, notice: t('.success') }
+        format.html { redirect_to @note, notice: t('notes.update.success_message') }
         format.json { render :show, status: :ok, location: @note }
       else
         format.html { render :edit }
@@ -59,12 +65,14 @@ class NotesController < ApplicationController
     end
   end
 
-  # DELETE
+  #
+  # Delete methods
+  #
 
   def destroy
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to notes_url, notice: t('.success') }
+      format.html { redirect_to notes_url, notice: t('notes.destroy.success_message') }
       format.json { head :no_content }
     end
   end
