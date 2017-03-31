@@ -14,7 +14,7 @@ Feature: Login
     Then I should see that I'm logged in
     And I should be able to log out
 
-  Scenario: I enter the wrong wrong credentials
+  Scenario: I enter the wrong credentials
     When I enter the wrong email address
     Then I should see that I'm not logged in
     When I enter the wrong password

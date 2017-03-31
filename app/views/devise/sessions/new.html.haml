@@ -14,7 +14,5 @@
             %input#test5{:type => "checkbox"}/
             %label{:for => "test5"} Red
 
-      %br
-      .form-actions= f.button :submit, t('devise.sessions.new.submit'), class: 'width-100percent'
-      %br
-    = render "devise/shared/links"
+      = render 'form_submit_button', f: f, submit_text: t('devise.sessions.new.title')
+      = render "devise/shared/links"

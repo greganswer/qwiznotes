@@ -13,7 +13,7 @@ Feature: Sign up
     Then I should see that I signed up successfully
     And I should receive a confirmation email and be able to confirm my account
 
-  Scenario: I enter the wrong wrong credentials
+  Scenario: I enter the wrong credentials
     When I leave the email address blank
     Then I should see that I'm not signed up
     When I leave the password blank

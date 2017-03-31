@@ -1,4 +1,4 @@
 $(document).ready ->
-  $(".button-collapse").sideNav()
+  $(".jsButtonCollapse").sideNav()
   $('select').material_select();
-  $('.parallax').parallax()
+  $('.jsParallax').parallax()

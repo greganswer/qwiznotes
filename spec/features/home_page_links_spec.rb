@@ -7,26 +7,26 @@ feature "Home pages" do
   GUEST_LINKS = {
     'nav' => [
       { link: Note.model_name.human(count: 2), page_translation_scope: 'notes.index' },
-      { link: I18n.t('devise.registrations.new.link'), page_translation_scope: 'devise.registrations.new' },
-      { link: I18n.t('devise.sessions.new.link'), page_translation_scope: 'devise.sessions.new' },
+      { link: I18n.t('devise.registrations.new.title'), page_translation_scope: 'devise.registrations.new' },
+      { link: I18n.t('devise.sessions.new.title'), page_translation_scope: 'devise.sessions.new' },
     ],
     'footer' => [
       { link: Note.model_name.human(count: 2), page_translation_scope: 'notes.index' },
-      { link: I18n.t('devise.registrations.new.link'), page_translation_scope: 'devise.registrations.new' },
-      { link: I18n.t('devise.sessions.new.link'), page_translation_scope: 'devise.sessions.new' },
+      { link: I18n.t('devise.registrations.new.title'), page_translation_scope: 'devise.registrations.new' },
+      { link: I18n.t('devise.sessions.new.title'), page_translation_scope: 'devise.sessions.new' },
     ],
   }
 
   USER_LINKS = {
     'nav' => [
-      { link: I18n.t('notes.new.link'), page_translation_scope: 'notes.new' },
+      { link: I18n.t('notes.new.title'), page_translation_scope: 'notes.new' },
       { link: Note.model_name.human(count: 2), page_translation_scope: 'notes.index' },
-      { link: I18n.t('devise.sessions.destroy.link'), page_translation_scope: 'devise.sessions.destroy' },
+      { link: I18n.t('devise.sessions.destroy.title'), page_translation_scope: 'devise.sessions.destroy' },
     ],
     'footer' => [
-      { link: I18n.t('notes.new.link'), page_translation_scope: 'notes.new' },
+      { link: I18n.t('notes.new.title'), page_translation_scope: 'notes.new' },
       { link: Note.model_name.human(count: 2), page_translation_scope: 'notes.index' },
-      { link: I18n.t('devise.sessions.destroy.link'), page_translation_scope: 'devise.sessions.destroy' },
+      { link: I18n.t('devise.sessions.destroy.title'), page_translation_scope: 'devise.sessions.destroy' },
     ],
   }
 

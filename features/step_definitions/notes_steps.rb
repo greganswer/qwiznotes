@@ -18,6 +18,11 @@ Given(/^(\d+) notes were already created$/) do |count|
     create_list(:note, count.to_i)
 end
 
+Given(/^I created a note titled "([^"]*)"$/) do |title|
+  @current_user.id
+  @my_note = create(:note, title: title, user: @current_user)
+end
+
 When(/^I click on the note titled "([^"]*)" in the notes list$/) do |title|
   within('nav') { click_on Note.model_name.human(count: 2) }
   click_on title
@@ -32,7 +37,7 @@ When(/^I click the "Quiz" button$/) do
 end
 
 When(/^I click the "Create Note" button$/) do
-  within('nav') { click_on I18n.t('notes.new.link') }
+  within('nav') { click_on I18n.t('notes.new.title') }
 end
 
 When(/^I fill in the note form$/) do
@@ -76,7 +81,7 @@ Then(/^I should see that the note was not created$/) do
 end
 
 Then(/^I should not see the "Create Note" button$/) do
-  expect(page).not_to have_content(I18n.t('notes.new.link_title'))
+  expect(page).not_to have_content(I18n.t('notes.new.title'))
 end
 
 Then(/^I should see a review table for the note$/) do

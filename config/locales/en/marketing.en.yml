@@ -24,6 +24,5 @@ en:
       text_html: In order to magically generate a quiz from your notes, enter your notes as term/definition pairs. You can "separate" the pair by making the term <b>bold or by adding one of the following separator symbols:</b>
         dash, equal, colon, tilde, or arrow.
     title: How does %{site_name} work?
-    link_demo: Show me a demo
     link_signup: Want better grades?
     tagline: Effortlessly add notes, create quizzes, and share them with your peers.

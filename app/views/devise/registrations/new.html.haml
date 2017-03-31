@@ -7,10 +7,6 @@
     .card-panel.margin-horizontal
       .form-inputs
         = f.input :email, required: true, autofocus: true
-        = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-
-      %p.grey-text= t('app.required_fields')
-      %br
-      .form-actions= f.button :submit, t('devise.registrations.new.submit'), class: 'width-100percent'
-      %br
+        = f.input :password, required: true, hint: (t('app.minimum_characters', count: @minimum_password_length) if @minimum_password_length)
+      = render 'form_submit_button', f: f, submit_text: t('devise.registrations.new.title')
       = render "devise/shared/links"

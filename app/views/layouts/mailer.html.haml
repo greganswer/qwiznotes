@@ -1,0 +1,11 @@
+%hmtl
+  %head
+    %meta{ charset: "utf-8"}
+    %meta{ content: "width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes", name: "viewport"}
+    %meta{ content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type" }
+    / = stylesheet_link_tag "email", media: "all"
+
+  %body
+    = yield
+    %br
+    = t('mailer.closing_text_html', site_name: site_name)

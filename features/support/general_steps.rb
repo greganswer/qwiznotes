@@ -15,7 +15,11 @@ end
 #   click_on link_title
 # end
 
-Then(/^I should see the "([^"]*)" message$/) do |message|
-  expect(page).to have_content(message)
+Then(/^I should see the "([^"]*)" text$/) do |text|
+  expect(page).to have_content(text)
+end
+
+Then(/^I should not see the "([^"]*)" text$/) do |text|
+  expect(page).not_to have_content(text)
 end
 

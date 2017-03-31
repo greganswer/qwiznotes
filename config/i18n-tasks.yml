@@ -49,8 +49,9 @@ data:
 # Find translate calls
 search:
   ## Paths or `File.find` patterns to search in:
-  # paths:
-  #  - app/
+  paths:
+   - app/
+   - config/
 
   ## Root directories for relative keys resolution.
   # relative_roots:
@@ -89,12 +90,16 @@ search:
 # - '{devise,simple_form}.*'
 
 ## Consider these keys used:
-# ignore_unused:
+ignore_unused:
 # - 'activerecord.attributes.*'
-# - '{devise,kaminari,will_paginate}.*'
-# - 'simple_form.{yes,no}'
-# - 'simple_form.{placeholders,hints,labels}.*'
-# - 'simple_form.{error_notification,required}.:'
+- 'activerecord.models.*'
+- 'errors.*'
+- 'attributes.*'
+- '*.title'
+- 'helpers.page_entries_info.*'
+- 'simple_form.*'
+- 'time.*'
+- '{devise,kaminari,will_paginate}.*'
 
 ## Exclude these keys from the `i18n-tasks eq-base' report:
 # ignore_eq_base:

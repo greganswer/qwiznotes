@@ -63,6 +63,7 @@
       -# Question
 
       -quiz.questions.each do |question|
+        -# This ID is an anchor.
         .anchor{id: "question_#{question.number}"}
         %h5= "#{question.number}) #{question}"
 
@@ -75,6 +76,7 @@
             .red-text.text-darken-3.bold= raw "#{fa_icon 'close'} (#{option.letter}) #{sanitize(option.to_s)}"
           - else
             .grey-text.text-darken-2{style: 'margin-left: 1.2em'}= raw "(#{option.letter}) #{sanitize(option.to_s)}"
+
         %br
         %h5= t('quizzes.correct_answers', count: 1)
         %p{style: 'margin: 0 0 2em 2em'}= question.correct_answer

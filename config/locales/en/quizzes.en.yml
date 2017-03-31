@@ -8,22 +8,18 @@ en:
         one: Quiz
         other: Quizzes
   quizzes:
-    link: Quiz
-    link_results: Get results
-    link_retake: Retake quiz
-    link_title: Take quiz
     correct_answers:
       one: Correct answer
       other: Correct answers
+    questions:
+      one: Question
+      other: Questions
     incorrect_answers:
       one: Incorrect answer
       other: Incorrect answers
     none_of_the_above: None of the above.
     not_taken: Please answer at least one question before viewing results
     perfect_score: Congratulations! You got all the questions right!
-    question:
-      one: Question
-      other: Questions
     unanswered_questions:
       one: Unanswered question
       other: Unanswered questions

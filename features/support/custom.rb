@@ -23,6 +23,10 @@ module Helper
   def html_unescape(text)
     CGI.unescapeHTML(strip_tags(text))
   end
+
+  def t(*args)
+    I18n.t(*args)
+  end
 end
 
 World(Helper)

@@ -7,20 +7,25 @@ en:
         other: Notes
     attributes:
       note:
-        concepts: Concepts
-        concepts_count: Concepts
-        quiz: Quiz
-        quiz_results: Quiz results
-        review: Review
         title: Note title
   notes:
-    concept:
+    meta:
+      index: Notes
+      show: "Viewing note: %{note}"
+      new: Create a note
+      edit: "Editing note: %{note}"
+      quiz: "Quiz from note: %{note}"
+      review: "Reviewing note: %{note}"
+      quiz_results: "Quiz results from note: %{note}"
+    concepts:
       one: Concept
       other: Concepts
-    count:
-      one: 1 note
-      other: "%{count} notes"
-      zero: No notes found
+    terms:
+      one: Term
+      other: Terms
+    definitions:
+      one: Definition
+      other: Definitions
     create:
       success_message: Created note
     update:
@@ -32,17 +37,14 @@ en:
     index:
       title: Notes
     new:
-      link: New note
+      title: New note
       submit: Save note
-      title: Add a note
     quiz:
       title: Quiz this note
     quiz_results:
-      link: Get your results
       retake: Generate a new quiz
       title: Quiz results
     restore:
-      failure_message: Unable to restore note
       success_message: Restored note
     review:
       title: 'Reviewing note: %{note}'

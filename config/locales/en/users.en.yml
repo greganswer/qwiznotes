@@ -1,6 +1,10 @@
 ---
 en:
   activerecord:
+    models:
+      user:
+        one: User
+        other: Users
     attributes:
       user:
         created_at: Joined
@@ -15,10 +19,6 @@ en:
             name:
               invalid: only allows letters, numbers, underscores, and dashes
   users:
-    count:
-      one: 1 user
-      other: "%{count} users"
-      zero: No users found
     index:
       title: Users
     show:

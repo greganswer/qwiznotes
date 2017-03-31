@@ -8,7 +8,7 @@ Feature: View notes
 
   Scenario: There are no notes yet
     When I click the "Notes" button
-    Then I should see the "No notes found" message
+    Then I should see the "No notes found" text
 
   Scenario: Guest views notes
     Given 2 notes were already created

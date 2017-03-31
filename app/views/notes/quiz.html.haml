@@ -12,7 +12,7 @@
           = t('notes.fix_this_note')
           %br
           %br
-          = link_to t('app.edit'), edit_note_path(@note), class: 'btn waves-effect'
+          = link_to t('buttons.edit'), edit_note_path(@note), class: 'btn waves-effect'
 
     - else
       = render 'notes/info', note: @note
@@ -36,4 +36,4 @@
           %br
 
         .center
-          %button#quiz-submit.waves-effect.waves-light.btn-large= t('notes.quiz_results.link')
+          %button#quiz-submit.waves-effect.waves-light.btn-large= t('notes.quiz_results.title')

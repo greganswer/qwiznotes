@@ -12,7 +12,7 @@
         = link_to t('marketing.link_signup'), new_user_registration_path, class: 'btn-large', id: 'hero-cta'
       %br/
       %br/
-  .parallax= image_tag "main_header.jpg", alt: 'Main header', class: 'responsive-img'
+  .parallax.jsParallax= image_tag "main_header.jpg", alt: 'Main header', class: 'responsive-img'
 
 .section.body-bg-color.padding16
   %h1.center= t("marketing.title", site_name: site_name)

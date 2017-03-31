@@ -53,9 +53,9 @@ RSpec.describe Quiz::Option do
   it "can toggle select state" do
     option = described_class.new(text: 'Greg')
     expect(option.selected?).to be false
-    option.toggle_select!
+    option.toggle_select
     expect(option.selected?).to be true
-    option.toggle_select!
+    option.toggle_select
     expect(option.selected?).to be false
   end
 end

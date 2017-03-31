@@ -31,7 +31,7 @@ class Quiz
     end
 
     def toggle_select_for_option(letter)
-      options.select { |option| option.letter.downcase == letter.downcase }&.first&.toggle_select!
+      options.select { |option| option.letter.downcase == letter.downcase }&.first&.toggle_select
     end
 
     def to_json

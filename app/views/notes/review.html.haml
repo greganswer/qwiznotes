@@ -1,7 +1,7 @@
 - breadcrumb :review_note, @note
 
 .container.m-full-width
-  .card-panel.m-no-margin.center
+  .card-panel.m-no-margin
     - if @note.concepts.blank?
       %h5
         = t('notes.no_terms_or_defintions')
@@ -11,7 +11,7 @@
           = t('notes.fix_this_note')
           %br
           %br
-          = link_to t('app.edit'), edit_note_path(@note), class: 'btn waves-effect'
+          = link_to t('buttons.edit'), edit_note_path(@note), class: 'btn waves-effect'
 
     - else
       = render 'notes/info', note: @note
@@ -19,8 +19,8 @@
         %thead
           %tr
             %th #
-            %th= Note.human_attribute_name(:term)
-            %th= Note.human_attribute_name(:definition)
+            %th= t('notes.terms', count: 2)
+            %th= t('notes.definitions', count: 2)
         %tbody
           - @note.concepts.each_with_index do |concept, index|
             %tr

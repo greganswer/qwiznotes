@@ -2,8 +2,9 @@
 .grey-text
 
   %p.right
-    %b= "#{Note.human_attribute_name(:concepts_count)}:"
-    = note.concepts_count
+    - translation = url_for[/quiz/] ? 'quizzes.questions' : 'notes.concepts'
+    %b= "#{t(translation, count: 2)}:"
+    = url_for[/quiz/] ? note.quiz.questions.count : note.concepts_count
 
   %p.left
     %b= "#{User.human_attribute_name(:name)}:"
@@ -23,7 +24,7 @@
 
     - else
       -# OTHER PAGES
-      %b #{t('attributes.viewed_on')}:
+      %b #{t('app.viewed')}:
       = local_time(Time.current, :medium)
 
     %br

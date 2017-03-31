@@ -9,7 +9,7 @@ class Quiz
         @is_selected = is_selected
     end
 
-    def toggle_select!
+    def toggle_select
       @is_selected = !@is_selected
     end
 

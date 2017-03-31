@@ -2,34 +2,50 @@
 en:
   devise:
     confirmations:
-      edit:
-        link: Activate
-        link_title: Activate your account
-        submit: Activate account
+      new:
+        title: Resend confirmation instructions
+      show:
+        title: Activate account
+    unlocks:
+      new:
+        title: Send unlock instructions
+      show:
+        title: Unlock account
     mailer:
       confirmation_instructions:
-        click_link: Before you get started, please click the button below to activate your account.
-        description: We see that you've signed up for an account with us and we just wanted to welcome you and verify your account information.
+        description: We see that you've signed up for an account with us and we just wanted to welcome you and verify your account information. Before you get started, please click the button below to activate your account.
       reset_password_instructions:
-        click_link: Click the button below to change your password.
-        description: Someone has requested a link to change your password. If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one.
+        description: Someone has requested a link to change your password. If you didn't request this, please ignore this email. Your password won't change until you click the link below and create a new one.
       unlock_instructions:
-        click_link: Click the button below to unlock your account.
-        description: Your account has been locked due to an excessive number of unsuccessful sign in attempts.
+        description: Your account has been locked due to an excessive number of unsuccessful sign in attempts. Click the link below to unlock your account
+      password_changed:
+        description: We're contacting you to notify you that your password has been changed.
     registrations:
+      destroy:
+        title: Deactivate your account
       new:
-        link: Sign up
-        submit: Sign up
         title: Sign up
       edit:
-        link: Update account
-        submit: Update account
         title: Update account
+        waiting_for_confirmation: "Currently waiting confirmation for: %{email}"
+        password_hint: leave it blank if you don't want to change it
+        current_password_hint: we need your current password to confirm your changes
     sessions:
       destroy:
-        link: Log out
+        title: Log out
       new:
-        link: Log in
         remember_me: Keep me signed in
-        submit: Log in
         title: Log in
+    shared:
+      email_me_instructions: Enter the email address associated with your account and you will receive an email with instructions.
+      links:
+        confirmation: Didn't receive confirmation instructions?
+        omniauth: Sign in with %{provider}
+        password: Forgot your password?
+        unlock: Didn't receive unlock instructions?
+    passwords:
+      edit:
+        description: Enter your new password below. Make sure you confirm the password as well.
+        title: Change password
+      new:
+        title: Send password instructions

@@ -6,6 +6,11 @@ class Quiz
   OPTIONS_COUNT = 5
   MAX_QUESTIONS_COUNT = 50
 
+  # Concepts is an array of +term+ and +definition+ pairs.
+  # There should be at least +OPTIONS_COUNT+ plus one concepts in order to make a quiz (6 concepts)
+  #
+  #   [{term: 'Apple', definition: 'A red fruit'}, {term: 'Car', definition: 'A 4 wheeled motor vehicle'}]
+
   def self.build_from_concepts(concepts)
     quiz = new.tap do |quiz|
       concepts = concepts.sample(MAX_QUESTIONS_COUNT)
@@ -23,6 +28,7 @@ class Quiz
     end
   end
 
+  # TODO: Describe this method
   def self.build_from_quiz_json(quiz_json, user_answers)
     user_answers = user_answers.with_indifferent_access
     quiz_json = JSON.parse(quiz_json) if quiz_json.is_a?(String)
@@ -48,6 +54,7 @@ class Quiz
     @questions << Quiz::Question.new(text: input[:text], correct_answer: input[:correct_answer], number: input[:number], options: input[:options])
   end
 
+  # TODO: Try to make this private
   def add_options_to_last_question(options, user_answers)
     options.each do |option|
       is_selected = user_answers[questions.last.number.to_s] == option[:text]
