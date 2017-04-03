@@ -15,10 +15,10 @@
     %meta{ content: site_owner, name: "publisher" }
     %meta{ content: "#{Time.current.year}. #{site_name} by #{site_owner}", name: "copyright" }
     %meta{ content: "width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes", name: "viewport" }
-    %meta{ content: Rails.application.secrets.stripe_public_key, name: "stripe-key" }
-    %meta{ content: page_meta(:meta_description), name: "description" }
-    %title= "#{page_meta} | #{site_name}"
+    %meta{ content: "#{yield_meta_tag(:description, t("marketing.tagline"))}",  name: "description" }
+    %meta{ content: "#{yield_meta_tag(:keywords,  t("marketing.keywords"))}",  name: "keywords" }
 
+    %title= "#{yield(:title)} | #{site_name}"
     = favicon_link_tag("favicon.ico")
     = stylesheet_link_tag("application", media: "all")
     = csrf_meta_tags

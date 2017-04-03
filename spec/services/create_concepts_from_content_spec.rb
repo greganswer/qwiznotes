@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe CreateNoteConcepts do
+describe CreateConceptsFromContent do
   subject { described_class.new }
 
   before(:each) { @settings_attributes = described_class::SETTINGS }

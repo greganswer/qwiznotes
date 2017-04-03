@@ -22,7 +22,7 @@ RSpec.describe Quiz::Question do
 
   it "can add options" do
     question = described_class.new(text: "What's your name?", correct_answer: 'Greg')
-    question.add_option(text: 'Greg', letter: 'a')
+    question.build_option(text: 'Greg', letter: 'a')
     expect(question.options.first).to be_kind_of(Quiz::Option)
     expect(question.options.first.to_s).to eq('Greg')
   end

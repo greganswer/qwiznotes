@@ -57,28 +57,15 @@ module ApplicationHelper
   # Page
   #
 
-  # Create a page title using I18n
-  def page_meta(key = :title)
-    return t("marketing.tagline") if current_page?(root_path) && !user_signed_in?
-    action = action_name.sub(/create/, "new").sub(/update/, "edit")
-    scope = "#{controller_path.tr "/", "."}.#{action}"
-    translation = "#{scope}.#{key}"
-    default_scopes = page_meta_default_scopes(translation: translation, scope: scope)
-    t(translation, default_scopes)
+  def page_title(text)
+    content_for :title, text
   end
 
-  # Default scope to compensate for Devise issues
-  def page_meta_default_scopes(translation:, scope:)
-    {
-      default: [
-        :"devise.#{translation}",
-        :"#{scope}.title",
-        :"devise.#{scope}.title",
-        :"devise.#{translation.partition(".").last}",
-        :"devise.#{scope.partition(".").last}.title"
-      ],
-      site_name: site_name,
-      "#{controller_name.singularize}": controller_member_instance,
-    }
+  def meta_tag(tag, text)
+    content_for :"meta_#{tag}", text
+  end
+
+  def yield_meta_tag(tag, default_text = "")
+    content_for?(:"meta_#{tag}") ? content_for(:"meta_#{tag}") : default_text
   end
 end

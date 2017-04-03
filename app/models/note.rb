@@ -13,7 +13,7 @@ class Note < ApplicationRecord
 
   def concepts(settings_attributes = nil)
     condition = settings_attributes || !@concepts
-    @concepts = condition ? CreateNoteConcepts.new(content, settings_attributes).call : @concepts
+    @concepts = condition ? CreateConceptsFromContent.new(content, settings_attributes).call : @concepts
   end
 
   def has_minimum_number_of_concepts?
@@ -24,9 +24,13 @@ class Note < ApplicationRecord
     @quiz ||= Quiz.build_from_concepts(concepts)
   end
 
-  def quiz_results(quiz_json = nil, user_answers = [])
-    @quiz_results = quiz_json ? Quiz.build_from_quiz_json(quiz_json, user_answers) : @quiz_results
+  def quiz_results(quiz_hash = nil, user_answers = {})
+    @quiz_results = quiz_hash ? Quiz.build_from_quiz_hash(quiz_hash, user_answers) : @quiz_results
   end
+
+  #
+  # Private
+  #
 
   private
 

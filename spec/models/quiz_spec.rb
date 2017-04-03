@@ -33,8 +33,8 @@ RSpec.describe Quiz do
 
   context "quiz results" do
     let(:correct_answer)  { "Apple" }
-    let(:quiz_json)  do
-      json = {questions: []}
+    let(:quiz_hash)  do
+      json = { questions: [] }
       options = [
         { text: "Apple", letter: 'A', is_correct_answer: true, is_selected: false },
         { text: "Banana", letter: 'B', is_correct_answer: false, is_selected: false },
@@ -49,7 +49,7 @@ RSpec.describe Quiz do
 
     it "knows the number of correct answers" do
       user_answers = {"1": correct_answer}
-      quiz = described_class.build_from_quiz_json(quiz_json, user_answers)
+      quiz = described_class.build_from_quiz_hash(quiz_hash, user_answers)
       expect(quiz.correct_answers.count).to eq(1)
       expect(quiz.incorrect_answers.count).to eq(0)
       expect(quiz.unanswerd_questions.count).to eq(2)
@@ -58,7 +58,7 @@ RSpec.describe Quiz do
 
     it "knows the number of incorrect answers" do
       user_answers = {"1": "Banana"}
-      quiz = described_class.build_from_quiz_json(quiz_json, user_answers)
+      quiz = described_class.build_from_quiz_hash(quiz_hash, user_answers)
       expect(quiz.correct_answers.count).to eq(0)
       expect(quiz.incorrect_answers.count).to eq(1)
       expect(quiz.unanswerd_questions.count).to eq(2)
@@ -67,7 +67,7 @@ RSpec.describe Quiz do
 
     it "knows the number of unanswered questions" do
       user_answers = {}
-      quiz = described_class.build_from_quiz_json(quiz_json, user_answers)
+      quiz = described_class.build_from_quiz_hash(quiz_hash, user_answers)
       expect(quiz.correct_answers.count).to eq(0)
       expect(quiz.incorrect_answers.count).to eq(0)
       expect(quiz.unanswerd_questions.count).to eq(3)

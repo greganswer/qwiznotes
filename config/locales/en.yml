@@ -4,24 +4,24 @@ en:
     add_notes:
       heading: Add your notes
       image_alt: Sample of note editor
-      text_html: Effortlessly add a variety of notes using the text editor here on %{site_name}. When you're done, <b>save them to your account</b> and share them with your friends. Don't worry, we got you covered with formatting and spell check.
+      text_html: Effortlessly add a variety of notes using the text editor here on %{site_name}. When you're done, <strong>save them to your account</strong> and share them with your friends. Don't worry, we got you covered with formatting and spell check.
     community:
       heading: Share with the community
       image_alt: Sample of community notes
-      text_html: Not only can you write notes and take quizzes, you can also share them with your friends. The notes and quizzes that you save are available to the community and guess what? <b>It's totaly free!</b>
+      text_html: Not only can you write notes and take quizzes, you can also share them with your friends. The notes and quizzes that you save are available to the community and guess what? <strong>It's totaly free!</strong>
     review_table:
       heading: Review your notes
       image_alt: Sample of review table
-      text_html: If you entered your term/definition pairs correctly, you get to see the magic of %{site_name}. Your notes can be automatically <b>converted to a review table</b> to help you study more efficiently.
+      text_html: If you entered your term/definition pairs correctly, you get to see the magic of %{site_name}. Your notes can be automatically <strong>converted to a review table</strong> to help you study more efficiently.
     take_quiz:
       heading: Take a quiz and get results
       image_alt: Sample of quiz results
-      text_html: Now that you've reviewed your notes, it's time for a quiz! %{site_name} can <b>randomly generate questions and options from your notes</b>
+      text_html: Now that you've reviewed your notes, it's time for a quiz! %{site_name} can <strong>randomly generate questions and options from your notes</strong>
         for you to select. Your results are displayed at the end of the quiz.
     term_definition:
       heading: Use Term/Definition Separators
       image_alt: Sample of term defintion pairs
-      text_html: In order to magically generate a quiz from your notes, enter your notes as term/definition pairs. You can "separate" the pair by making the term <b>bold or by adding one of the following separator symbols:</b>
+      text_html: In order to magically generate a quiz from your notes, enter your notes as term/definition pairs. You can "separate" the pair by making the term <strong>bold or by adding one of the following separator symbols:</strong>
         dash, equal, colon, tilde, or arrow.
     title: How does %{site_name} work?
     link_signup: Want better grades?
@@ -108,22 +108,12 @@ en:
   quiz:
     not_taken: Please answer at least one question before viewing results
     perfect_score: Congratulations! You got all the questions right!
-  home:
-    meta:
-      index: Home page
-  user:
-    meta:
-      index: Users
-      show: "Viewing user: %{user}"
   note:
     meta:
-      index: Notes
       show: "Viewing note: %{note}"
       new: Create a note
       edit: "Editing note: %{note}"
-      quiz: "Quiz from note: %{note}"
-      review: "Reviewing note: %{note}"
-      quiz_results: "Quiz results from note: %{note}"
+      quiz_results: "Quiz results: %{note}"
     new: New note
     created: Note created
     updated: Note updated
@@ -132,7 +122,7 @@ en:
     created: Note created
     fix_this_note: Please click the "edit" button below to improve this note. #If you are not sure how to make term/defintion pairs, please see the %{link} for examples.
     no_terms_or_defintions: Unfortunately, based on the way the note was formatted, this note cannot be reviewed in a table and cannot automatically generate a quiz.
-    not_enough_terms_html: There are not enough terms to generate a quiz from this note. This note has <b>%{terms_count} terms</b> and you need <b>%{needed_count} more</b> to generate a quiz.
+    not_enough_terms_html: There are not enough terms to generate a quiz from this note. This note has <strong>%{terms_count} terms</strong> and you need <strong>%{needed_count} more</strong> to generate a quiz.
     untitled_note: Untitled note
     my_notes: My notes
     sample:

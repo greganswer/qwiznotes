@@ -1,7 +1,13 @@
-class CreateNoteConcepts
+# This class creates an array of `term` and `definition` pairs from a string of content. It uses a list of concept separators
+# to determine which part of the sentnce is a `term` and which part is a `definition`. It also does additional styling
+# such as adding a period to the end of the definition and capitalize the `term` and `definition`.
+#
+class CreateConceptsFromContent
   attr_reader :definition, :line, :lines, :settings, :term
 
-  ## CONSTANTS
+  #
+  # Constants
+  #
 
   CONCEPT_SEPARATORS = {
     acceptable_styles: {
@@ -33,20 +39,28 @@ class CreateNoteConcepts
     hyphen: true,
   }
 
-  HTML_TAGS = {bold: %w(b strong), definition_list: %w(dt)}
+  HTML_TAGS = { bold: %w(b strong), definition_list: %w(dt) }
 
+  # @param content [String] The content to be converted
+  # @param settings_attributes [Hash] List of settings for converting content to concepts
+  #
   def initialize(content, settings_attributes = nil)
     @term = @definition = ""
     @settings = settings_attributes&.symbolize_keys&.slice(*SETTINGS.keys) || SETTINGS
     @lines = content.split(%r{<br.*?>|<\/p>})
   end
 
+  # Creates the concepts
+  # @return [Array<Hash<String>>] An array of `term` and `definition` pairs
+  #
   def call
     lines.map!(&method(:convert_line))
     lines.reject { |concept| concept[:definition].blank? }
   end
 
-  ## PROTECTED
+  #
+  # Protected
+  #
 
   protected
 
@@ -68,7 +82,7 @@ class CreateNoteConcepts
     first_pass_on_line
     second_pass_on_line
     additional_processing_on_line
-    {term: term, definition: definition}
+    { term: term, definition: definition }
   end
 
   def html_sanitize(input, with_tags: false)
@@ -77,7 +91,9 @@ class CreateNoteConcepts
     ActionController::Base.helpers.sanitize(input, tags: tags)
   end
 
-  ## PRIVATE
+  #
+  # Private
+  #
 
   private
 
@@ -100,11 +116,13 @@ class CreateNoteConcepts
     keys.map!(&:to_sym)
     regex = /#{default_separators.slice(*keys).values.join("|")}/
     self.term, self.definition = line.split(regex, 2).map do |part|
-      html_sanitize part.gsub("&nbsp;", " ")
+      html_sanitize(part.gsub("&nbsp;", " "))
     end
   end
 
-  ##  ADDITIONAL PROCESSING
+  #
+  #  Additional processing
+  #
 
   def additional_processing_on_line
     settings.each { |key, value| send(key, value) if respond_to?(key, true) }
