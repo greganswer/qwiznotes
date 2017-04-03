@@ -2,7 +2,7 @@
 .grey-text
 
   %p.right
-    - translation = url_for[/quiz/] ? 'quizzes.questions' : 'notes.concepts'
+    - translation = url_for[/quiz/] ? "app.questions" : "app.concepts"
     %b= "#{t(translation, count: 2)}:"
     = url_for[/quiz/] ? note.quiz.questions.count : note.concepts_count
 
@@ -24,14 +24,14 @@
 
     - else
       -# OTHER PAGES
-      %b #{t('app.viewed')}:
+      %b #{t("app.viewed")}:
       = local_time(Time.current, :medium)
 
     %br
     %br
-    - klass = 'btn-flat waves-effect'
-    = link_to_hash_if_current t('buttons.view'), note, class: klass
-    = link_to_hash_if_current t('app.review'), review_note_path(note), class: klass
+    - klass = "btn-flat waves-effect"
+    = link_to_hash_if_current t("buttons.view"), note, class: klass
+    = link_to_hash_if_current t("app.review"), review_note_path(note), class: klass
     = link_to_hash_if_current Quiz.model_name.human, quiz_note_path(note), class: klass
 
 .clear-both

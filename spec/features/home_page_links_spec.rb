@@ -19,12 +19,12 @@ feature "Home pages" do
 
   USER_LINKS = {
     'nav' => [
-      { link: I18n.t('notes.new.title'), page_translation_scope: 'notes.new' },
+      { link: I18n.t('note.new.title'), page_translation_scope: 'notes.new' },
       { link: Note.model_name.human(count: 2), page_translation_scope: 'notes.index' },
       { link: I18n.t('devise.sessions.destroy.title'), page_translation_scope: 'devise.sessions.destroy' },
     ],
     'footer' => [
-      { link: I18n.t('notes.new.title'), page_translation_scope: 'notes.new' },
+      { link: I18n.t('note.new.title'), page_translation_scope: 'notes.new' },
       { link: Note.model_name.human(count: 2), page_translation_scope: 'notes.index' },
       { link: I18n.t('devise.sessions.destroy.title'), page_translation_scope: 'devise.sessions.destroy' },
     ],

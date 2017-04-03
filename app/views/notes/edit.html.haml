@@ -1,3 +1,13 @@
+-#
+-# Meta
+-#
+
+- meta_tag :robots, "noindex, nofollow"
+- page_title "#{t("button.edit")}: #{@note}"
 - breadcrumb :edit_note, @note
+
+-#
+-# Content
+-#
 
 = render 'form', note: @note

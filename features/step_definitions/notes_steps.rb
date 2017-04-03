@@ -37,7 +37,7 @@ When(/^I click the "Quiz" button$/) do
 end
 
 When(/^I click the "Create Note" button$/) do
-  within('nav') { click_on I18n.t('notes.new.title') }
+  within('nav') { click_on I18n.t('note.new.title') }
 end
 
 When(/^I fill in the note form$/) do
@@ -72,16 +72,16 @@ Then(/^I should see the details of the note$/) do
 end
 
 Then(/^I should see that the note was created$/) do
-  expect(page).to have_content(I18n.t('notes.create.success_message'))
+  expect(page).to have_content(I18n.t('note.create.success_message'))
 end
 
 Then(/^I should see that the note was not created$/) do
   expect(page).to have_content(I18n.t('simple_form.error_notification.default_message'))
-  expect(page).not_to have_content(I18n.t('notes.create.success_message'))
+  expect(page).not_to have_content(I18n.t('note.create.success_message'))
 end
 
 Then(/^I should not see the "Create Note" button$/) do
-  expect(page).not_to have_content(I18n.t('notes.new.title'))
+  expect(page).not_to have_content(I18n.t('note.new.title'))
 end
 
 Then(/^I should see a review table for the note$/) do

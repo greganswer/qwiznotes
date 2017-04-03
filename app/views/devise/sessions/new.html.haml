@@ -1,4 +1,13 @@
+-#
+-# Meta
+-#
+
+- page_title t("app.sign_in")
 - breadcrumb :new_user_session
+
+-#
+-# Content
+-#
 
 .container
   .card.padding32.max-width600.margin-horizontal
@@ -8,11 +17,7 @@
         = f.input :email, required: false, autofocus: true
         = f.input :password, required: false
         - if devise_mapping.rememberable?
-          = f.input :remember_me, as: :boolean, label: t('devise.sessions.new.remember_me')
+          = f.input :remember_me, as: :boolean, label: t("app.keep_me_signed_in")
 
-          -#.input-field
-            %input#test5{:type => "checkbox"}/
-            %label{:for => "test5"} Red
-
-      = render 'form_submit_button', f: f, submit_text: t('devise.sessions.new.title')
+      = render "form_submit_button", f: f, submit_text: t("app.sign_in")
       = render "devise/shared/links"

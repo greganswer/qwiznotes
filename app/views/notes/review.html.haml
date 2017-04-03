@@ -1,26 +1,37 @@
+-#
+-# Meta
+-#
+
+-# meta_tag :keywords, @note.tags.join(",")
+- page_title "#{t("app.review")}: #{@note}"
+- breadcrumb :review_note, @note
+
+-#
+-# Content
+-#
 - breadcrumb :review_note, @note
 
 .container.m-full-width
   .card-panel.m-no-margin
     - if @note.concepts.blank?
       %h5
-        = t('notes.no_terms_or_defintions')
+        = t("note.no_terms_or_defintions")
         - if current_user.owns?(@note)
           %br
           %br
-          = t('notes.fix_this_note')
+          = t("note.fix_this_note")
           %br
           %br
-          = link_to t('buttons.edit'), edit_note_path(@note), class: 'btn waves-effect'
+          = link_to t("buttons.edit"), edit_note_path(@note), class: "btn waves-effect"
 
     - else
-      = render 'notes/info', note: @note
+      = render "notes/info", note: @note
       %table.review-table.highlight
         %thead
           %tr
             %th #
-            %th= t('notes.terms', count: 2)
-            %th= t('notes.definitions', count: 2)
+            %th= t("app.terms", count: 2)
+            %th= t("app.definitions", count: 2)
         %tbody
           - @note.concepts.each_with_index do |concept, index|
             %tr
@@ -28,4 +39,4 @@
               %td.term= concept[:term]
               %td.definition= concept[:definition]
 
-      = render 'notes/buttons', note: @note
+      = render "notes/buttons", note: @note

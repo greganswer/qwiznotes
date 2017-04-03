@@ -8,7 +8,7 @@
           .center.margin-horizontal
             = fa_icon 'plus', class: "fa-4x"
             %br
-            %h4= t('notes.new.title')
+            %h4= t('note.new')
 
     - if notes.present?
       - notes.each do |note|
@@ -20,7 +20,7 @@
                 %b #{Note.human_attribute_name(:user)}:
                 #{note.user}
                 %br
-                %b #{t('notes.concepts', count: 2)}:
+                %b #{t('app.concepts', count: 2)}:
                 #{note.concepts_count}
               %p.grey-text.text-darken-1= strip_tags(note.content).truncate(180, separator: ' ')
 

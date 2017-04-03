@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :note do
     user
     sequence(:title) { |n| "Title #{n}" }
-    content I18n.t('notes.sample.content')
+    content I18n.t('note.sample.content')
 
     factory :random_note do
       title { Faker::Hipster.sentence[0..69] }

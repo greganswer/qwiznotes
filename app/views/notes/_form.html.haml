@@ -4,9 +4,9 @@
 
     .card-panel.m-no-margin
       .input-field
-        = f.input :title, placeholder: t('notes.untitled_note'), input_html: {style: 'font-size: 2em'}
+        = f.input :title, placeholder: t('note.untitled_note'), input_html: {style: 'font-size: 2em'}
         = f.input :content, input_html: {class: 'materialize-textarea'}
 
       .fixed-action-btn
-        %button#note-save.btn-floating.btn-large.waves-effect.waves-light.green.tooltipped{'data-position': 'left', 'data-delay': '50', 'data-tooltip': t('notes.new.submit')}
+        %button#note-save.btn-floating.btn-large.waves-effect.waves-light.green.tooltipped{'data-position': 'left', 'data-delay': '50', 'data-tooltip': t('note.new.submit')}
           = material_icon.save

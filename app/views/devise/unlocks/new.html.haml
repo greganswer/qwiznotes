@@ -1,4 +1,13 @@
+-#
+-# Meta
+-#
+
+- page_title t(".resend_unlock_instructions")
 - breadcrumb :new_user_unlock
+
+-#
+-# Content
+-#
 
 .container.max-width600.s-full-width
   = simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
@@ -6,8 +15,8 @@
     = f.full_error :unlock_token
 
     .card-panel.margin-horizontal
-      %p= t('devise.shared.email_me_instructions')
+      %p= t('app.email_me_instructions')
       %br
       .form-inputs= f.input :email, required: true, autofocus: true
-      = render 'form_submit_button', f: f, submit_text: t('devise.unlocks.new.title')
+      = render 'form_submit_button', f: f, submit_text: t("app.send_me_instructions")
       = render "devise/shared/links"

@@ -36,7 +36,7 @@ class Note < ApplicationRecord
 
   def prepare_input
     self.title = html_clean(title.to_s)
-    self.title = I18n.t('notes.untitled_note') if title.blank?
+    self.title = I18n.t('note.untitled_note') if title.blank?
     self.content = html_clean(content.to_s)
     self.concepts_count = concepts.count
   end

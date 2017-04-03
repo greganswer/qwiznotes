@@ -17,7 +17,9 @@
     - [Goals](#goals)
     - [Requirements](#requirements)
     - [Design considerations](#design-considerations)
-- [Style guides](#style-guide)
+- [Contributions](#contributions)
+    - [Style guides](#style-guide)
+    - [Localization](#localization)
 
 ## Getting started
 
@@ -98,8 +100,14 @@ This app is for students from Elementary to post-secondary school level.
 - I chose to use [Materialize CSS](http://materializecss.com/) because I am familiar with it and it has a similar look and feel as the screenshot provided. I've also read through most of [Google's Material Design Guidelines](https://material.io/guidelines/) and I agree with a lot of their opinions on User Experience. I'm also willing to use any other CSS framework or work with the company's preferred style guides.
 - I chose to go with pagination instead of infinite scroll based on [this UX article](https://uxplanet.org/ux-infinite-scrolling-vs-pagination-1030d29376f1#.nbadf7yx7).
 
-## Style guides
+## Contributions
+
+### Style guides
 
 - [Barsoom Rails style guide](https://github.com/barsoom/devbook/tree/master/styleguide)
 - [UI Namespaces](https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/#javascript-namespaces-js-)
     - Javascript classes: `jsButtonCollapse` (*'js'*, followed by *'noun/namespace'* followed by *'verb'*, in *camel case*)
+
+### Localization
+
+When adding or changing any localization keys in the YAML files, please be mindful of existing keys in other languages.

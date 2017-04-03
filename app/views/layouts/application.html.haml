@@ -2,8 +2,8 @@
 %html{ lang: I18n.locale }
   %head
     -# We don't want robots indexing the staging environment
-    - if @meta_no_follow.present? || !Rails.env.production?
-      %meta{ content: "noindex, nofollow", name: "robots" }
+    - if content_for?(:meta_robots) || !Rails.env.production?
+      %meta{ content: yield_meta_tag(:robots,  "noindex, nofollow"), name: "robots" }
     %meta{ charset: "utf-8" }
     %meta{ content: "IE=edge", "http-equiv" => "X-UA-Compatible" }
     %meta{ content: "chrome=1", "http-equiv" => "X-UA-Compatible" }
@@ -15,9 +15,11 @@
     %meta{ content: site_owner, name: "publisher" }
     %meta{ content: "#{Time.current.year}. #{site_name} by #{site_owner}", name: "copyright" }
     %meta{ content: "width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes", name: "viewport" }
-    %meta{ content: "#{yield_meta_tag(:description, t("marketing.tagline"))}",  name: "description" }
-    %meta{ content: "#{yield_meta_tag(:keywords,  t("marketing.keywords"))}",  name: "keywords" }
+    %meta{ content: yield_meta_tag(:description, yield(:title)),  name: "description" }
+    %meta{ content: yield_meta_tag(:keywords,  t("marketing.keywords")),  name: "keywords" }
 
+    - unless content_for?(:title)
+      - raise "Title missing for \"#{controller_path}/#{action_name}.html\" view"
     %title= "#{yield(:title)} | #{site_name}"
     = favicon_link_tag("favicon.ico")
     = stylesheet_link_tag("application", media: "all")
@@ -33,7 +35,7 @@
     %noscript
       .card.padding8.red.lighten-4
         %h5.red-text.text-darken-3
-          - link = link_to(t('app.click_here'), "http://www.enable-javascript.com/", target: "_blank")
+          - link = link_to(t("app.click_here"), "http://www.enable-javascript.com/", target: "_blank")
           = t("app.enable_javascript_html", link: link)
 
     -#
@@ -49,10 +51,10 @@
               = site_name.split[0]
               %span>= site_name.split[1]
 
-            %a.jsButtonCollapse{href: '#', 'data-activates': 'menu-mobile-side'}= material_icon.menu
+            %a.button-collapse.jsButtonCollapse{href: '#', 'data-activates': 'menu-mobile-side'}= material_icon.menu
             %ul.right.hide-on-med-and-down
               - if user_signed_in?
-                %li= link_to_hash_if_current t('notes.new.title'), new_note_path
+                %li= link_to_hash_if_current t("note.new"), new_note_path
               %li= link_to_hash_if_current Note.model_name.human(count: 2), notes_path
 
               - if user_signed_in?
@@ -68,11 +70,11 @@
                   %a.dropdown-button{"data-activates": "dropdown2", href: "#!", 'data-beloworigin': "true"}
                     #{current_user} #{material_icon.arrow_drop_down.css_class(:right)}
                 %ul#dropdown2.dropdown-content
-                  / %li= link_to_hash_if_current t('devise.registrations.edit.title'), edit_user_registration_path
-                  %li= link_to_hash_if_current t('devise.sessions.destroy.title'), destroy_user_session_path, method: :delete
+                  / %li= link_to_hash_if_current t("devise.registrations.edit.title"), edit_user_registration_path
+                  %li= link_to_hash_if_current t("app.sign_out"), destroy_user_session_path, method: :delete
               - else
-                %li= link_to_hash_if_current t('devise.sessions.new.title'), new_user_session_path
-                %li= link_to_hash_if_current t('devise.registrations.new.title'), new_user_registration_path, class: 'btn'
+                %li= link_to_hash_if_current t("app.sign_in"), new_user_session_path
+                %li= link_to_hash_if_current t("devise.registrations.new.sign_up"), new_user_registration_path, class: 'btn'
 
       -#
       -# Side nav
@@ -80,21 +82,21 @@
 
       %ul#menu-mobile-side.side-nav
         - unless user_signed_in?
-          %li= link_to_hash_if_current t('devise.sessions.new.title'), new_user_session_path
-          %li= link_to_hash_if_current t('devise.registrations.new.title'), new_user_registration_path, class: 'btn'
+          %li= link_to_hash_if_current t("app.sign_in"), new_user_session_path
+          %li= link_to_hash_if_current t("devise.registrations.new.sign_up"), new_user_registration_path, class: 'btn'
           %li.divider
 
         - if user_signed_in?
           -#%li.input-field.search
             = mi.search.css_class('prefix')
             %input{type: "text", value: params[:search]}
-          %li= link_to_hash_if_current t('notes.new.title'), new_note_path
+          %li= link_to_hash_if_current t("note.new"), new_note_path
 
         %li= link_to_hash_if_current Note.model_name.human(count: 2), notes_path
 
         - if user_signed_in?
           %li.divider
-          %li= link_to_hash_if_current t('devise.sessions.destroy.title'), destroy_user_session_path, method: :delete
+          %li= link_to_hash_if_current t("app.sign_out"), destroy_user_session_path, method: :delete
 
 
     -#
@@ -117,15 +119,15 @@
     %footer.page-footer
       .container
         %ul
-          %li= link_to_hash_if_current t('app.home'), root_path
+          %li= link_to_hash_if_current t("app.home"), root_path
           - if user_signed_in?
-            %li= link_to_hash_if_current t('notes.new.title'), new_note_path
+            %li= link_to_hash_if_current t("note.new"), new_note_path
           %li= link_to_hash_if_current Note.model_name.human(count: 2), notes_path
           - if user_signed_in?
-            %li= link_to_hash_if_current t('devise.sessions.destroy.title'), destroy_user_session_path, method: :delete
+            %li= link_to_hash_if_current t("app.sign_out"), destroy_user_session_path, method: :delete
           - else
-            %li= link_to_hash_if_current t('devise.sessions.new.title'), new_user_session_path
-            %li= link_to_hash_if_current t('devise.registrations.new.title'), new_user_registration_path
+            %li= link_to_hash_if_current t("app.sign_in"), new_user_session_path
+            %li= link_to_hash_if_current t("devise.registrations.new.sign_up"), new_user_registration_path
       .footer-copyright
         .container.center
           %small &copy; #{t("app.copyright")} #{Date.today.year} #{site_owner}

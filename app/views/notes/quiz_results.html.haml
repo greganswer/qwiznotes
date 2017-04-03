@@ -1,4 +1,14 @@
+-#
+-# Meta
+-#
+
+-# meta_tag :keywords, @note.tags.join(",")
+- page_title "#{t("app.quiz_results")}: #{@note}"
 - breadcrumb :quiz_results_note, @note
+
+-#
+-# Content
+-#
 
 -# RESULTS
 
@@ -9,19 +19,19 @@
   .container
     .card.padding8.center.green.lighten-4
       %h4.green-text.text-darken-2
-        = t('quizzes.perfect_score')
+        = t("quiz.perfect_score")
         = material_icon.sentiment_very_satisfied.md_36
 
 - else
   - if percent >= 80
-    - icon = 'sentiment_very_satisfied'
-    - text_color = 'green-text'
+    - icon = "sentiment_very_satisfied"
+    - text_color = "green-text"
   - elsif percent >= 60
-    - icon = 'sentiment_satisfied'
-    - text_color = 'yellow-text text-darken-4'
+    - icon = "sentiment_satisfied"
+    - text_color = "yellow-text text-darken-4"
   - else
-    - icon = 'sentiment_dissatisfied'
-    - text_color = 'red-text'
+    - icon = "sentiment_dissatisfied"
+    - text_color = "red-text"
 
   .container.m-full-width
     .card.padding8
@@ -33,14 +43,14 @@
             %i.material-icons.md-36= icon
             = percent
             %span.small-superscript %
-          %p.bold{class: text_color} #{t('quizzes.correct_answers', count: 2)}: #{quiz.correct_answers.count} / #{quiz.questions.count}
+          %p.bold{class: text_color} #{t("app.correct_answers", count: 2)}: #{quiz.correct_answers.count} / #{quiz.questions.count}
 
         -# Incorrect answers
 
         .col.s12.m4
-          %h5.grey-text= t('quizzes.incorrect_answers', count: quiz.incorrect_answers.count)
+          %h5.grey-text= t("app.incorrect_answers", count: quiz.incorrect_answers.count)
           - if quiz.incorrect_answers.count.zero?
-            %i= t('app.none')
+            = t("app.none")
           - else
             - quiz.incorrect_answers.each do |question|
               %a.btn.btn-small.grey{href: "#question_#{question.number}"}= question.number
@@ -48,9 +58,9 @@
         -# Unanswered questions
 
         .col.s12.m4
-          %h5.grey-text= t('quizzes.unanswered_questions', count: quiz.unanswerd_questions.count)
+          %h5.grey-text= t("app.unanswered_questions", count: quiz.unanswerd_questions.count)
           - if quiz.unanswerd_questions.count.zero?
-            %i= t('app.none')
+            = t("app.none")
           - else
             - quiz.unanswerd_questions.each do |question|
               %a.btn.btn-small.grey{href: "#question_#{question.number}"}= question.number
@@ -58,7 +68,7 @@
     -# QUIZ
 
     .card-panel.m-no-margin
-      = render 'notes/info', note: @note
+      = render "notes/info", note: @note
 
       -# Question
 
@@ -71,19 +81,19 @@
 
         - question.options.each do |option|
           - if option.selected? && option.correct_answer?
-            .green-text.text-darken-2.bold= raw "#{fa_icon 'check'} (#{option.letter}) #{sanitize(option.to_s)}"
+            .green-text.text-darken-2.bold= raw "#{fa_icon "check"} (#{option.letter}) #{sanitize(option.to_s)}"
           - elsif option.selected?
-            .red-text.text-darken-3.bold= raw "#{fa_icon 'close'} (#{option.letter}) #{sanitize(option.to_s)}"
+            .red-text.text-darken-3.bold= raw "#{fa_icon "close"} (#{option.letter}) #{sanitize(option.to_s)}"
           - else
-            .grey-text.text-darken-2{style: 'margin-left: 1.2em'}= raw "(#{option.letter}) #{sanitize(option.to_s)}"
+            .grey-text.text-darken-2{style: "margin-left: 1.2em"}= raw "(#{option.letter}) #{sanitize(option.to_s)}"
 
         %br
-        %h5= t('quizzes.correct_answers', count: 1)
-        %p{style: 'margin: 0 0 2em 2em'}= question.correct_answer
+        %h5= t("app.correct_answers", count: 1)
+        %p{style: "margin: 0 0 2em 2em"}= question.correct_answer
         .divider
         %br
 
       -# Action buttons
 
       .center
-        = link_to t('notes.quiz_results.retake'), quiz_note_path(@note), class: 'waves-effect waves-light btn-large'
+        = link_to t("quiz.regenerate"), quiz_note_path(@note), class: "waves-effect waves-light btn-large"

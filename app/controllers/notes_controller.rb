@@ -27,7 +27,7 @@ class NotesController < ApplicationController
 
   def quiz_results
     unless request.post? && params[:user_answers].present?
-      return redirect_to [:quiz, @note], alert: t("quizzes.not_taken")
+      return redirect_to [:quiz, @note], alert: t("quiz.not_taken")
     end
     @note.quiz_results(params[:quiz], params[:user_answers])
   end
@@ -40,7 +40,7 @@ class NotesController < ApplicationController
     @note = current_user.notes.build(note_params)
     respond_to do |format|
       if @note.save
-        format.html { redirect_to @note, notice: t('notes.create.success_message') }
+        format.html { redirect_to @note, notice: t('note.created') }
         format.json { render :show, status: :created, location: @note }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to @note, notice: t('notes.update.success_message') }
+        format.html { redirect_to @note, notice: t('note.updated') }
         format.json { render :show, status: :ok, location: @note }
       else
         format.html { render :edit }
@@ -72,7 +72,7 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to notes_url, notice: t('notes.destroy.success_message') }
+      format.html { redirect_to notes_url, notice: t('note.deleted') }
       format.json { head :no_content }
     end
   end

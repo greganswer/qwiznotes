@@ -16,7 +16,7 @@ data:
   # Locale files or `File.find` patterns where translations are read from:
   read:
     ## Default:
-    # - config/locales/%{locale}.yml
+    - config/locales/%{locale}.yml
     ## More files:
     - config/locales/**/*.%{locale}.yml
     ## Another gem (replace %#= with %=):
@@ -92,12 +92,19 @@ search:
 ## Consider these keys used:
 ignore_unused:
 # - 'activerecord.attributes.*'
-- 'activerecord.models.*'
-- 'errors.*'
-- 'attributes.*'
 - '*.title'
+- 'activerecord.attributes.user.*'
+- 'activerecord.errors.*'
+- 'activerecord.models.*'
+- 'attributes.*'
+- 'date.*'
+- 'datetime.*'
+- 'errors.*'
+- 'helpers.*'
 - 'helpers.page_entries_info.*'
+- 'number.*'
 - 'simple_form.*'
+- 'support.*'
 - 'time.*'
 - '{devise,kaminari,will_paginate}.*'
 

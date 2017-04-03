@@ -1,15 +1,17 @@
 - action_link = confirmation_url(@resource, confirmation_token: @token)
 
 
-%p= t("mailer.greeting", user: @resource)
-%p= t("devise.mailer.confirmation_instructions.description")
+%p= t(".greeting", recipient: @resource)
 %p
   %b #{User.human_attribute_name(:name)}:
   = @user.name
   %br
   %b #{User.human_attribute_name(:email)}:
   = @user.email
-= link_to t("devise.confirmations.show.title"), action_link, class: "button"
+
+%p= t(".instruction")
+= link_to t(".action"), action_link, class: "button"
 %br
+
 %p= t("app.click_link_below_if_button_not_working")
-%i= link_to action_link, action_link
+= link_to action_link, action_link

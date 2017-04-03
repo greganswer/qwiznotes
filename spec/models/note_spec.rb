@@ -10,7 +10,7 @@ RSpec.describe Note do
   it "fills the empty title" do
     note = build(:note, title: '')
     expect(note.valid?).to be true
-    expect(note.title).to eq(t('notes.untitled_note'))
+    expect(note.title).to eq(t('note.untitled_note'))
   end
 
   it "#to_s" do

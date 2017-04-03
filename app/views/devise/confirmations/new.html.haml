@@ -1,13 +1,22 @@
+-#
+-# Meta
+-#
+
+- page_title t(".resend_confirmation_instructions")
 - breadcrumb :new_user_confirmation
+
+-#
+-# Content
+-#
 
 .container.max-width600.s-full-width
   = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-    = render 'form_errors', record: resource
+    = render "form_errors", record: resource
     = f.full_error :confirmation_token
 
     .card-panel.margin-horizontal
-      %p= t('devise.shared.email_me_instructions')
+      %p= t('app.email_me_instructions')
       %br
       .form-inputs= f.input :email, required: true, autofocus: true
-      = render 'form_submit_button', f: f, submit_text: t('devise.confirmations.new.title')
+      = render "form_submit_button", f: f, submit_text: t("app.send_me_instructions")
       = render "devise/shared/links"
