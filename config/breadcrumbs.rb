@@ -8,6 +8,20 @@ crumb :root do
 end
 
 #
+# Legal
+#
+
+crumb :terms do
+  link t("legal.terms"), terms_path
+  parent :root
+end
+
+crumb :privacy do
+  link t("legal.privacy"), privacy_path
+  parent :root
+end
+
+#
 # Devise
 #
 

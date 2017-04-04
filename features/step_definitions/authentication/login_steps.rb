@@ -46,13 +46,15 @@ When(/^I log out$/) do
   within("footer") { click_on t("app.sign_out") }
 end
 
-Then(/^I should see that I am logged in$/) do
-  expect(page).to have_content(t("devise.sessions.signed_in"))
-end
-
-Then(/^I should see that I am not logged in$/) do
-  expect(page).to have_content(t("app.sign_in"))
-  expect(page).not_to have_content(t("app.sign_out"))
+#  I should see that I am logged in
+#  I should see that I am not logged in
+Then(/^I should see that I am( not)? logged in$/) do |not_expected|
+  if (not_expected)
+   expect(page).to have_content(t("app.sign_in"))
+    expect(page).not_to have_content(t("app.sign_out"))
+  else
+    expect(page).to have_content(t("devise.sessions.signed_in"))
+  end
 end
 
 Then(/^I should see that I have been locked out$/) do

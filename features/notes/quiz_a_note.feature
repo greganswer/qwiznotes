@@ -1,7 +1,7 @@
 Feature: Quiz a note
-  In order to practive for a test
   As a user
   I need to take a quiz
+  So I can practice for a test
 
   Background: A user on the home page
     Given I am on the home page

@@ -18,4 +18,11 @@
         = f.input :email, required: true, autofocus: true
         = f.input :password, required: true, hint: (t("app.minimum_characters", count: @minimum_password_length) if @minimum_password_length)
       = render "form_submit_button", f: f, submit_text: t(".sign_up")
+
+      .center.qa-you_agree_to_our_terms_and_privacy_html
+        - terms_link = link_to t("legal.terms"), terms_path
+        - privacy_link = link_to t("legal.privacy"), privacy_path
+        = t("legal.you_agree_to_our_terms_and_privacy_html", terms_link: terms_link, privacy_link: privacy_link)
+      %br
+
       = render "devise/shared/links"

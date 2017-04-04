@@ -1,11 +1,11 @@
 Feature: Create a note
   As a user
-  In order to use the note features of the site
   I need to create a note
+  So I can use the note features of the site
 
   Background: I am logged in
     Given I am logged in
-    And I click the "Create Note" button
+    And I click the "New Note" button
 
   @javascript
   Scenario: I successfully create a note

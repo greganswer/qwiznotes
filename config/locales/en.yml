@@ -27,8 +27,11 @@ en:
       user:
         one: User
         other: Users
+  legal:
+    you_agree_to_our_terms_and_privacy_html: By signing up, you agree to our %{terms_link} and %{privacy_link}.
+    terms: Terms of services
+    privacy: Privacy policy
   app:
-
     click_here: click here
     click_link_below_if_button_not_working: 'If for some reason the button does not work, copy and paste the link below:'
     concepts:

@@ -45,6 +45,7 @@ footer {
   ul li {
     display: inline;
     margin: 0 8px;
+    white-space: nowrap;
   }
   .footer-copyright {
     background: darken($color, 5%) !important;

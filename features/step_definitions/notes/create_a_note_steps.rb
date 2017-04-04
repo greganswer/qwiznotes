@@ -5,15 +5,15 @@
 def submit_note_form(title: "My new note", content: "I am so happy that I get to use this site")
   fill_in Note.human_attribute_name(:title), with: title
   fill_in Note.human_attribute_name(:content), with: content
-  click_button "note-save"
+  click_button "qa-note-save"
 end
 
 #
 # Steps
 #
 
-When(/^I click the "Create Note" button$/) do
-  within("nav") { click_on I18n.t("note.new") }
+When(/^I click the "New Note" button$/) do
+  within("nav") { click_on t("note.new") }
 end
 
 When(/^I fill in the note form$/) do
@@ -28,15 +28,17 @@ When(/^I do not enter the note content$/) do
   submit_note_form(content: "")
 end
 
-Then(/^I should see that the note was created$/) do
-  expect(page).to have_content(I18n.t("note.created"))
-end
-
-Then(/^I should see that the note was not created$/) do
-  expect(page).to have_content(I18n.t("simple_form.error_notification.default_message"))
-  expect(page).not_to have_content(I18n.t("note.created"))
+# I should see that the note was created
+# I should see that the note was not created
+Then(/^I should see that the note was( not)? created$/) do |not_expected|
+  if (not_expected)
+    expect(page).to have_content(t("simple_form.error_notification.default_message"))
+    expect(page).not_to have_content(t("note.created"))
+  else
+    expect(page).to have_content(t("note.created"))
+  end
 end
 
 Then(/^I should not see the "New Note" button$/) do
-  expect(page).not_to have_content(I18n.t("note.new"))
+  expect(page).not_to have_content(t("note.new"))
 end

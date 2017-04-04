@@ -1,7 +1,7 @@
 Feature: Password reset
   As a user
-  In order to login if I forgot my password
   I need to reset my password
+  So I can login if I forgot my password
 
   Background: I am a guest with an account
     Given I have an account

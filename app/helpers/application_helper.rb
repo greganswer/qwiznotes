@@ -41,6 +41,10 @@ module ApplicationHelper
     link_to(name, options, html_options, &block)
   end
 
+  def link_to_external_page(link)
+    link_to raw("#{link} #{fa_icon "external-link"}"), link
+  end
+
   #
   # Site
   #

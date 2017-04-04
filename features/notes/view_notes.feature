@@ -1,7 +1,7 @@
 Feature: View notes
   As a user
-  In order to study
   I need to view my notes and other user notes
+  So I can study for my tests
 
   Scenario: There are no notes yet
     Given I am on the home page

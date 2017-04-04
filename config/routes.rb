@@ -8,5 +8,11 @@ Rails.application.routes.draw do
         end
       end
   end
+  scope "legal", controller: :legal do
+    %w(privacy terms).each { |route| get route }
+  end
+  scope "/", controller: :home do
+    %w(contact).each { |route| get route }
+  end
   root "home#index"
 end

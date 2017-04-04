@@ -118,18 +118,20 @@
     -# Footer
     -#
 
-    %footer.page-footer
+    %footer.page-footer.center
       .container
         %ul
           %li= link_to_hash_if_current t("app.home"), root_path
           - if user_signed_in?
             %li= link_to_hash_if_current t("note.new"), new_note_path
           %li= link_to_hash_if_current Note.model_name.human(count: 2), notes_path
-          - if user_signed_in?
-            %li= link_to_hash_if_current t("app.sign_out"), destroy_user_session_path, method: :delete
-          - else
+          - unless user_signed_in?
             %li= link_to_hash_if_current t("app.sign_in"), new_user_session_path
             %li= link_to_hash_if_current t("devise.registrations.new.sign_up"), new_user_registration_path
+          %li= link_to_hash_if_current t("legal.terms"), terms_path
+          %li= link_to_hash_if_current t("legal.privacy"), privacy_path
+          - if user_signed_in?
+            %li= link_to_hash_if_current t("app.sign_out"), destroy_user_session_path, method: :delete
       .footer-copyright
         .container.center
           %small &copy; #{t("app.copyright")} #{Date.today.year} #{site_owner}

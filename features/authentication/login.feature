@@ -1,7 +1,7 @@
 Feature: Login
   As a user
-  In order to access additional content
   I need to log in
+  So I can access additional content
 
   Background: I am a guest with an account
     Given I have an account

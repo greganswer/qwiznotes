@@ -1,7 +1,7 @@
 Feature: Review table
-  In order to study for a test
   As a user
   I need to view a review table of terms and definitions
+  So I can study for a test
 
   Background: A user on the home page
     Given I am on the home page

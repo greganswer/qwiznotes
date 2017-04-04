@@ -44,9 +44,9 @@ RSpec.describe Note do
       expect(note.quiz.questions.first).to be_truthy
     end
 
-    it "#quiz_results has questions" #do
-    #   quiz_results = note.quiz_results(quiz_input: note.quiz)
-    #   expect(quiz_results[:questions][0]).to be_truthy
-    # end
+    it "#quiz_results has questions" do
+      quiz_results = note.quiz_results(note.quiz.to_json)
+      expect(quiz_results.questions.first).to be_truthy
+    end
   end
 end
