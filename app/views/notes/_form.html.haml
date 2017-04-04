@@ -1,12 +1,12 @@
 .container.s-full-width
   = simple_form_for note do |f|
-    = render 'form_errors', record: note
+    = render "form_errors", record: note
 
     .card-panel.m-no-margin
       .input-field
-        = f.input :title, placeholder: t('note.untitled_note'), input_html: {style: 'font-size: 2em'}
-        = f.input :content, input_html: {class: 'materialize-textarea'}
+        = f.input :title, placeholder: t("note.untitled_note"), input_html: {style: "font-size: 2em"}
+        = f.input :content, input_html: {class: "materialize-textarea"}
 
       .fixed-action-btn
-        %button#note-save.btn-floating.btn-large.waves-effect.waves-light.green.tooltipped{'data-position': 'left', 'data-delay': '50', 'data-tooltip': t('note.new.submit')}
+        %button#note-save.btn-floating.btn-large.waves-effect.waves-light.green.tooltipped{"data-position": "left", "data-delay": "50", "data-tooltip": t("helpers.submit.submit", model: Note.model_name.human)}
           = material_icon.save

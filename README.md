@@ -96,8 +96,7 @@ This app is for students from Elementary to post-secondary school level.
 
 ### Design considerations
 
-- For simplicity and time constraints I decided to leave the search functionality on the home page for logged in users.
-- I chose to use [Materialize CSS](http://materializecss.com/) because I am familiar with it and it has a similar look and feel as the screenshot provided. I've also read through most of [Google's Material Design Guidelines](https://material.io/guidelines/) and I agree with a lot of their opinions on User Experience. I'm also willing to use any other CSS framework or work with the company's preferred style guides.
+- I chose to use [Materialize CSS](http://materializecss.com/) because I I have also read through most of [Google's Material Design Guidelines](https://material.io/guidelines/) and I agree with a lot of their opinions on User Experience. 
 - I chose to go with pagination instead of infinite scroll based on [this UX article](https://uxplanet.org/ux-infinite-scrolling-vs-pagination-1030d29376f1#.nbadf7yx7).
 
 ## Contributions

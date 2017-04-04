@@ -4,7 +4,7 @@ Feature: Review table
   I need to view a review table of terms and definitions
 
   Background: A user on the home page
-    Given I'm on the home page
+    Given I am on the home page
 
   Scenario: Guest reviews a note
     Given a note titled "Accounting 101 notes" was already created

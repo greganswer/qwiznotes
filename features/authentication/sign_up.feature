@@ -3,8 +3,8 @@ Feature: Sign up
   In order to access additional content
   I need to sign up for an account
 
-  Background: I'm a guest
-    And I'm on the home page
+  Background: I am a guest
+    And I am on the home page
     And I click the "Sign up" button
 
   @javascript
@@ -15,6 +15,6 @@ Feature: Sign up
 
   Scenario: I enter the wrong credentials
     When I leave the email address blank
-    Then I should see that I'm not signed up
+    Then I should see that I am not signed up
     When I leave the password blank
-    Then I should see that I'm not signed up
+    Then I should see that I am not signed up

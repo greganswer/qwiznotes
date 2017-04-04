@@ -3,7 +3,7 @@ Feature: Create a note
   In order to use the note features of the site
   I need to create a note
 
-  Background: I'm logged in
+  Background: I am logged in
     Given I am logged in
     And I click the "Create Note" button
 
@@ -23,5 +23,4 @@ Feature: Create a note
 
   Scenario: I cannot create a note when not logged in
      When I log out
-     Then I should not see the "Create Note" button
-
+     Then I should not see the "New Note" button

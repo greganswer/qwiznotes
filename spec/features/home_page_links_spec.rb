@@ -5,28 +5,28 @@ feature "Home pages" do
   before(:each) { visit root_path }
 
   GUEST_LINKS = {
-    'nav' => [
-      { link: Note.model_name.human(count: 2), page_translation_scope: 'notes.index' },
-      { link: I18n.t('devise.registrations.new.title'), page_translation_scope: 'devise.registrations.new' },
-      { link: I18n.t('devise.sessions.new.title'), page_translation_scope: 'devise.sessions.new' },
+    "nav" => [
+      { link: Note.model_name.human(count: 2), css: ".qa-page.notes.index" },
+      { link: I18n.t("devise.registrations.new.sign_up"), css: ".qa-page.devise.registrations.new" },
+      { link: I18n.t("app.sign_in"), css: ".qa-page.devise.sessions.new" },
     ],
-    'footer' => [
-      { link: Note.model_name.human(count: 2), page_translation_scope: 'notes.index' },
-      { link: I18n.t('devise.registrations.new.title'), page_translation_scope: 'devise.registrations.new' },
-      { link: I18n.t('devise.sessions.new.title'), page_translation_scope: 'devise.sessions.new' },
+    "footer" => [
+      { link: Note.model_name.human(count: 2), css: ".qa-page.notes.index" },
+      { link: I18n.t("devise.registrations.new.sign_up"), css: ".qa-page.devise.registrations.new" },
+      { link: I18n.t("app.sign_in"), css: ".qa-page.devise.sessions.new" },
     ],
   }
 
   USER_LINKS = {
-    'nav' => [
-      { link: I18n.t('note.new.title'), page_translation_scope: 'notes.new' },
-      { link: Note.model_name.human(count: 2), page_translation_scope: 'notes.index' },
-      { link: I18n.t('devise.sessions.destroy.title'), page_translation_scope: 'devise.sessions.destroy' },
+    "nav" => [
+      { link: I18n.t("note.new"), css: ".qa-page.notes.new" },
+      { link: Note.model_name.human(count: 2), css: ".qa-page.notes.index" },
+      { link: I18n.t("app.sign_out"), css: ".qa-page.devise.sessions.destroy" },
     ],
-    'footer' => [
-      { link: I18n.t('note.new.title'), page_translation_scope: 'notes.new' },
-      { link: Note.model_name.human(count: 2), page_translation_scope: 'notes.index' },
-      { link: I18n.t('devise.sessions.destroy.title'), page_translation_scope: 'devise.sessions.destroy' },
+    "footer" => [
+      { link: I18n.t("note.new"), css: ".qa-page.notes.new" },
+      { link: Note.model_name.human(count: 2), css: ".qa-page.notes.index" },
+      { link: I18n.t("app.sign_out"), css: ".qa-page.devise.sessions.destroy" },
     ],
   }
 
@@ -39,13 +39,13 @@ feature "Home pages" do
       items.each do |item|
         scenario "clicks #{item[:link]} link from #{location.upcase}" do
           within(location) { click_link item[:link] }
-          expect(page).to have_title(t("#{item[:page_translation_scope]}.title"))
+          expect(page).to have_css(item[:css])
           if location == GUEST_LINKS.first && item == location.first
-            within("footer") { click_link t('app.home') }
+            within("footer") { click_link t("app.home") }
           else
-            within("nav") { click_link 'site-name' }
+            within("nav") { click_link "site-name" }
           end
-          expect(page).to have_title(t("marketing.tagline"))
+          expect(page).to have_css(".qa-page.home.index")
         end
       end
     end
@@ -62,15 +62,13 @@ feature "Home pages" do
       items.each do |item|
         scenario "clicks #{item[:link]} link from #{location.upcase}" do
           within(location) { click_link item[:link] }
-          title_scope = item[:page_translation_scope].include?('destroy') ? "marketing.tagline" : "#{item[:page_translation_scope]}.title"
-          expect(page).to have_title(t(title_scope))
+          expect(page).to have_css(item[:css]) unless item[:css].include?("destroy")
           if location == USER_LINKS.first && item == location.first
-            within("footer") { click_link t('app.home') }
+            within("footer") { click_link t("app.home") }
           else
-            within("nav") { click_link 'site-name' }
+            within("nav") { click_link "site-name" }
           end
-          title_scope = item[:page_translation_scope].include?('destroy') ? "marketing.tagline" : "home.index.title"
-          expect(page).to have_title(t(title_scope))
+          expect(page).to have_css(".qa-page.home.index")
         end
       end
     end

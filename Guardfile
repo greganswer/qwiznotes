@@ -29,6 +29,7 @@ guard :cucumber,  cucumber_options do
   watch(%r{^features/.+\.feature$})
   watch(%r{^features/support/.+$}) { 'features' }
   watch(%r{^app/controllers/(.+)_controller\.rb$}) { |m| "features/#{m[1]}" }
-  watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| "features/#{m[1]}" }
-  watch(%r{^app/views/(.+)/(.+)\.html\.haml$}) { |m| "features/#{m[1]}" }
+  watch(%r{^app/views/devise/.+$}) { "features/authentication/" }
+  watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| "features/#{m[1]}.feature" }
+  watch(%r{^app/views/([^devise].+)/(.+)\.html\.haml$}) { |m| "features/#{m[1]}" }
 end

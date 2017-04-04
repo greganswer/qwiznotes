@@ -17,10 +17,8 @@
     = f.full_error :reset_password_token
 
     .card-panel.margin-horizontal
-      %p= t("devise.passwords.edit.description")
-      %br
       .form-inputs
         = f.input :password, label: t(".new_password"), required: true, autofocus: true, hint: (t("app.minimum_characters", count: @minimum_password_length) if @minimum_password_length)
-        = f.input :password_confirmation, label: t(".password_confirmation"), required: true
+        = f.input :password_confirmation, required: true
       = render "form_submit_button", f: f, submit_text: t(".change_my_password")
       = render "devise/shared/links"
