@@ -57,7 +57,7 @@ Rails.application.configure do
 
   ## ACTION MAILER
 
-  config.action_mailer.default_url_options = { host: host_string }
+  config.action_mailer.default_url_options = { host: host_string, locale: I18n.locale || "en" }
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
   config.action_mailer.raise_delivery_errors = true
@@ -93,4 +93,4 @@ end
 
 ## ROUTES
 
-Rails.application.routes.default_url_options = { host: host_string }
+Rails.application.routes.default_url_options = { host: host_string, locale: I18n.locale || "en" }

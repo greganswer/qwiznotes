@@ -33,8 +33,13 @@ module ApplicationHelper
   # Links
   #
 
-  # If the URL is for the current page, set the URL to '#'. This way an 'a' tag is displayed, which maintains page formating
+  def current_url_in_locale(locale)
+    %{/#{locale}/} + url_for[1..-1].split("/")[1..-1].join("/")
+  end
 
+  # If the URL is for the current page, set the URL to '#'. This way an 'a' tag is displayed,
+  # which maintains page formating
+  #
   def link_to_hash_if_current(name = nil, options = nil, html_options = nil, &block)
     options = '#' if !block && options.present? && request.fullpath == options
     name = '#' if block && name.present? && request.fullpath == name

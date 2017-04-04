@@ -89,4 +89,4 @@ end
 
 ## ROUTES
 
-Rails.application.routes.default_url_options = { host: host_string }
+Rails.application.routes.default_url_options = { host: host_string, locale: I18n.locale || "en" }

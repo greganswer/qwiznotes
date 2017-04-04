@@ -11,3 +11,10 @@ Rails.application.configure do
   # Background workers
   config.active_job.queue_adapter = :sidekiq
 end
+
+APP_CONFIG = {
+  languages: {
+    en: 'English',
+    fr: 'Français'
+  }
+}

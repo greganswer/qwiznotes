@@ -44,7 +44,7 @@ Rails.application.configure do
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
-  config.action_mailer.default_url_options = { host: host_string }
+  config.action_mailer.default_url_options = { host: host_string, locale: I18n.locale || "en" }
   config.cache_classes = true
 
   # ACTIVE QUEUE
@@ -59,4 +59,4 @@ end
 
 ## ROUTES
 
-Rails.application.routes.default_url_options = { host: host_string }
+Rails.application.routes.default_url_options = { host: host_string, locale: I18n.locale || "en" }

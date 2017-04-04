@@ -27,10 +27,6 @@ en:
       user:
         one: User
         other: Users
-  legal:
-    you_agree_to_our_terms_and_privacy_html: By signing up, you agree to our %{terms_link} and %{privacy_link}.
-    terms: Terms of services
-    privacy: Privacy policy
   app:
     click_here: click here
     click_link_below_if_button_not_working: 'If for some reason the button does not work, copy and paste the link below:'
@@ -96,6 +92,10 @@ en:
           one: Showing 1 %{entry_name}
           other: Showing <b>%{count}</b> %{entry_name}
           zero: No %{entry_name} found
+  legal:
+    privacy: Privacy policy
+    terms: Terms of services
+    you_agree_to_our_terms_and_privacy_html: By signing up, you agree to our %{terms_link} and %{privacy_link}.
   mailer:
     closing_text_html: If you have any questions, you can simply reply to this email for further assistance. Thank you for choosing %{site_name}.
   marketing:
@@ -140,6 +140,6 @@ en:
   pundit:
     default: Permission denied
   quiz:
-    regenerate: Generate a new quiz
     not_taken: Please answer at least one question before viewing results
     perfect_score: Congratulations! You got all the questions right!
+    regenerate: Generate a new quiz
