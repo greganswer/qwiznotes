@@ -25,7 +25,7 @@
               %p.grey-text.text-darken-1= strip_tags(note.content).truncate(180, separator: ' ')
 
             .card-action
-              = link_to t('buttons.view'), note
+              = link_to t('button.view'), note
               = link_to t('app.review'), review_note_path(note)
               = link_to Quiz.model_name.human, quiz_note_path(note)
 

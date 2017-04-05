@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'autoprefixer-rails'
+gem 'ckeditor'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'enumerize'
@@ -80,7 +81,7 @@ end
 # Annotations
 # Open links in Atom text editor -> Place cursor in the link and pres CTRL-SHIFT-O
 # Open links in Atom editor -> Place cursor in the link and pres CTRL-SHIFT-O
-#------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------
 #
 # autoprefixer-rails -> Parse CSS and add vendor prefixes
 # https://github.com/ai/autoprefixer-rails
@@ -120,6 +121,9 @@ end
 #
 # capybara-webkit -> Capybara driver for headless WebKit to test JavaScript
 # https://github.com/thoughtbot/capybara-webkit
+#
+# ckeditor -> WYSIWYG text editor
+# https://github.com/galetahub/ckeditor
 #
 # coffee-rails -> CoffeeScript adapter for Rails
 # https://github.com/rails/coffee-rails

@@ -27,6 +27,20 @@ module Helper
   def t(*args)
     I18n.t(*args)
   end
+
+  # Fill in a CKEditor textarea with content
+  #
+  # @param locator [String]
+  # @param opts [Hash]
+  # @reference: http://stackoverflow.com/a/10957870/6615480
+  #
+  def fill_in_ckeditor(locator, opts)
+    content = opts.fetch(:with).to_json # convert to a safe javascript string
+    page.execute_script <<-SCRIPT
+      CKEDITOR.instances['#{locator}'].setData(#{content});
+      $('textarea##{locator}').text(#{content});
+    SCRIPT
+  end
 end
 
 World(Helper)

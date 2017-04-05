@@ -1,0 +1,31 @@
+//
+//  T
+//
+
+.text-editor {
+  input, textarea { width: 100% }
+  .title {
+    background: white;
+    border: none;
+    border-bottom: 2px solid #DDD;
+    color: #888;
+    font-size: 2.3em;
+    font-weight: 100;
+    height: 80px;
+    margin: 0 0 -7px 0;
+    padding: 20px;
+    resize: none;
+    // Because the right side sticks out too much on larger screens
+    // @media #{$large-and-up} { width: 99.7% }
+
+    &:hover, &:focus, &:active, &.active { outline: none }
+  }
+}
+
+table.review-table {
+  td {
+    &.number { font-weight: bold }
+    &.term { font-weight: bold }
+    &.definition {  }
+  }
+}

@@ -55,7 +55,10 @@
         = render 'layouts/parallax'
         = render 'layouts/flash_static'
       - else
-        = breadcrumbs display_single_fragment: true
+        - if current_page_needs_more_space?
+          %br
+        - else
+          = breadcrumbs display_single_fragment: true
         = render 'layouts/flash_static'
         = yield
 

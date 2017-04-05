@@ -79,7 +79,7 @@ en:
     title: Title
     updated_at: Updated
     user: Owner
-  buttons:
+  button:
     delete: Delete
     edit: Edit
     view: View

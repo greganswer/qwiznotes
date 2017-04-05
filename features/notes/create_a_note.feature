@@ -17,6 +17,7 @@ Feature: Create a note
     When I do not enter the note title
     Then I should see that the note was created
 
+  @javascript
   Scenario: I do not complete the note form
     When I do not enter the note content
     Then I should see that the note was not created

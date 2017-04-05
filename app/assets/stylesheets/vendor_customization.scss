@@ -1,0 +1,156 @@
+// ========================================================
+// MATERIALIZE
+// ========================================================
+
+//
+// B
+//
+
+.btn-flat { color: $secondary-color }
+.btn-small {
+  padding: 6px 8px;
+  display: initial;
+}
+
+//
+// I
+//
+
+input.browser-default {
+  border-bottom: none;
+
+  &:focus {
+    border-bottom: none;
+    box-shadow   : none;
+  }
+}
+
+//
+// N
+//
+
+nav {
+  li.search {
+    // width: 16em;
+    input {
+      @include placeholder_color(white);
+      // background: rgba(255, 255, 255, 0.7);
+      margin-bottom: 0;
+    }
+    label { color: inherit }
+  }
+}
+
+nav {
+  input:not([type]):focus:not([readonly]),
+  input[type=date]:focus:not([readonly]),
+  input[type=datetime-local]:focus:not([readonly]),
+  input[type=datetime]:focus:not([readonly]),
+  input[type=email]:focus:not([readonly]),
+  input[type=number]:focus:not([readonly]),
+  input[type=password]:focus:not([readonly]),
+  input[type=search]:focus:not([readonly]),
+  input[type=tel]:focus:not([readonly]),
+  input[type=text]:focus:not([readonly]),
+  input[type=time]:focus:not([readonly]),
+  input[type=url]:focus:not([readonly]),
+  textarea.materialize-textarea:focus:not([readonly]) {
+    &.browser-default {
+      border-bottom: none;
+
+      &:focus {
+        border-bottom: none;
+        box-shadow: none;
+        background: white;
+        background: white;
+        color: black;
+        padding: 0 1em;
+      }
+    }
+  }
+}
+
+//
+// P
+//
+
+.page-footer { padding: 0 }
+
+.pagination {
+  cursor: default;
+
+  li.disabled {
+    color: change_color($primary-color, $saturation: 30%, $lightness: 60%);
+  }
+  a { color: darken($primary-color, 10%) }
+}
+
+.parallax-container { text-shadow: 1px 1px 8px black }
+.parallax {
+  img.responsive-img {
+    @media #{$medium-and-down} { max-width: 150% }
+    @media #{$small-and-down} { max-width: 200% }
+  }
+}
+
+//
+// R
+//
+
+.row {
+  .col {
+    @media #{$xlarge-and-up} {
+      $i: 1;
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + "%");
+
+        &.xl#{$i} {
+          width: $perc;
+          margin-left: auto;
+          left: auto;
+          right: auto;
+        }
+        $i: $i + 1;
+      }
+
+      $i: 1;
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + "%");
+
+        &.offset-xl#{$i} { margin-xleft: $perc }
+        &.pull-xl#{$i} { right: $perc }
+        &.push-xl#{$i} { left: $perc }
+        $i: $i + 1;
+      }
+    }
+  }
+}
+
+//
+// S
+//
+
+li.search {
+  .material-icons { display: inline-block }
+
+  input {
+    width: initial;
+    position: relative;
+    top: -8px;
+  }
+}
+
+.side-nav {
+  li.search {
+    padding: 32px 16px 0;
+    input { width: 205px }
+  }
+}
+
+//
+// T
+//
+
+table {
+  td { vertical-align: top }
+}

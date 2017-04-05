@@ -2,10 +2,12 @@ class Note < ApplicationRecord
   MINIMUM_NUMBER_OF_CONCEPTS = Quiz::OPTIONS_COUNT + 1
 
   belongs_to :user, counter_cache: true
-
-  validates :title, :content, presence: true
-
+  validates :content, presence: true
   before_validation :prepare_input
+
+  #
+  # Instance methods
+  #
 
   def to_s
     title

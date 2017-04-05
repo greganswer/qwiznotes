@@ -62,7 +62,7 @@ crumb :new_note do
 end
 
 crumb :edit_note do |note|
-  link t("buttons.edit"), edit_note_path(note)
+  link t("button.edit"), edit_note_path(note)
   parent note
 end
 

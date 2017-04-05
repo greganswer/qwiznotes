@@ -2,11 +2,10 @@
   = simple_form_for note do |f|
     = render "form_errors", record: note
 
-    .card-panel.m-no-margin
-      .input-field
-        = f.input :title, placeholder: t("note.untitled_note"), input_html: {style: "font-size: 2em"}
-        = f.input :content, input_html: {class: "materialize-textarea"}
+    .text-editor
+      = f.input :title, placeholder: t("note.untitled_note"), label: false, wrapper: false, as: :text,  input_html: { class: "browser-default title autosize" }
+      = f.input :content, as: :ckeditor, label: false, required: false, wrapper: false, input_html: { class: "browser-default" }
 
-      .fixed-action-btn
-        %button#qa-note-save.btn-floating.btn-large.waves-effect.waves-light.green.tooltipped{"data-position": "left", "data-delay": "50", "data-tooltip": t("helpers.submit.submit", model: Note.model_name.human)}
-          = material_icon.save
+    .fixed-action-btn
+      %button#qa-note-save.btn-floating.btn-large.waves-effect.waves-light.green.tooltipped{"data-position": "left", "data-delay": "50", "data-tooltip": t("helpers.submit.submit", model: Note.model_name.human)}
+        = fa_icon "floppy-o"

@@ -66,6 +66,10 @@ module ApplicationHelper
   # Page
   #
 
+  def current_page_needs_more_space?
+    url_for[/notes(?=.*(new|edit)).*/]
+  end
+
   def page_title(text)
     content_for :title, text
   end
