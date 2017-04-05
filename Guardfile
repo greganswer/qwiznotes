@@ -6,11 +6,9 @@ notification :terminal_notifier, activate: 'com.googlecode.iTerm2' if `uname` =~
 ## RSPEC
 
 guard :rspec, cmd: "spring rspec -fd --color" do
-  ## Application  classes
-  watch("app/actions/application_action.rb") { |_m| "spec/actions" }
+  ## Application classes
   watch("app/controllers/application_controller.rb") { "spec/controllers" }
   watch("app/models/application_record.rb") { |_m| "spec/models" }
-  watch("app/policies/application_policy.rb") { |_m| "spec/policies" }
 
   ## Catch-all
   watch(%r{^spec/.+_spec\.rb$})
@@ -26,10 +24,9 @@ cucumber_options = {
   cmd_additional_args: '--format html --out cucumber_features.html'
 }
 guard :cucumber,  cucumber_options do
-  watch(%r{^features/.+\.feature$})
-  watch(%r{^features/support/.+$}) { 'features' }
-  watch(%r{^app/controllers/(.+)_controller\.rb$}) { |m| "features/#{m[1]}" }
+  watch(%r{^features/(.+)\.feature$}) { |m| "features/#{m[1]}.feature" }
+  # watch(%r{^features/support/.+$}) { 'features' }
+  # watch(%r{^app/controllers/(.+)_controller\.rb$}) { |m| "features/#{m[1]}" }
   watch(%r{^app/views/devise/.+$}) { "features/authentication/" }
   watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| "features/#{m[1]}.feature" }
-  watch(%r{^app/views/([^devise].+)/(.+)\.html\.haml$}) { |m| "features/#{m[1]}" }
 end

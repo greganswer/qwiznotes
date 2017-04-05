@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Note do
-  ## VALIDATIONS
-
   it { should validate_presence_of(:content) }
 
-  ## METHODS
+  #
+  # Methods
+  #
 
   it "fills the empty title" do
     note = build(:note, title: '')
@@ -18,9 +18,11 @@ RSpec.describe Note do
     expect(note.to_s).to eq(note.title)
   end
 
-  ## CONCEPTS METHODS
+  #
+  # Concepts methods
+  #
 
-  describe "CONCEPTS METHODS" do
+  describe "concepts methods" do
     it "#concepts" do
       note = build(:note, content: "apple - a fruit")
       expect(note.concepts).to eq([{term: "Apple", definition: "A fruit."}])
@@ -30,23 +32,28 @@ RSpec.describe Note do
       note = build(:note, content: 'apple - a fruit')
       expect(Note::MINIMUM_NUMBER_OF_CONCEPTS).to eq(6)
       expect(note.has_minimum_number_of_concepts?).to be false
-      note = build(:note)
+      note = build(:note_with_concepts)
       expect(note.has_minimum_number_of_concepts?).to be true
     end
   end
 
-  ## QUIZ METHODS
+  #
+  # Quiz methods
+  #
 
-  describe "QUIZ METHODS" do
-    let(:note) { build :note }
+  describe "quiz methods" do
+    let(:note) { build :note_with_concepts }
 
     it "#quiz has questions" do
-      expect(note.quiz.questions.first).to be_truthy
+      expect(Note.new.quiz).to be_a(Quiz)
+      expect(note.quiz.questions.first).to be_a(Quiz::Question)
     end
 
     it "#quiz_results has questions" do
-      quiz_results = note.quiz_results(note.quiz.to_json)
-      expect(quiz_results.questions.first).to be_truthy
+      expect(Note.new.quiz_results).to be_a(Quiz)
+      note.quiz_results(note.quiz.to_json)
+      expect(note.quiz_results).to be_a(Quiz)
+      expect(note.quiz_results.questions.first).to be_a(Quiz::Question)
     end
   end
 end

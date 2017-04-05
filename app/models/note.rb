@@ -1,8 +1,10 @@
 class Note < ApplicationRecord
+
   MINIMUM_NUMBER_OF_CONCEPTS = Quiz::OPTIONS_COUNT + 1
 
   belongs_to :user, counter_cache: true
   validates :content, presence: true
+  after_initialize :set_defaults, unless: :persisted?
   before_validation :prepare_input
 
   #
@@ -14,20 +16,22 @@ class Note < ApplicationRecord
   end
 
   def concepts(settings_attributes = nil)
-    condition = settings_attributes || !@concepts
-    @concepts = condition ? CreateConceptsFromContent.new(content, settings_attributes).call : @concepts
+    @concepts ||= []
+    return @concepts if @concepts.present? || settings_attributes
+    @concepts = CreateConceptsFromContent.new(content, settings_attributes).call
   end
 
   def has_minimum_number_of_concepts?
-    concepts.present? && concepts.size >= MINIMUM_NUMBER_OF_CONCEPTS
+    concepts.count >= MINIMUM_NUMBER_OF_CONCEPTS
   end
 
   def quiz
-    @quiz ||= Quiz.build_from_concepts(concepts)
+    @quiz ||= Quiz.build_from_concepts(self.concepts)
   end
 
   def quiz_results(quiz_hash = nil, user_answers = {})
-    @quiz_results = quiz_hash ? Quiz.build_from_quiz_hash(quiz_hash, user_answers) : @quiz_results
+    return @quiz_results ||= Quiz.new unless quiz_hash
+    @quiz_results = Quiz.build_from_quiz_hash(quiz_hash, user_answers)
   end
 
   #
@@ -36,10 +40,14 @@ class Note < ApplicationRecord
 
   private
 
+  def set_defaults
+    self.content = '' if self.content.blank?
+  end
+
   def prepare_input
-    self.title = html_clean(title.to_s)
-    self.title = I18n.t('note.untitled_note') if title.blank?
-    self.content = html_clean(content.to_s)
+    self.title = html_clean(self.title.to_s)
+    self.title = I18n.t('note.untitled_note') if self.title.blank?
+    self.content = html_clean(self.content.to_s)
     self.concepts_count = concepts.count
   end
 end

@@ -10,23 +10,12 @@ module ApplicationHelper
   )
 
   #
-  # Controller
-  #
-
-  def controller_collection_instance
-    instance_variable_get("@#{controller_name}")
-  end
-
-  def controller_member_instance
-    instance_variable_get("@#{controller_name}".singularize)
-  end
-
-  #
   # HTML
   #
 
   def html_clean(html)
-    raw(ActionController::Base.helpers.sanitize(html, tags: SAFE_HTML_TAGS, attributes: %w(id class style href)).strip)
+    options = { tags: SAFE_HTML_TAGS, attributes: %w(id class style href) }
+    raw(ActionController::Base.helpers.sanitize(html, options)).strip
   end
 
   #
@@ -37,8 +26,9 @@ module ApplicationHelper
     %{/#{locale}/} + url_for[1..-1].split("/")[1..-1].join("/")
   end
 
-  # If the URL is for the current page, set the URL to '#'. This way an 'a' tag is displayed,
-  # which maintains page formating
+  # If the URL is for the current page, set the URL to '#'. This way an 'a' tag is
+  # displayed, which maintains page formating.
+  # @see http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-link_to
   #
   def link_to_hash_if_current(name = nil, options = nil, html_options = nil, &block)
     options = '#' if !block && options.present? && request.fullpath == options
@@ -66,6 +56,10 @@ module ApplicationHelper
   # Page
   #
 
+  # Check if the current page is one of the following pages that needs extra space:
+  #   /notes/new
+  #   /notes/:id/edit
+  #
   def current_page_needs_more_space?
     url_for[/notes(?=.*(new|edit)).*/]
   end

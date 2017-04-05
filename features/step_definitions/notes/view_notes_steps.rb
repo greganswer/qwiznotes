@@ -1,7 +1,7 @@
  include ActionView::Helpers::SanitizeHelper
 
 Given(/^a note titled "([^"]*)" was already created$/) do |title|
-  @note = create(:note, title: title)
+  @note = create(:note_with_concepts, title: title)
 end
 
 Given(/^(\d+) notes were already created$/) do |count|

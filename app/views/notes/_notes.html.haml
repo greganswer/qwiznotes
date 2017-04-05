@@ -1,7 +1,7 @@
 .container.l-full-width
   = render "pagination", records: notes
 
-  .row.margin-2percent.s-no-margin
+  .row.margin-2percent.s-no-margin{ class: notes.present? ? "qa-notes" : "" }
     .col.s12.m6.l4.xl4
       %a{href: new_note_path}
         .card.small.valign-wrapper.padding32.grey.lighten-4.green-text
@@ -13,7 +13,7 @@
     - if notes.present?
       - notes.each do |note|
         .col.s12.m6.l4.xl4
-          .card.small[note]
+          .card.small.qa-note[note]
             .card-content
               %span.card-title= link_to note, note, class: 'grey-text text-darken-3'
               %p.grey-text.text-darken-2
@@ -25,8 +25,6 @@
               %p.grey-text.text-darken-1= strip_tags(note.content).truncate(180, separator: ' ')
 
             .card-action
-              = link_to t('button.view'), note
-              = link_to t('app.review'), review_note_path(note)
-              = link_to Quiz.model_name.human, quiz_note_path(note)
+              = render "notes/buttons", note: note, klass: " "
 
   = render "pagination", records: notes

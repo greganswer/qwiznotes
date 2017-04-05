@@ -1,9 +1,8 @@
 class User < ApplicationRecord
-  has_many :notes, dependent: :destroy
 
+  has_many :notes, dependent: :destroy
   validates :email, :name, uniqueness: { case_sensitive: false }, presence: true
   validates :name, format: { with: /\A[-\w]+\z/ }
-
   before_validation :create_unique_name_from_email, on: :create
 
   # TODO: add :omniauthable
@@ -17,6 +16,10 @@ class User < ApplicationRecord
     :trackable,
     :validatable
 
+  #
+  # Instance methods
+  #
+
   def to_s
     name
   end
@@ -25,6 +28,9 @@ class User < ApplicationRecord
     id == model.try(:user_id)
   end
 
+  #
+  # Private
+  #
 
   private
 
@@ -36,15 +42,14 @@ class User < ApplicationRecord
   #   @other_user.name # => "john-76-2"
 
   def create_unique_name_from_email
-    return if name.present?
-    name = email.to_s.split("@").first&.gsub('.', '-')
+    return unless name.blank?
+    self.name = email.to_s.split("@").first&.gsub('.', '-')
     last_user = User.where("name LIKE ?", "#{name}%").order(:name).last
     if last_user
       number = 2
       last_part = last_user.name.split('-').last
       number = last_part.to_i + 1 if last_part && last_part.to_i.to_s == last_part
-      name = "#{name}-#{number}"
+      self.name = "#{name}-#{number}"
     end
-    self.name = name
   end
 end

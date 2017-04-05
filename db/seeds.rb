@@ -2,8 +2,9 @@ require_relative "seed_helper.rb"
 
 ActionMailer::Base.perform_deliveries = false
 
-first_user = FactoryGirl.create(:random_user, email: 'greganswer@gmail.com')
-users = FactoryGirl.create_list(:random_user, 4) + [first_user]
+users = []
+users < FactoryGirl.create(:random_user, email: 'greganswer@gmail.com') if !Rails.env.staging?
+users << FactoryGirl.create_list(:random_user, 4)
 
 users.each do |user|
   5.times do

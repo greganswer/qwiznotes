@@ -6,10 +6,41 @@
 // B
 //
 
+a.brand-logo {
+  span {
+   font-weight: 100;
+   font-style: italic;
+ }
+}
+
+.breadcrumbs {
+  font-size: 2.28rem;
+  color: color('blue-grey', 'lighten-1');
+  margin: 20px;
+  line-height: 110%;
+}
+
 .btn-flat { color: $secondary-color }
 .btn-small {
   padding: 6px 8px;
   display: initial;
+}
+
+//
+// F
+//
+
+footer {
+  $color: desaturate($primary-color, 50%);
+  background: $color !important;
+  margin-top: 10em;
+  a { color: color('grey', 'lighten-3') }
+  ul li {
+    display: inline;
+    margin: 0 8px;
+    white-space: nowrap;
+  }
+  .footer-copyright { background: darken($color, 5%) !important }
 }
 
 //
@@ -79,10 +110,13 @@ nav {
 .pagination {
   cursor: default;
 
-  li.disabled {
-    color: change_color($primary-color, $saturation: 30%, $lightness: 60%);
+  li {
+    a { color: darken($primary-color, 10%) }
+
+    &.disabled {
+      color: change_color($primary-color, $saturation: 20%, $lightness: 60%);
+    }
   }
-  a { color: darken($primary-color, 10%) }
 }
 
 .parallax-container { text-shadow: 1px 1px 8px black }

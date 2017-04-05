@@ -11,7 +11,7 @@ require "email_spec/rspec"
 # require "pundit/rspec"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-types = %w(actions api decorators features helpers models policies services workers)
+types = %w(api features helpers jobs models policies services)
 types.each do |type|
   path = "spec/#{type}/shared_examples/**/*.rb"
   Dir[Rails.root.join(path)].each { |file| require file }
@@ -24,6 +24,7 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.include AbstractController::Translation
   config.include ActiveJob::TestHelper
+  config.include ControllerHelpers, type: :controller
   config.include Devise::TestHelpers, type: :controller
   config.include EmailSpec::Helpers
   config.include EmailSpec::Matchers

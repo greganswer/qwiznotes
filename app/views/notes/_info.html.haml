@@ -29,10 +29,7 @@
 
     %br
     %br
-    - klass = "btn-flat waves-effect"
-    = link_to_hash_if_current t("button.view"), note, class: klass
-    = link_to_hash_if_current t("app.review"), review_note_path(note), class: klass
-    = link_to_hash_if_current Quiz.model_name.human, quiz_note_path(note), class: klass
+    = render "notes/buttons", note: note, klass: "btn-flat waves-effect"
 
 .clear-both
 - unless current_page?(review_note_path(note))

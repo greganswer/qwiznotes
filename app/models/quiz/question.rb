@@ -77,10 +77,15 @@ class Quiz
     #
     def build_options_from_array_of_strings(selection)
       selection.each_with_index do |option, index|
-        none_is_correct_answer =  (option == I18n.t("app.none_of_the_above")) && !@options.map(&:text).include?(correct_answer)
+        option_is_none = option == I18n.t("app.none_of_the_above")
+        none_is_correct_answer =  option_is_none && !options_includes_correct_answer?
         is_correct_answer = (option == correct_answer) || none_is_correct_answer
         build_option(text: option, letter: (index + 65).chr, is_correct_answer: is_correct_answer)
       end
+    end
+
+    def options_includes_correct_answer?
+      options.map(&:text).include?(correct_answer)
     end
   end
 end

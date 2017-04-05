@@ -8,7 +8,9 @@ describe CreateConceptsFromContent do
     [{ term: "Crest", definition: "Hill top; peak & summit." }]
   end
 
-  ## HTML FORMATTING
+  #
+  # Html formatting
+  #
 
   describe "HTML formatting" do
     context "bolded text" do
@@ -26,37 +28,47 @@ describe CreateConceptsFromContent do
 
     context "definition list" do
       it "converts" do
-        expect(described_class.new("<dt>crest </dt><dd>hill top; peak & summit<dd>").call).to eq(expected)
+        content = "<dt>crest </dt><dd>hill top; peak & summit<dd>"
+        expect(described_class.new(content).call).to eq(expected)
       end
     end
   end
 
-  ## SYMBOLS
+  #
+  # Symbols
+  #
 
   describe "symbols" do
     symbols = ["&ndash;", "&mdash;", ":", "=", "~"]
     symbols.each do |symbol|
       it "converts #{symbol} symbol touching left word" do
-        expect(described_class.new("crest#{symbol} hill top; peak & summit").call).to eq(expected)
+        content = "crest#{symbol} hill top; peak & summit"
+        expect(described_class.new(content).call).to eq(expected)
       end
     end
 
     symbols += ["->", "-&gt;", "-"]
     symbols.each do |symbol|
       it "converts #{symbol} symbol in the middle" do
-        expect(described_class.new("crest #{symbol} hill top; peak & summit").call).to eq(expected)
+        content = "crest #{symbol} hill top; peak & summit"
+        expect(described_class.new(content).call).to eq(expected)
       end
 
       it "converts #{symbol} symbol touching right word" do
-        expect(described_class.new("crest #{symbol}hill top; peak & summit").call).to eq(expected)
+        content = "crest #{symbol}hill top; peak & summit"
+        expect(described_class.new(content).call).to eq(expected)
       end
     end
   end
 
-  ## SPECIFY SEPARATORS
+  #
+  # Specify separators
+  #
 
   describe "user can specify separators" do
-    before(:each) { @content = "<dl><dt>crest</dt> <dd>hill top; peak & summit</dd></dl>" }
+    before(:each) do
+      @content = "<dl><dt>crest</dt> <dd>hill top; peak & summit</dd></dl>"
+    end
 
     samples = {
       bold: "<b>antonym </b> word of opposite meaning",
@@ -77,7 +89,9 @@ describe CreateConceptsFromContent do
     end
   end
 
-  ## ADDITIONAL CASES
+  #
+  # Additional cases
+  #
 
   describe "additional cases" do
     it "converts when wrapped in a paragraph tag" do
@@ -91,7 +105,9 @@ describe CreateConceptsFromContent do
     end
   end
 
-  ## ADDITIONAL SETTINGS
+  #
+  # Additional settings
+  #
 
   describe "additional settings" do
     before(:each) { @content = "<b>crest </b> hill top; peak & summit" }

@@ -1,6 +1,14 @@
-%br
-.center
-  - klass = 'btn waves-effect'
-  = link_to_hash_if_current t('button.view'), note, class: klass
-  = link_to_hash_if_current t('app.review'), review_note_path(note), class: klass
-  = link_to_hash_if_current Quiz.model_name.human, quiz_note_path(note), class: klass
+- klass ||= "btn waves-effect margin4 width9em"
+
+%span.note-buttons
+  - if policy(note).edit?
+    = link_to_hash_if_current t('button.edit'), edit_note_path(note), class: klass
+
+  - if policy(note).show?
+    = link_to_hash_if_current t('button.view'), note, class: klass
+
+  - if policy(note).review?
+    = link_to_hash_if_current t('app.review'), review_note_path(note), class: klass
+
+  - if policy(note).quiz?
+    = link_to_hash_if_current Quiz.model_name.human, quiz_note_path(note), class: klass

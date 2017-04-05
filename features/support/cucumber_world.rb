@@ -36,10 +36,12 @@ module Helper
   #
   def fill_in_ckeditor(locator, opts)
     content = opts.fetch(:with).to_json # convert to a safe javascript string
-    page.execute_script <<-SCRIPT
-      CKEDITOR.instances['#{locator}'].setData(#{content});
-      $('textarea##{locator}').text(#{content});
-    SCRIPT
+    using_wait_time 6 do
+      page.execute_script <<-SCRIPT
+        CKEDITOR.instances['#{locator}'].setData(#{content});
+        $('textarea##{locator}').text(#{content});
+      SCRIPT
+    end
   end
 end
 

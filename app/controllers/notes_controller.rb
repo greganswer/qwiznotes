@@ -1,19 +1,26 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: %i(show edit update destroy review quiz quiz_results)
+  before_action :set_note, {
+    only: %i(show edit update destroy review quiz quiz_results)
+  }
+  skip_before_action :authenticate_user!, {
+    only: %i(index show quiz quiz_results review)
+  }
 
   #
   # Get methods
   #
 
   def index
-    @notes = Note.recently_updated.page(params[:page]).per(params[:per_page])
-  end
-
-  def show
+    @notes = Note.includes(:user).recently_updated
+      .page(params[:page]).per(params[:per_page])
   end
 
   def new
     @note = Note.new
+    authorize @note
+  end
+
+  def show
   end
 
   def edit
@@ -25,19 +32,13 @@ class NotesController < ApplicationController
   def quiz
   end
 
-  def quiz_results
-    unless request.post? && params[:user_answers].present?
-      return redirect_to [:quiz, @note], alert: t("quiz.not_taken")
-    end
-    @note.quiz_results(params[:quiz], params[:user_answers])
-  end
-
   #
   # Post methods
   #
 
   def create
     @note = current_user.notes.build(note_params)
+    authorize @note
     respond_to do |format|
       if @note.save
         format.html { redirect_to @note, notice: t('note.created') }
@@ -47,6 +48,13 @@ class NotesController < ApplicationController
         format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def quiz_results
+    unless request.post? && params[:user_answers].present?
+      return redirect_to [:quiz, @note], alert: t("quiz.not_taken")
+    end
+    @note.quiz_results(params[:quiz], params[:user_answers])
   end
 
   #
@@ -77,10 +85,15 @@ class NotesController < ApplicationController
     end
   end
 
+  #
+  # Private
+  #
+
   private
 
   def set_note
     @note = Note.find_by_hashid(params[:id])
+      authorize @note
   end
 
   def note_params

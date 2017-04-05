@@ -5,16 +5,27 @@ CKEDITOR.editorConfig = function( config )
   config.resize_enabled = false;
   config.height = '50vh';
   config.removePlugins = 'elementspath';
+  config.language = 'en';
 
-  // NOTE: if you change this file, update `config/initializers/assets.rb` as well
-  config.contentsCss = '/assets/ckeditor.css';
+
+  // NOTE: Update editor styling in `assets/javascripts/ckeditor/contents.css
 
   // Toolbar groups configuration.
   config.toolbar = [
     {
       name: 'clipboard',
       groups: [ 'clipboard', 'undo',  'basicstyles', 'editing' ],
-      items: ['Save', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo', '-',  'Bold', 'Italic', 'Underline', '-', 'Find','Replace','-','SelectAll','-','Scayt' ]
+      items: [
+        'Save', '-',
+        'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-',
+        'Undo', 'Redo', '-',
+        'Bold', 'Italic', 'Underline', '-',
+        'NumberedList', 'BulletedList', '-',
+        'Outdent', 'Indent', '-',
+        'Find','Replace','-',
+        'SelectAll','-',
+        'Scayt'
+        ]
     },
   ];
 };

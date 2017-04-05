@@ -27,7 +27,7 @@ class Quiz
       question_is_a_term = rand(2).zero?
       text = question_is_a_term ? concept[:term] : concept[:definition]
       correct_answer = question_is_a_term ? concept[:definition] : concept[:term]
-      option_texts = random_option_texts_except_correct_answer(concepts, question_is_a_term, correct_answer)
+      option_texts = option_texts(concepts, question_is_a_term, correct_answer)
       options = create_options_from_option_texts(option_texts, correct_answer)
       quiz.add_question({ number: index + 1, text: text, correct_answer: correct_answer, options: options })
     end
@@ -92,7 +92,16 @@ class Quiz
 
   private
 
-  def self.random_option_texts_except_correct_answer(concepts, question_is_a_term, correct_answer)
+  # Get random options as text and exclude the correct answer
+  #
+  # @param concepts [Array] The list of `term` and `definition` pairs
+  # @param question_is_a_term [Boolean] Is the question a `term` or a `definition`?
+  #   This means that the options will have to be the oposite
+  # @param correct_answer [String]
+  # @return [Array<String>] List of options as text
+  # @!visibility private
+  #
+  def self.option_texts(concepts, question_is_a_term, correct_answer)
     answer_type = question_is_a_term ? :definition : :term
     concepts.map { |item| item[answer_type] }.reject { |item| item  == correct_answer }.sample(OPTIONS_COUNT)
   end
@@ -101,7 +110,7 @@ class Quiz
   #
   # @param option_texts [Array<String>] Strings that will become the text for the `Option` objects.
   # @param correct_answer [String] The correct answer (and therefore the correct option to select).
-  # @return option_texts [Array<String>]
+  # @return option_texts [Array<String>] List of options as text
   # @!visibility private
   #
   def self.create_options_from_option_texts(option_texts, correct_answer)

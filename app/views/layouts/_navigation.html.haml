@@ -26,8 +26,9 @@
         -# Note links
         -#
 
-        - if user_signed_in?
+        - if policy(Note).new?
           %li= link_to_hash_if_current t("note.new"), new_note_path
+
         %li= link_to_hash_if_current Note.model_name.human(count: 2), notes_path
 
         -#
@@ -89,7 +90,7 @@
   -# Note links
   -#
 
-  - if user_signed_in?
+  - if policy(Note).new?
     %li= link_to_hash_if_current t("note.new"), new_note_path
   %li= link_to_hash_if_current Note.model_name.human(count: 2), notes_path
 

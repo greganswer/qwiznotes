@@ -16,7 +16,7 @@
       - needed_count = Note::MINIMUM_NUMBER_OF_CONCEPTS - @note.concepts_count
       %h5.center
         = t("note.not_enough_terms_html", terms_count: @note.concepts_count, needed_count: needed_count)
-        - if current_user.owns?(@note)
+        - if policy(@note).edit?
           %br
           %br
           = t("note.fix_this_note")

@@ -3,7 +3,7 @@ When(/^I click the "Quiz" button$/) do
 end
 
 When(/^I click on the "Review" button$/) do
-  click_on(I18n.t("app.review"), match: :first)
+  click_on t("app.review"), match: :first
 end
 
 When(/^I select some answers and submit the quiz$/) do

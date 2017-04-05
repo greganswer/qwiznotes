@@ -1,0 +1,14 @@
+%h1 Page Not Found - #{url_for}
+%br
+.center-block.max-width-700.well.well-sm
+  %h3
+    We're sorry for the inconvenience but the link you followed may be broken, or the page may have been removed.
+  %br
+  %p.bold
+    Please try one of the following options:
+  %ul
+    %li Click your browser's back button to return to the previous page.
+    %li Go to the #{link_to 'home page', root_path}.
+    %li Contact the site administrator and inform them of the issue
+  %br
+

@@ -1,141 +1,142 @@
 require 'rails_helper'
 
 RSpec.describe NotesController do
+  let(:current_user) { create(:user) }
+  let(:valid_attributes) { attributes_for(:note) }
+  let(:params_with_note) { { locale: :en , note: valid_attributes } }
 
-  # This should return the minimal set of attributes required to create a valid
-  # Note. As you add validations to Note, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  #
+  # index action
+  #
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # NotesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
-  describe "GET #index" do
-    it "assigns all notes as @notes" do
-      note = Note.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      # expect(assigns(:notes)).to eq([note])
+  describe "index action visited by" do
+    after(:each) do
+      get :index, params: { locale: :en }
+      expect(response).to have_http_status(:success)
     end
-  end
 
-  describe "GET #show" do
-    it "assigns the requested note as @note" do
-      note = Note.create! valid_attributes
-      get :show, params: {id: note.to_param}, session: valid_session
-      # expect(assigns(:note)).to eq(note)
-    end
-  end
-
-  describe "GET #new" do
-    it "assigns a new note as @note" do
-      # get :new, params: {}, session: valid_session
-      # expect(assigns(:note)).to be_a_new(Note)
-    end
-  end
-
-  describe "GET #edit" do
-    it "assigns the requested note as @note" do
-      note = Note.create! valid_attributes
-      get :edit, params: {id: note.to_param}, session: valid_session
-      # expect(assigns(:note)).to eq(note)
-    end
-  end
-
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Note" do
-        expect {
-          post :create, params: {note: valid_attributes}, session: valid_session
-        }.to change(Note, :count).by(1)
-      end
-
-      it "assigns a newly created note as @note" do
-        post :create, params: {note: valid_attributes}, session: valid_session
-        # expect(assigns(:note)).to be_a(Note)
-        # expect(assigns(:note)).to be_persisted
-      end
-
-      it "redirects to the created note" do
-        post :create, params: {note: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Note.last)
+    context "a guest" do
+      it "succeeds" do
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved note as @note" do
-        post :create, params: {note: invalid_attributes}, session: valid_session
-        # expect(assigns(:note)).to be_a_new(Note)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, params: {note: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
+    context "a user" do
+      it "succeeds" do
+        sign_in current_user
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  #
+  # show actions
+  #
 
-      it "updates the requested note" do
-        note = Note.create! valid_attributes
-        put :update, params: {id: note.to_param, note: new_attributes}, session: valid_session
-        note.reload
-        skip("Add assertions for updated state")
+  %i(show review quiz).each do |type|
+    describe "#{type} route visited by" do
+      let!(:note) { create(:note) }
+
+      after(:each) do
+        get type, params: { locale: :en, id: note.to_param }
+        expect(response).to have_http_status(:success)
       end
 
-      it "assigns the requested note as @note" do
-        note = Note.create! valid_attributes
-        put :update, params: {id: note.to_param, note: valid_attributes}, session: valid_session
-        # expect(assigns(:note)).to eq(note)
+      context "a guest" do
+        it "succeeds" do
+        end
       end
 
-      it "redirects to the note" do
-        note = Note.create! valid_attributes
-        put :update, params: {id: note.to_param, note: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(note)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the note as @note" do
-        note = Note.create! valid_attributes
-        put :update, params: {id: note.to_param, note: invalid_attributes}, session: valid_session
-        # expect(assigns(:note)).to eq(note)
-      end
-
-      it "re-renders the 'edit' template" do
-        note = Note.create! valid_attributes
-        put :update, params: {id: note.to_param, note: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
+      context "a user" do
+        it "succeeds" do
+          sign_in current_user
+        end
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested note" do
-      note = Note.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: note.to_param}, session: valid_session
-      }.to change(Note, :count).by(-1)
+  #
+  # new/create actions
+  #
+
+  describe "new/create action visited by" do
+    context "a guest" do
+      after(:each) { expect_to_redirect_to_login_path }
+
+      it "new fails" do
+        get :new, params: { locale: :en }
+      end
+
+      it "create fails" do
+        expect { post :create, params_with_note }.to_not change(Note, :count)
+      end
     end
 
-    it "redirects to the notes list" do
-      note = Note.create! valid_attributes
-      delete :destroy, params: {id: note.to_param}, session: valid_session
-      expect(response).to redirect_to(notes_url)
+    context "a user" do
+      before(:each) { sign_in current_user }
+
+      it "new succeeds" do
+        get :new, params: { locale: :en }
+        expect(response).to have_http_status(:success)
+      end
+
+      it "create succeeds" do
+        expect { post :create, params_with_note }.to change { Note.count }.from(0).to(1)
+        expect(response).to redirect_to(note_path(Note.first, locale: :en ))
+        expect(flash[:notice]).to eq(t("note.created"))
+      end
     end
   end
 
+  #
+  # edit/update actions
+  #
+
+  describe "edit/update action visited by" do
+    context "a guest" do
+      let!(:note) { create(:note) }
+      after(:each) { expect_to_redirect_to_login_path }
+
+      it "edit fails" do
+        get :edit, params: { locale: :en, id: note.to_param }
+      end
+
+      it "update fails" do
+        patch :update, params: { locale: :en, id: note.to_param, note: valid_attributes }
+        expect(Note.first).to eq(note)
+      end
+    end
+
+    context "a user does not own the note" do
+      let!(:note) { create(:note) }
+      before(:each) { sign_in current_user }
+      after(:each) do
+        expect(response).to have_http_status(:redirect)
+        expect(flash[:alert]).to eq(t("pundit.note_policy.edit?"))
+      end
+
+        it "edit fails" do
+          get :edit, params: { locale: :en, id: note.to_param }
+        end
+
+        it "patch fails" do
+          patch :update, params: { locale: :en, id: note.to_param, note: valid_attributes }
+          expect(Note.first).to eq(note)
+        end
+      end
+
+    context "a user owns the note" do
+      let!(:note) { create(:note, user: current_user) }
+      before(:each) { sign_in current_user }
+
+      it "edit succeeds when the user owns the note" do
+        get :edit, params: { locale: :en, id: note.to_param }
+        expect(response).to have_http_status(:success)
+      end
+
+      it "patch succeeds when the user owns the note" do
+        patch :update, params: { locale: :en, id: note.to_param, note: valid_attributes }
+        expect(Note.first.title).not_to eq(note.title)
+        expect(flash[:notice]).to eq(t("note.updated"))
+      end
+    end
+  end
 end

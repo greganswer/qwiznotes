@@ -16,7 +16,7 @@
     - if @note.concepts.blank?
       %h5
         = t("note.no_terms_or_defintions")
-        - if current_user.owns?(@note)
+        - if policy(@note).edit?
           %br
           %br
           = t("note.fix_this_note")
@@ -38,5 +38,5 @@
               %td.number= index + 1
               %td.term= concept[:term]
               %td.definition= concept[:definition]
-
-      = render "notes/buttons", note: @note
+      %br
+      .center= render "notes/buttons", note: @note

@@ -20,6 +20,7 @@
 - [Contributions](#contributions)
     - [Style guides](#style-guide)
     - [Localization](#localization)
+    - [Reset the staging database](#reset-the-staging-database)
 
 ## Getting started
 
@@ -110,3 +111,15 @@ This app is for students from Elementary to post-secondary school level.
 ### Localization
 
 When adding or changing any localization keys in the YAML files, please be mindful of existing keys in other languages.
+
+### Reset the staging database
+
+From time to time you may need to reset the staging server database, to include new seed data, etc. Make sure you're in the `~/staging.APPNAME/current` folder. *NOTE: Change APPNAME.*
+
+```shell
+##### NOTE: Change APPNAME
+rake db:environment:set RAILS_ENV=staging db:drop
+sudo -u postgres createdb -O deploy APPNAME_staging
+rake db:environment:set RAILS_ENV=staging db:migrate db:seed
+```
+

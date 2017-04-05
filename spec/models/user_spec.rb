@@ -3,17 +3,19 @@ require 'rails_helper'
 RSpec.describe User do
   let(:current_user) { create(:user) }
 
-  ## VALIDATIONS
-
-  it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:email) }
-
   it "can be found by hashid" do
     user = create(:user)
     hashid = Hashids.new(Rails.application.secrets.secret_key_base, 8).encode(user.id)
     expect(user.to_param).to eq(hashid)
     expect(User.find_by_hashid(hashid)).to eq(user)
   end
+
+  #
+  # Validations
+  #
+
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:email) }
 
   context "validates uniqueness of" do
     let(:users) { create_list :user, 2 }
@@ -32,9 +34,13 @@ RSpec.describe User do
       record = build(:user, name: name)
       record.save
       invalid_notice = t("activerecord.errors.models.user.attributes.name.invalid")
-      expect(record.errors[:name]).to eq [invalid_notice]
+      expect(record.errors[:name]).to eq([invalid_notice])
     end
   end
+
+  #
+  # Default values
+  #
 
   context "creates a unique name" do
     it "from email if name is not present" do
@@ -52,6 +58,10 @@ RSpec.describe User do
       expect(user.name).to eq('john')
     end
   end
+
+  #
+  # Methods
+  #
 
   it "#to_s" do
     user = User.new(name: "Mike")
