@@ -84,6 +84,7 @@ Rails.application.configure do
     generate.view_specs false
     generate.jbuilder false
     generate.test_framework :rspec, {
+      controller_specs: false,
       request_specs: false,
       routing_specs: false,
       view_specs: false,

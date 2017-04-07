@@ -6,6 +6,8 @@ class ApplicationRecord < ActiveRecord::Base
   # Scopes
   #
 
+  scope :by_created, -> { order "#{table_name}.created_at ASC" }
+  scope :by_updated, -> { order "#{table_name}.updated_at ASC" }
   scope :recently_created, -> { order "#{table_name}.created_at DESC" }
   scope :recently_updated, -> { order "#{table_name}.updated_at DESC" }
 
@@ -17,8 +19,12 @@ class ApplicationRecord < ActiveRecord::Base
     Hashids.new(Rails.application.secrets.secret_key_base, 8)
   end
 
-  def self.find_by_hashid(hashid)
-    find(hashids.decode(hashid)&.first)
+  def self.hashid_decode(hashid)
+    hashids.decode(hashid)&.first
+  end
+
+  def self.find_using_hashid(hashid)
+    find(hashid_decode(hashid))
   end
 
   def to_param

@@ -1,0 +1,6 @@
+- action = action_name[/new|create/] ? :create : :update
+- type ||= controller_name.singularize
+- submit_text ||= t("helpers.submit.#{action}", model: t("activerecord.models.#{type}", count: 1))
+
+%br
+= f.button :submit, submit_text, class: 'width-100percent', id: id ||= "qa-#{type}-save"

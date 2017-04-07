@@ -9,15 +9,16 @@
 -# Content
 -#
 
-.container
-  .card.padding32.max-width600.margin-horizontal
-    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      = f.error_notification
-      .form-inputs
-        = f.input :email, required: false, autofocus: true
-        = f.input :password, required: false
-        - if devise_mapping.rememberable?
-          = f.input :remember_me, as: :boolean, label: t("app.keep_me_signed_in")
+.container.max-width600
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 
-      = render "form_submit_button", f: f, submit_text: t("app.sign_in")
+    .card-panel
+      = f.error_notification
+      = f.input :email, required: false, autofocus: true
+      = f.input :password, required: false
+      - if devise_mapping.rememberable?
+        = f.input :remember_me, as: :boolean, label: t("app.keep_me_signed_in")
+
       = render "devise/shared/links"
+
+    = render "buttons/submit", f: f, submit_text: t("app.sign_in")

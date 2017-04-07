@@ -7,6 +7,10 @@ class NotePolicy < ApplicationPolicy
     true
   end
 
+  def autocomplete?
+    true
+  end
+
   def quiz_results?
     true
   end

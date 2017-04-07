@@ -13,5 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require materialize
-//= require ckeditor/init
+//= require local_time
 //= require_tree .

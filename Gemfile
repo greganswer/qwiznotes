@@ -6,7 +6,6 @@ git_source(:github) do |repo_name|
 end
 
 gem 'autoprefixer-rails'
-gem 'ckeditor'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'enumerize'
@@ -29,8 +28,10 @@ gem 'ransack'
 gem 'redis', '~> 3.0'
 gem 'roadie', '~> 3.1.1'
 gem 'sass-rails', '~> 5.0'
-gem "sidekiq"
+gem 'searchkick'
+gem 'sidekiq'
 gem 'simple_form'
+gem 'tinymce-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'uglifier', '>= 1.3.0'
 
@@ -227,6 +228,9 @@ end
 # sass-rails -> Official Ruby-on-Rails Integration with Sass
 # https://github.com/rails/sass-rails
 #
+# searchkick -> Rails search with Elasticsearch
+# https://github.com/ankane/searchkick
+#
 # shoulda-matchers -> Rspec one-line test matchers
 # https://github.com/thoughtbot/shoulda-matchers
 #
@@ -249,6 +253,9 @@ end
 #
 # terminal-notifier-guard -> Mac OS X User Notifications for Guard
 # https://github.com/Codaisseur/terminal-notifier-guard
+#
+# tinymce-rails -> TinyMCE WYSIWYG editor
+# https://github.com/spohlenz/tinymce-rails
 #
 # tzinfo-data -> Include Timezone zoneinfo files for Windows operating system
 # https://github.com/tzinfo/tzinfo-data

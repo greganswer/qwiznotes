@@ -1,0 +1,10 @@
+%span{ class: "#{record.model_name.singular}-buttons" }
+
+  - if buttons.include?(:show) && policy(record).show?
+    = link_to_hash_if_current t("button.view"), record
+
+  - if buttons.include?(:edit) && policy(record).edit?
+    = link_to_hash_if_current t("button.edit"), [:edit, record]
+
+  - if buttons.include?(:destroy) && policy(record).destroy?
+    = link_to t("button.delete"), record

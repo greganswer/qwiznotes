@@ -1,5 +1,14 @@
 ---
 en:
+  simple_form:
+    error_notification:
+      default_message: 'Please review the problems below:'
+    'no': 'No'
+    required:
+      mark: "*"
+      text: required
+      html: '<abbr class="tooltipped" data-tooltip="required" data-position="right">*</abbr>'
+    'yes': 'Yes'
   account:
     deactivate: Deactivate account
     update: Update account
@@ -81,6 +90,7 @@ en:
     user: Owner
   button:
     delete: Delete
+    reset: Reset
     edit: Edit
     view: View
   helpers:
@@ -99,6 +109,7 @@ en:
   mailer:
     closing_text_html: If you have any questions, you can simply reply to this email for further assistance. Thank you for choosing %{site_name}.
   marketing:
+    header: Stay focused
     add_notes:
       heading: Add your notes
       image_alt: Sample of note editor
@@ -123,7 +134,10 @@ en:
       image_alt: Sample of term defintion pairs
       text_html: In order to magically generate a quiz from your notes, enter your notes as term/definition pairs. You can "separate" the pair by making the term <strong>bold or by adding one of the following separator symbols:</strong> dash, equal, colon, tilde, or arrow.
     title: How does %{site_name} work?
+  autocomplete:
+    no_suggestions: Sorry, no matching results
   note:
+    search: Search notes
     created: Note created
     deleted: Note deleted
     fix_this_note: Please click the "edit" button below to improve this note.

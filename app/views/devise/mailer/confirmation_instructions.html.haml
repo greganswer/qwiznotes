@@ -2,13 +2,6 @@
 
 
 %p= t(".greeting", recipient: @resource)
-%p
-  %b #{User.human_attribute_name(:name)}:
-  = @user.name
-  %br
-  %b #{User.human_attribute_name(:email)}:
-  = @user.email
-
 %p= t(".instruction")
 = link_to t(".action"), action_link, class: "button"
 %br

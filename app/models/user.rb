@@ -1,8 +1,12 @@
 class User < ApplicationRecord
 
   has_many :notes, dependent: :destroy
-  validates :email, :name, uniqueness: { case_sensitive: false }, presence: true
-  validates :name, format: { with: /\A[-\w]+\z/ }
+  validates :name, {
+    format: { with: /\A[-\w]+\z/ },
+    presence: true,
+    uniqueness: { case_sensitive: false },
+  }
+  before_validation :create_image_url_from_email, on: :create
   before_validation :create_unique_name_from_email, on: :create
 
   # TODO: add :omniauthable
@@ -33,6 +37,11 @@ class User < ApplicationRecord
   #
 
   private
+
+  def create_image_url_from_email
+    return unless self.image_url.blank? && self.email.present?
+    self.image_url = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest email}?d=mm"
+  end
 
   # Creates a unique name based on the user's email address
   #

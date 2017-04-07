@@ -11,6 +11,16 @@
       %ul.right.hide-on-med-and-down
 
         -#
+        -# Search
+        -#
+
+        - if user_signed_in?
+          %li.search
+            = form_tag :notes, method: :get do |f|
+              = material_icon.search.css_class("grey-text text-lighten-3")
+              = text_field_tag :q, nil, placeholder: t("note.search"), class: " jsAjaxAutocomplete", value: params[:q], "data-source": autocomplete_notes_path, "data-no-suggestion-notice": t("autocomplete.no_suggestions")
+
+        -#
         -# Languages
         -#
 
@@ -20,7 +30,7 @@
               = material_icon.arrow_drop_down.css_class(:right)
           %ul#dropdown1.dropdown-content
             - APP_CONFIG[:languages].except(I18n.locale).each do |locale, language|
-              %li= link_to language, current_url_in_locale(locale)
+              %li= link_to language, url_for(locale: locale)
 
         -#
         -# Note links
@@ -32,35 +42,35 @@
         %li= link_to_hash_if_current Note.model_name.human(count: 2), notes_path
 
         -#
-        -# Search
-        -#
-
-        - if user_signed_in?
-          -#%li.search
-            %label{for: :search}= mi.search
-            %input.browser-default{id: :search, type: "text", value: params[:search]}
-
-        -#
         -# Account menu
         -#
 
         - if user_signed_in?
           %li
             %a.dropdown-button{"data-activates": "dropdown2", href: "#!", 'data-beloworigin': "true"}
-              = current_user
+              = image_tag current_user.image_url, alt: current_user, class: 'border-radius8'
               = material_icon.arrow_drop_down.css_class(:right)
           %ul#dropdown2.dropdown-content
-            %li= link_to_hash_if_current t("account.update"), edit_user_registration_path
+            %li= link_to_hash_if_current t("app.account"), edit_user_registration_path
             %li= link_to_hash_if_current t("app.sign_out"), destroy_user_session_path, method: :delete
         - else
           %li= link_to_hash_if_current t("app.sign_in"), new_user_session_path
           %li= link_to_hash_if_current t("devise.registrations.new.sign_up"), new_user_registration_path, class: 'btn'
 
--#
+
+
+-################################################
 -# Side nav
--#
+-################################################
 
 %ul#menu-mobile-side.side-nav
+  - if user_signed_in?
+    %li
+      .userView
+        .background.primary-color
+        %img.circle{ src: current_user.image_url }
+        %span.white-text.name= current_user
+        %span.white-text.email= current_user.email
 
   -#
   -# Languages
@@ -75,7 +85,17 @@
         .collapsible-body
           %ul
             - APP_CONFIG[:languages].except(I18n.locale).each do |locale, language|
-              %li= link_to language, current_url_in_locale(locale)
+              %li= link_to language, url_for(locale: locale)
+
+  -#
+  -# Search
+  -#
+
+  - if user_signed_in?
+    %li.search
+      = form_tag :notes, method: :get do |f|
+        = material_icon.search.css_class("grey-text text")
+        = text_field_tag :q, nil, placeholder: t("note.search"), value: params[:q]
 
   -#
   -# Sign in/up
@@ -95,26 +115,10 @@
   %li= link_to_hash_if_current Note.model_name.human(count: 2), notes_path
 
   -#
-  -# Search
-  -#
-
-  - if user_signed_in?
-    -#%li.input-field.search
-      = mi.search.css_class('prefix')
-      %input{type: "text", value: params[:search]}
-
-  -#
   -# Account menu
   -#
 
   - if user_signed_in?
-    %li.no-padding
-    %ul.collapsible.collapsible-accordion
-      %li
-        %a.collapsible-header
-          = current_user
-          = material_icon.arrow_drop_down
-        .collapsible-body
-          %ul
-            %li= link_to_hash_if_current t("account.update"), edit_user_registration_path
-            %li= link_to_hash_if_current t("app.sign_out"), destroy_user_session_path, method: :delete
+    %li.divider
+    %li= link_to_hash_if_current t("account.update"), edit_user_registration_path
+    %li= link_to_hash_if_current t("app.sign_out"), destroy_user_session_path, method: :delete

@@ -9,13 +9,14 @@
 -# Content
 -#
 
-.container.max-width600.s-full-width
+.container.max-width600
   = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
     = render "form_errors", record: resource
 
-    .card-panel.margin-horizontal
-      %p= t('app.email_me_instructions')
+    .card-panel
+      %p= t("app.email_me_instructions")
       %br
-      .form-inputs= f.input :email, required: true, autofocus: true
-      = render "form_submit_button", f: f, submit_text: t("app.send_me_instructions")
+      = f.input :email, required: true, autofocus: true
       = render "devise/shared/links"
+
+    = render "buttons/submit", f: f, submit_text: t("app.send_me_instructions")

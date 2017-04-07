@@ -1,0 +1,31 @@
+- if policy(Comment).index?
+  .card
+    .card-content
+      .card-title= t("comment.count", count: item.comments.count)
+
+      - #
+      - # Comments
+      - #
+
+      - comments = item.comments.includes(:user).by_created.page(params[:page])
+      - comments.each do |comment|
+        - user = comment.user
+        %ul.collection.no-border
+          %li.collection-item.avatar.no-border[comment]
+            = render "users/image_link", user: user
+            %span.title= link_to user, user
+            .grey-text= local_time(comment.created_at, :medium_with_time)
+            = comment.content
+
+      - #
+      - # Form
+      - #
+
+      - if policy(Comment).new?
+        - @comment ||= Comment.new
+        = simple_form_for([item, @comment]) do |f|
+          = render "form_errors", record: @comment
+          = f.input :content, required: true, label: false, placeholder: t("comment.placeholder"), wrapper_html: { class: "no-margin" }, input_html: { class: "materialize-textarea" }
+          = f.button :submit, t("comment.submit"), id: "qa-comment-save", class: "btn"
+
+  = render "pagination", records: comments

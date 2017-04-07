@@ -11,7 +11,7 @@
 -#
 
 .container.m-full-width
-  .card-panel.m-no-margin
+  .card-panel.m-no-margin-horizontal
     - unless @note.has_minimum_number_of_concepts?
       - needed_count = Note::MINIMUM_NUMBER_OF_CONCEPTS - @note.concepts_count
       %h5.center

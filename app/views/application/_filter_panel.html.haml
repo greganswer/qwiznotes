@@ -1,0 +1,78 @@
+- args = { required: false, wrapper: false, include_blank: true, allow_blank: true }
+
+
+.card.transparent-lighten-5.max-width600.margin-horizontal.z-depth-0
+  .card-content
+    .card-header.center= t("app.filter_your_results")
+    = simple_form_for :filter, url: url_for, method: :get do |f|
+
+      -#
+      -# Custom filtering
+      -#
+
+      - begin
+        = render "#{model.model_name.plural}/custom_filters", f: f
+      - rescue ActionView::MissingTemplate
+        = nil
+
+      -#
+      -# Sorting
+      -#
+
+      .row.section
+        .card-title= t("app.sort")
+
+        -# Columns
+
+        .col.s6.m6.l12.xl6
+          - collection = model.sort_by.map { |type| [model.human_attribute_name(type), type] }.to_h
+          - checked = params.fetch(:filter, {}).fetch(:sort_by, model::DEFAULT_SORT_BY)
+          = f.input :sort_by, required: false, as: :radio_buttons, collection: collection, wrapper: false, allow_blank: true, checked: checked, label: t("app.by", count: 1), label_html: { class: "block" }, item_wrapper_tag: :div
+          %br
+
+        -# Direction
+
+        .col.s6.m6.l12.xl6
+          %label.block= t("app.direction")
+          - { up: "asc",  down: "desc" }.each do |key, value|
+            - checked = params.fetch(:filter, {}).fetch(:sort_direction, model::DEFAULT_SORT_DIRECTION)
+            .block
+              %input{ id: "filter_sort_direction_#{value}", name: "filter[sort_direction]", type: :radio, value: value, checked: checked == value }
+              %label.collection_radio_buttons{ for: "filter_sort_direction_#{value}" }
+                = fa_icon("caret-#{key}")
+                = t("app.#{key}")
+
+      -#
+      -# Dates
+      -#
+
+      .section
+        .card-title= t("app.dates", count: 2)
+        .row.no-margin
+          - %i(beginning_date end_date).each do |type|
+            .col.s12.xl6
+              = f.input type, as: :date, html5: true, required: false, wrapper: false, label: false, placeholder: t("app.#{type}"), input_html: { value: params[:filter].try(:[], type), class: "datepicker" }
+
+        .row
+          - date_columns ||= %i(created_at updated_at deleted_at)
+          - collection = date_columns.map { |type| [model.human_attribute_name(type), type] }.to_h
+          - checked = params.fetch(:filter, {}).fetch(:date_type, nil)
+          = f.input :date_type, args.merge(as: :radio_buttons, collection: collection, checked: checked, label: t("app.types", count: 1), label_html: { class: "block" }, item_wrapper_tag: :div)
+
+      -#
+      -# Per page
+      -#
+
+      .section
+        .card-title= t("app.per_page")
+        = f.input :per_page, required: false, as: :radio_buttons, collection: [11, 23, 35, 47, 59], allow_blank: true, checked: cookies[:per_page], label: false, label_html: { class: "block" }, wrapper: false, item_wrapper_tag: :div
+
+      -#
+      -# Buttons
+      -#
+
+      .center
+        %button.btn.margin2{ type: :submit }= t("app.filter")
+
+        - unless request.path == request.fullpath
+          = link_to t("button.reset"), request.path, class: "margin2 btn grey lighten-2 grey-text"

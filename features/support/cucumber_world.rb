@@ -28,6 +28,20 @@ module Helper
     I18n.t(*args)
   end
 
+  # Fill in a tinyMCE textarea with content
+  #
+  # @param id [String]
+  # @param opts [Hash]
+  # @reference: https://gist.github.com/eoinkelly/69be6c27beb0106aa555
+  #
+  def fill_in_tinymce(id, opts)
+    return unless opts[:with].present?
+    # wait until the TinyMCE editor instance is ready
+    sleep 0.5 until page.evaluate_script("tinyMCE.get('#{id}') !== null")
+    js = "tinyMCE.get('#{id}').setContent('#{opts[:with]}')"
+    page.execute_script(js)
+  end
+
   # Fill in a CKEditor textarea with content
   #
   # @param locator [String]

@@ -9,7 +9,8 @@ FactoryGirl.define do
     end
 
     factory :random_note do
-      title { Faker::Hipster.sentence[0..69] }
+      user { create(:random_user) }
+      title { Faker::Hipster.sentence[0..68] }
       content { (1..rand(3..6)).map { Faker::Hipster.paragraph(rand(3..10)) }.join("<br><br>") }
       has_random_dates
     end

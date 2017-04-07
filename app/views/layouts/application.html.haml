@@ -81,8 +81,10 @@
             %li= link_to_hash_if_current t("devise.registrations.new.sign_up"), new_user_registration_path
           %li= link_to_hash_if_current t("legal.terms"), terms_path
           %li= link_to_hash_if_current t("legal.privacy"), privacy_path
+
           - if user_signed_in?
             %li= link_to_hash_if_current t("app.sign_out"), destroy_user_session_path, method: :delete
+
       .footer-copyright
         .container.center
           %small &copy; #{t("app.copyright")} #{Date.today.year} #{site_owner}

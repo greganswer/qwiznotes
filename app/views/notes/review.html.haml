@@ -9,10 +9,9 @@
 -#
 -# Content
 -#
-- breadcrumb :review_note, @note
 
 .container.m-full-width
-  .card-panel.m-no-margin
+  .card-panel.m-no-margin-horizontal
     - if @note.concepts.blank?
       %h5
         = t("note.no_terms_or_defintions")

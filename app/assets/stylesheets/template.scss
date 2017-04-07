@@ -26,9 +26,33 @@ form {
   .hint { color: color('grey', 'base') }
 }
 
-h1, h2, h3, h4, h5, h6 { color: #666 }
+h1, h2, h3, h4, h5, h6 {
+  color: #666;
+  font-weight: 300;
+}
+
+label,
+.input-field label,
+.input-field label:not(.label-icon).active {
+  font-size: 1em;
+}
 
 main { flex: 1 0 auto }
+
+nav {
+  img {
+    width:  36px;
+    position: relative;
+    top: 14px;
+    right: 6px;
+  }
+}
+
+table {
+  td.actions {
+    a { margin: 8px }
+  }
+}
 
 //
 // Classes

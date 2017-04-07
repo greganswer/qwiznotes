@@ -7,7 +7,7 @@ RSpec.describe User do
     user = create(:user)
     hashid = Hashids.new(Rails.application.secrets.secret_key_base, 8).encode(user.id)
     expect(user.to_param).to eq(hashid)
-    expect(User.find_by_hashid(hashid)).to eq(user)
+    expect(User.find_using_hashid(hashid)).to eq(user)
   end
 
   #

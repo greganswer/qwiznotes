@@ -1,17 +1,52 @@
 $(document).ready ->
-  $(".jsButtonCollapse").sideNav()
-  $('select').material_select();
-  $('.jsParallax').parallax()
 
-  # Auto resize textarea as input increases
   #
-  # reference: http://stackoverflow.com/a/25621277/6615480
-  # otherwise try this script: http://www.jacklmoore.com/autosize/
+  # Scroll to hash link on page
+  # Example link: /about#header-2, will scroll to the header with this id
   #
-  $('textarea').each(->
-    @setAttribute 'style', 'height:' + @scrollHeight + 'px; overflow-y: hidden;'
-    return
-  ).on 'input', ->
-    @style.height = 'auto'
-    @style.height = @scrollHeight + 'px'
-    return
+  $("html, body").hide()
+  if window.location.hash.length > 0
+    setTimeout (->
+      $("html, body").scrollTop(0).show()
+      $("html, body").animate { scrollTop: $(window.location.hash).offset().top }, 2000
+      return
+    ), 0
+  else
+    $("html, body").show()
+
+
+  #
+  # Devbridge Autocomplete
+  # @reference: https://github.com/devbridge/jQuery-Autocomplete
+  #
+
+  source = $('.jsAjaxAutocomplete').data("source")
+  noSuggestionNotice = $(".jsAjaxAutocomplete").data("no-suggestion-notice")
+
+  $(".jsAjaxAutocomplete").devbridgeAutocomplete
+    paramName: "q"
+    serviceUrl: source
+    minChars: 2
+    lookupLimit: 10
+    showNoSuggestionNotice: true
+    noSuggestionNotice: noSuggestionNotice
+    triggerSelectOnValidInput: false
+
+    onSelect: (suggestion) ->
+      this.closest("form").submit()
+      return
+
+  #
+  # Materialize CSS
+  #
+
+  $(".jsButtonCollapse").sideNav()
+  $("select").material_select();
+  $(".jsParallax").parallax()
+  $(".datepicker").pickadate(selectMonths: true, selectYears: 20)
+
+  #
+  # JS Timezone Detect
+  #
+
+  $.cookie("timezone", jstz.determine().name(), path: "/")

@@ -11,8 +11,7 @@ class NotesController < ApplicationController
   #
 
   def index
-    @notes = Note.includes(:user).recently_updated
-      .page(params[:page]).per(params[:per_page])
+    @notes = NotesFilter.new(params: params, cookies: cookies).call
   end
 
   def new
@@ -31,6 +30,22 @@ class NotesController < ApplicationController
 
   def quiz
   end
+
+  def autocomplete
+    @note = Note.new
+    authorize @note
+    suggestions = Note.search(params[:q], {
+        suggest: true,
+        fields: [{ title: :word_middle }],
+        limit: 10,
+        aggs: [:title],
+      })
+    suggestions = suggestions.aggs['title']['buckets']
+    render json: {
+      suggestions: suggestions.map { |item| "#{item['key']} (#{item['doc_count']})" }
+    }
+  end
+
 
   #
   # Post methods
@@ -92,7 +107,7 @@ class NotesController < ApplicationController
   private
 
   def set_note
-    @note = Note.find_by_hashid(params[:id])
+    @note = Note.find_using_hashid(params[:id])
       authorize @note
   end
 

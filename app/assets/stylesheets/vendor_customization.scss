@@ -1,4 +1,35 @@
 // ========================================================
+// Devbridge Autocomplete
+// ========================================================
+
+.autocomplete-suggestions {
+  @extend .z-depth-2;
+  background: #FFF;
+  overflow: auto;
+}
+.autocomplete-suggestion {
+  cursor: pointer;
+  padding: 6px 0 6px 50px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.autocomplete-selected {
+  background: #F0F0F0;
+}
+.autocomplete-suggestions strong {
+  font-weight: normal;
+  color: $primary-color;
+}
+.autocomplete-group {
+  padding: 2px 5px;
+}
+.autocomplete-group strong {
+  display: block;
+  border-bottom: 1px solid #000;
+}
+
+
+// ========================================================
 // MATERIALIZE
 // ========================================================
 
@@ -24,6 +55,33 @@ a.brand-logo {
 .btn-small {
   padding: 6px 8px;
   display: initial;
+}
+
+//
+// C
+//
+
+.card, .card-panel {
+  &.transparent {
+    @extend .transparent-lighten-5;
+  }
+  .card-header,
+  .card-title {
+    font-size: 2.5em;
+    margin-bottom: .5em;
+    line-height: 1.2;
+    color:  #999;
+    word-wrap: break-word;
+    font-weight: 300;
+  }
+  .card-title { font-size: 1.8em }
+}
+
+.chip { background: #F4F4F4 }
+.container {
+  max-width: 1600px;
+  @media #{$medium-and-up} { width: 90% }
+  @media #{$large-and-up} { width: 90% }
 }
 
 //
@@ -59,19 +117,6 @@ input.browser-default {
 //
 // N
 //
-
-nav {
-  li.search {
-    // width: 16em;
-    input {
-      @include placeholder_color(white);
-      // background: rgba(255, 255, 255, 0.7);
-      margin-bottom: 0;
-    }
-    label { color: inherit }
-  }
-}
-
 nav {
   input:not([type]):focus:not([readonly]),
   input[type=date]:focus:not([readonly]),
@@ -100,6 +145,24 @@ nav {
     }
   }
 }
+
+nav {
+  li.search {
+    input {
+      @include placeholder_color(white);
+      background: rgba(255, 255, 255, 0.2);
+      border: 0;
+      margin-bottom: 0;
+      &:hover, &:focus {
+        background: rgba(255, 255, 255, 0.4);
+        border-bottom: none !important;
+        box-shadow: none !important;
+        color: #333;
+      }
+    }
+  }
+}
+
 
 //
 // P
@@ -185,6 +248,28 @@ li.search {
 // T
 //
 
-table {
-  td { vertical-align: top }
+table { td { vertical-align: top } }
+
+
+// ========================================================
+// TINY MCE
+// ========================================================
+
+.mce-btn button { background: white }
+
+.mce-toolbar-grp.mce-container.mce-panel.mce-stack-layout-item.mce-first {
+  background: white;
+  border-top: 1px solid #DDD;
 }
+
+.mce-btn-group .mce-btn { border: 0 }
+.mce-tinymce.mce-container.mce-panel {
+  // @extend .z-depth-1;
+  border: 0;
+}
+
+// reference: http://stackoverflow.com/questions/19346818/tinymce-toolbar-location-at-bottom-of-editor
+// .mce-container-body.mce-stack-layout {
+//   display: flex;
+//   flex-direction: column-reverse;
+// }

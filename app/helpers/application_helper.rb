@@ -18,21 +18,35 @@ module ApplicationHelper
     raw(ActionController::Base.helpers.sanitize(html, options)).strip
   end
 
+  # This method belongs to `Kaminari` pagination gem but it is not working with
+  # `searckick` gem for some reason. I copied it here and now it works
+  # mysteriously.
+  # @author: Greg Answer
+  #
+  def page_entries_info(collection, options = {})
+    entry_name = options[:entry_name] || collection.entry_name.downcase
+    entry_name = entry_name.pluralize unless collection.total_count == 1
+
+    if collection.total_pages < 2
+      t('helpers.page_entries_info.one_page.display_entries', :entry_name => entry_name, :count => collection.total_count)
+    else
+      first = collection.offset_value + 1
+      last = collection.last_page? ? collection.total_count : collection.offset_value + collection.limit_value
+      t('helpers.page_entries_info.more_pages.display_entries', :entry_name => entry_name, :first => first, :last => last, :total => collection.total_count)
+    end.html_safe
+  end
+
   #
   # Links
   #
-
-  def current_url_in_locale(locale)
-    %{/#{locale}/} + url_for[1..-1].split("/")[1..-1].join("/")
-  end
 
   # If the URL is for the current page, set the URL to '#'. This way an 'a' tag is
   # displayed, which maintains page formating.
   # @see http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-link_to
   #
   def link_to_hash_if_current(name = nil, options = nil, html_options = nil, &block)
-    options = '#' if !block && options.present? && request.fullpath == options
-    name = '#' if block && name.present? && request.fullpath == name
+    options = '#' if !block && options.present? && request.fullpath == url_for(options)
+    name = '#' if block && name.present? && request.fullpath == url_for(name)
     link_to(name, options, html_options, &block)
   end
 
@@ -44,12 +58,16 @@ module ApplicationHelper
   # Site
   #
 
+  def site_email
+    "support@qwiznotes.com"
+  end
+
   def site_name
-    'Qwiz Notes'
+    "Qwiz Notes"
   end
 
   def site_owner
-    'Banana Simplicity Inc.'
+    "Banana Simplicity Inc."
   end
 
   #

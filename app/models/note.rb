@@ -1,11 +1,22 @@
 class Note < ApplicationRecord
-
+  DEFAULT_SORT_BY = "created_at"
+  DEFAULT_SORT_DIRECTION = "desc"
   MINIMUM_NUMBER_OF_CONCEPTS = Quiz::OPTIONS_COUNT + 1
 
   belongs_to :user, counter_cache: true
   validates :content, presence: true
   after_initialize :set_defaults, unless: :persisted?
   before_validation :prepare_input
+
+  searchkick index_prefix: :qwiznotes, word_middle: [:title], suggest: [:title], highlight: [:title], searchable: [:title]
+
+  #
+  # Class methods
+  #
+
+  def self.sort_by
+    %w(title created_at updated_at)
+  end
 
   #
   # Instance methods

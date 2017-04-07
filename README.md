@@ -2,7 +2,7 @@
 
 > Qwiz Notes is social network for students to study. It provides a distraction free environment with tools to help make studying more efficient.
 
-![Main desktop screenshot](app/assets/images/community.png)
+![Main desktop screenshot](app/assets/images/sample/community.png)
 
 ## Table of contents
 
@@ -71,6 +71,7 @@ I propose that we create a social network that has tools that are condusive to s
 The web app will be available through any device with a web browser and an internet connection. Native mobile apps can be created once this web app becomes popular enough.  Offline access would be prefered for situations where an internet connection is not possible.
 
 ### Target
+
  Audiences
 This app is for students from Elementary to post-secondary school level.
 
