@@ -4,7 +4,7 @@
 
 def submit_note_form(title: "My new note", content: "I am so happy that I get to use this site")
   fill_in 'note_title', with: title
-  fill_in_ckeditor 'note_content', with: content
+  fill_in_tinymce 'note_content', with: content
   click_button "qa-note-save"
 end
 

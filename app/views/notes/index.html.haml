@@ -9,4 +9,18 @@
 -# Content
 -#
 
+
+-#
+-# Search suggestions
+-#
+
+- if !Rails.env.test? && @notes.try(:suggestions).try(:present?)
+  .row
+    .col.s12.m6.l4.offset-m6.offset-l8
+      .card-panel
+        .card-header #{t("app.filter_suggestion")}:
+        - @notes.suggestions.each do |suggestion|
+          = link_to suggestion, q: suggestion
+          %br
+
 = render 'notes/notes', notes: @notes

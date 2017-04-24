@@ -4,10 +4,17 @@ class Note < ApplicationRecord
   MINIMUM_NUMBER_OF_CONCEPTS = Quiz::OPTIONS_COUNT + 1
 
   belongs_to :user, counter_cache: true
+  has_many :comments, as: :item
+
   validates :content, presence: true
   after_initialize :set_defaults, unless: :persisted?
   before_validation :prepare_input
 
+  #
+  # To reindex run one of the following:
+  # rake searchkick:reindex CLASS=Note
+  # rake searchkick:reindex:all
+  #
   searchkick index_prefix: :qwiznotes, word_middle: [:title], suggest: [:title], highlight: [:title], searchable: [:title]
 
   #

@@ -1,3 +1,33 @@
+
+//
+//  N
+//
+
+// Note: In order to get a the proper variable width search bar in the
+// navigation, you need to adjust the `li.search` viewport
+// width (vw) and the `li.search input` viewport width
+nav {
+  li.search {
+    width: 34vw;
+    input {
+      padding-left: 50px;
+      width: 26vw;
+    }
+    .material-icons {
+      position: relative;
+      left: 40px;
+      z-index: 1;
+    }
+    .autocomplete-content {
+      width: 29.5vw;
+      position: relative;
+      left: 28px;
+      top: -2px;
+    }
+  }
+}
+
+
 //
 //  T
 //
@@ -21,6 +51,13 @@
     &:hover, &:focus, &:active, &.active { outline: none }
   }
 }
+
+// reference: http://stackoverflow.com/questions/19346818/tinymce-toolbar-location-at-bottom-of-editor
+.mce-container-body.mce-stack-layout {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 
 table.review-table {
   td {

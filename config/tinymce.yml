@@ -1,0 +1,23 @@
+toolbar:
+  - save | undo redo | cut copy paste | bold italic underline | forecolor backcolor | bullist numlist outdent indent
+plugins:
+  - autosave
+  - lists
+  - searchreplace
+  - insertdatetime
+  - save
+  - paste
+insertdatetime_formats:
+  - '%I:%M%p on %A, %B %d, %Y'
+  - '%A, %B %d, %Y at %I:%M%p'
+  - '%A, %B %d, %Y'
+  - '%a, %b %d/%Y'
+  - '%D'
+  - '%Y.%m.%d'
+  - '%H:%M'
+  - '%I:%M%p'
+statusbar: false
+height: 50vh
+schema: html5
+removed_menuitems: newdocument
+menubar: false

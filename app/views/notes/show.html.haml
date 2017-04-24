@@ -11,8 +11,13 @@
 -#
 
 .container.m-full-width
-  .card-panel.m-no-margin-horizontal.qa-note[@note]
-    = render 'notes/info', note: @note
-    %p= raw(@note.content)
-    %br
-    .center= render "notes/buttons", note: @note
+  .row
+    .card-panel.m-no-margin-horizontal.qa-note[@note]
+      = render 'notes/info', note: @note
+      %p= raw(@note.content)
+      %br
+      .center= render "notes/buttons", note: @note
+
+  .row
+    = render "comments/form", item: @note
+

@@ -28,4 +28,10 @@
           = f.input :content, required: true, label: false, placeholder: t("comment.placeholder"), wrapper_html: { class: "no-margin" }, input_html: { class: "materialize-textarea" }
           = f.button :submit, t("comment.submit"), id: "qa-comment-save", class: "btn"
 
+      - unless user_signed_in?
+        %br
+        - link = link_to t("app.sign_in").downcase, new_user_session_path
+        %h3.center= t("comment.needs_login_html", link: link)
+
+
   = render "pagination", records: comments

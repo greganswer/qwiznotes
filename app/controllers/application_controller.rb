@@ -14,8 +14,6 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :current_user
-  before_action :current_company
-  before_action :current_employee
   before_action :set_locale
   after_action :store_location
   after_action :verify_authorized, except: :index, unless: :devise_controller?
@@ -35,15 +33,6 @@ class ApplicationController < ActionController::Base
   #
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
-  def pundit_user
-    @pundit_user ||= PolicyContext.new({
-      company: @current_company,
-      params: params,
-      user: @current_user,
-      employee: @current_employee,
-    })
-  end
 
   def user_not_authorized(exception)
     policy_name = exception.policy.class.to_s.underscore

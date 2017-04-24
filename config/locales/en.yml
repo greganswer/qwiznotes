@@ -27,6 +27,9 @@ en:
             name:
               invalid: only allows letters, numbers, underscores, and dashes
     models:
+      comment:
+        one: Comment
+        other: Comments
       note:
         one: Note
         other: Notes
@@ -37,6 +40,7 @@ en:
         one: User
         other: Users
   app:
+    account: Account
     click_here: click here
     click_link_below_if_button_not_working: 'If for some reason the button does not work, copy and paste the link below:'
     concepts:
@@ -60,6 +64,9 @@ en:
     new: New
     none: None
     none_of_the_above: None of the above.
+    filter: Filter
+    filter_suggestion: Did you mean
+    filter_your_results: Filter your results
     questions:
       one: Question
       other: Questions
@@ -93,6 +100,16 @@ en:
     reset: Reset
     edit: Edit
     view: View
+  comment:
+    count:
+      one: 1 comment
+      other: "%{count} comments"
+      zero: 0 comments
+    created: Comment created
+    not_created: Comment was not created
+    placeholder: Add a comment
+    needs_login_html: Please %{link} to add a comment
+    submit: Post
   helpers:
     page_entries_info:
       more_pages:

@@ -48,7 +48,7 @@
         - if user_signed_in?
           %li
             %a.dropdown-button{"data-activates": "dropdown2", href: "#!", 'data-beloworigin': "true"}
-              = image_tag current_user.image_url, alt: current_user, class: 'border-radius8'
+              = image_tag current_user.image_url, alt: current_user, class: 'circle'
               = material_icon.arrow_drop_down.css_class(:right)
           %ul#dropdown2.dropdown-content
             %li= link_to_hash_if_current t("app.account"), edit_user_registration_path

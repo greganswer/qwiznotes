@@ -1,11 +1,22 @@
+= tinymce_assets
+
 .container.s-full-width
   = simple_form_for note do |f|
     = render "form_errors", record: note
 
+    .hide-on-med-and-down
+      %button.btn.waves-effect.waves-light.green
+        = fa_icon("floppy-o")
+        = t("helpers.submit.submit", model: Note.model_name.human)
+      %br
+      %br
+
     .text-editor
       = f.input :title, placeholder: t("note.untitled_note"), label: false, wrapper: false, as: :text,  input_html: { class: "browser-default title autosize" }
-      = f.input :content, as: :ckeditor, label: false, required: false, wrapper: false, input_html: { class: "browser-default" }
+      = f.input :content, required: true, label: false, wrapper: false, input_html: { class: "tinymce" }
 
     .fixed-action-btn
       %button#qa-note-save.btn-floating.btn-large.waves-effect.waves-light.green.tooltipped{"data-position": "left", "data-delay": "50", "data-tooltip": t("helpers.submit.submit", model: Note.model_name.human)}
-        = fa_icon "floppy-o"
+        = fa_icon("floppy-o")
+
+= tinymce

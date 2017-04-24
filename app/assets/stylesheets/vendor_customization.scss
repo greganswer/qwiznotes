@@ -263,13 +263,4 @@ table { td { vertical-align: top } }
 }
 
 .mce-btn-group .mce-btn { border: 0 }
-.mce-tinymce.mce-container.mce-panel {
-  // @extend .z-depth-1;
-  border: 0;
-}
-
-// reference: http://stackoverflow.com/questions/19346818/tinymce-toolbar-location-at-bottom-of-editor
-// .mce-container-body.mce-stack-layout {
-//   display: flex;
-//   flex-direction: column-reverse;
-// }
+.mce-tinymce.mce-container.mce-panel { border: 0 }
