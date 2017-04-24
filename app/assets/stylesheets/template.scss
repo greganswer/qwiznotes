@@ -71,6 +71,22 @@ table {
 .primary-color-text { color: $primary-color }
 .secondary-color-text { color: $secondary-color }
 
+.scroll-to-top {
+  @extend .z-depth-1;
+  background: $primary-color;
+  border-radius: 6px;
+  border: 0;
+  bottom: 16px;
+  color: white;
+  display: none;
+  font-size: 1.5em;
+  opacity: .5;
+  padding: 4px 8px;
+  position: fixed;
+  right: 12px;
+  z-index: 1000;
+}
+
 .small-superscript {
   font-size: 50%;
   position: relative;

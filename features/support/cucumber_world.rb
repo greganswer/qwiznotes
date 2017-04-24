@@ -38,8 +38,10 @@ module Helper
     return unless opts[:with].present?
     # wait until the TinyMCE editor instance is ready
     sleep 0.5 until page.evaluate_script("tinyMCE.get('#{id}') !== null")
-    js = "tinyMCE.get('#{id}').setContent('#{opts[:with]}')"
-    page.execute_script(js)
+
+    page.execute_script <<-SCRIPT
+      tinyMCE.get('#{id}').setContent('#{opts[:with]}');
+    SCRIPT
   end
 
   # Fill in a CKEditor textarea with content

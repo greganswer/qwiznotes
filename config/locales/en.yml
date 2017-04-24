@@ -1,14 +1,5 @@
 ---
 en:
-  simple_form:
-    error_notification:
-      default_message: 'Please review the problems below:'
-    'no': 'No'
-    required:
-      mark: "*"
-      text: required
-      html: '<abbr class="tooltipped" data-tooltip="required" data-position="right">*</abbr>'
-    'yes': 'Yes'
   account:
     deactivate: Deactivate account
     update: Update account
@@ -55,6 +46,9 @@ en:
       other: Definitions
     email_me_instructions: Enter the email address associated with your account and you will receive an email with instructions.
     enable_javascript_html: Please enable Javascript to view this site. For instructions %{link}.
+    filter: Filter
+    filter_suggestion: Did you mean
+    filter_your_results: Filter your results
     home: Home
     incorrect_answers:
       one: Incorrect answer
@@ -64,9 +58,6 @@ en:
     new: New
     none: None
     none_of_the_above: None of the above.
-    filter: Filter
-    filter_suggestion: Did you mean
-    filter_your_results: Filter your results
     questions:
       one: Question
       other: Questions
@@ -95,10 +86,12 @@ en:
     title: Title
     updated_at: Updated
     user: Owner
+  autocomplete:
+    no_suggestions: Sorry, no matching results
   button:
     delete: Delete
-    reset: Reset
     edit: Edit
+    reset: Reset
     view: View
   comment:
     count:
@@ -106,9 +99,9 @@ en:
       other: "%{count} comments"
       zero: 0 comments
     created: Comment created
+    needs_login_html: Please %{link} to add a comment
     not_created: Comment was not created
     placeholder: Add a comment
-    needs_login_html: Please %{link} to add a comment
     submit: Post
   helpers:
     page_entries_info:
@@ -126,7 +119,6 @@ en:
   mailer:
     closing_text_html: If you have any questions, you can simply reply to this email for further assistance. Thank you for choosing %{site_name}.
   marketing:
-    header: Stay focused
     add_notes:
       heading: Add your notes
       image_alt: Sample of note editor
@@ -135,6 +127,7 @@ en:
       heading: Share with the community
       image_alt: Sample of community notes
       text_html: Not only can you write notes and take quizzes, you can also share them with your friends. The notes and quizzes that you save are available to the community and guess what? <strong>It's totaly free!</strong>
+    header: Stay focused
     keywords: quiz, quizzes, test, testing, note, multiple choice, students, study, studying
     link_signup: Want better grades?
     review_table:
@@ -151,10 +144,7 @@ en:
       image_alt: Sample of term defintion pairs
       text_html: In order to magically generate a quiz from your notes, enter your notes as term/definition pairs. You can "separate" the pair by making the term <strong>bold or by adding one of the following separator symbols:</strong> dash, equal, colon, tilde, or arrow.
     title: How does %{site_name} work?
-  autocomplete:
-    no_suggestions: Sorry, no matching results
   note:
-    search: Search notes
     created: Note created
     deleted: Note deleted
     fix_this_note: Please click the "edit" button below to improve this note.
@@ -166,6 +156,7 @@ en:
     sample:
       content: "<b>Sample Content (can be deleted or modified)</b><br><br><strong>Flummox</strong> to perplex or bewilder<br><br>Crest - the highest part of a hill or mountain range; summit.<br><br>Portent -&gt; an indication or omen of something about to happen, especially something momentous.<br><br>Compile ~ to put together (documents, selections, or other materials) in one book or work.<br><br>Lease: a contract renting land, buildings, etc., to another; a contract or instrument conveying property to another for a specified period or for a period determinable at the will of either lessor or lessee in consideration of rent or other compensation.<br><br>Missive = sent or about to be sent, especially of a letter from an official source."
       title: Note Title
+    search: Search notes
     untitled_note: Untitled note
     updated: Note updated
   pundit:
@@ -177,3 +168,6 @@ en:
     not_taken: Please answer at least one question before viewing results
     perfect_score: Congratulations! You got all the questions right!
     regenerate: Generate a new quiz
+  simple_form:
+    required:
+      html: <abbr class="tooltipped" data-tooltip="required" data-position="right">*</abbr>

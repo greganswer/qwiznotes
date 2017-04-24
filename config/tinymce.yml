@@ -17,7 +17,7 @@ insertdatetime_formats:
   - '%H:%M'
   - '%I:%M%p'
 statusbar: false
-height: 50vh
+height: 55vh
 schema: html5
 removed_menuitems: newdocument
 menubar: false

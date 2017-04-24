@@ -12,24 +12,12 @@
 
 .container.m-full-width
   .card-panel.m-no-margin-horizontal
-    - unless @note.has_minimum_number_of_concepts?
-      - needed_count = Note::MINIMUM_NUMBER_OF_CONCEPTS - @note.concepts_count
-      %h5.center
-        = t("note.not_enough_terms_html", terms_count: @note.concepts_count, needed_count: needed_count)
-        - if policy(@note).edit?
-          %br
-          %br
-          = t("note.fix_this_note")
-          %br
-          %br
-          = link_to t("button.edit"), edit_note_path(@note), class: "btn waves-effect"
 
-    - else
+    - if @note.has_minimum_number_of_concepts?
+
       = render "notes/info", note: @note
-
       = form_for :note, url: quiz_results_note_path(@note) do
         = hidden_field_tag :quiz, @note.quiz.to_json
-
         -@note.quiz.questions.each do |question|
           %h5= "#{question.number}) #{question}"
           %br
@@ -47,3 +35,16 @@
 
         .center
           %button#quiz-submit.waves-effect.waves-light.btn-large= t("app.quiz_results")
+
+    - else
+
+      - needed_count = Note::MINIMUM_NUMBER_OF_CONCEPTS - @note.concepts_count
+      %h5.center
+        = t("note.not_enough_terms_html", terms_count: @note.concepts_count, needed_count: needed_count)
+        - if policy(@note).edit?
+          %br
+          %br
+          = t("note.fix_this_note")
+          %br
+          %br
+          = link_to t("button.edit"), edit_note_path(@note), class: "btn waves-effect"
