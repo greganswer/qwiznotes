@@ -17,6 +17,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'local_time'
 gem 'lograge'
+gem 'mail_form'
 gem 'material_icons'
 gem 'materialize-sass'
 gem 'paranoia', '~> 2.2'
@@ -48,7 +49,10 @@ group :development, :test do
   gem 'i18n-tasks', '~> 0.9.12'
   gem 'letter_opener'
   gem 'rspec-rails', '~> 3.5'
-  gem 'terminal-notifier-guard', '~> 1.6.1'
+  # gem 'terminal-notifier-guard', '~> 1.6.1'
+  # Add the 2 lines below to the `Guardfile` if desired
+  # Terminal notifier for OSX
+  # notification :terminal_notifier, activate: 'com.googlecode.iTerm2' if `uname` =~ /Darwin/
 end
 
 group :development do
@@ -188,6 +192,9 @@ end
 #
 # lograge -> Minimize Rails' default request logging
 # https://github.com/roidrage/lograge
+#
+# mail_form -> Send e-mail straight from forms
+# https://github.com/plataformatec/mail_form
 #
 # material_icons -> Google Material Design Icons Rails wrapper
 # https://github.com/Angelmmiguel/material_icons

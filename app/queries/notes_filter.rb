@@ -40,6 +40,6 @@ class NotesFilter  < ApplicationFilter
   def user
     ids = [filter_params[:user]].flatten
     ids = ids.map { |hashid| User.hashid_decode(hashid) }
-    @input[:where][:user_id] = ids
+    (@input[:where]||= {})[:user_id] = ids
   end
 end

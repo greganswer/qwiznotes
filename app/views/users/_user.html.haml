@@ -1,0 +1,25 @@
+- transparent ||= false
+- klass = transparent ? "transparent-lighten-5" : ''
+
+
+.card.small.qa-user[user]{ class: klass }
+  .card-content
+    .row
+      .col.s12.m4.center
+        = render "users/image_link", user: user, width: 100
+      .col.s12.m8
+        = link_to_hash_if_current user do
+          %h5.center= user
+
+    %p.grey-text
+      %b= "#{User.human_attribute_name(:created_at)}:"
+      = local_time(user.created_at, :medium)
+      %br
+      %b= "#{User.human_attribute_name(:notes_count)}:"
+      = user.notes_count
+      %br
+      %br
+
+
+  .card-action{ style: "background: initial" }
+    = render "buttons/record_index", record: user, buttons: %i(show)

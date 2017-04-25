@@ -1,0 +1,16 @@
+.card-panel
+  %table.notes-table.highlight
+    %thead
+      %tr
+        %th= Note.human_attribute_name(:title)
+        %th= Note.human_attribute_name(:user)
+        %th= Note.human_attribute_name(:updated_at)
+        %th= t("app.actions", count: 2)
+    %tbody
+      - notes.each do |note|
+        %tr[note]
+          %td.title= link_to note.title.truncate(60), note
+          %td.user= render "users/chip", user: note.user
+          %td.updated_at= local_time(note.updated_at, :medium)
+          %td.actions
+            = render "buttons/record_index", record: note, buttons: %i(show edit destroy)

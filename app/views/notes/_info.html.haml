@@ -7,8 +7,8 @@
     = url_for[/quiz/] ? note.quiz.questions.count : note.concepts_count
 
   %p.left
-    %b= "#{User.human_attribute_name(:name)}:"
-    = note.user.name
+    = render "users/chip", user: note.user
+
     %br
 
     - if current_page?(note)

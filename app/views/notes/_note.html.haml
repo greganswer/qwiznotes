@@ -1,0 +1,12 @@
+.card.small.qa-note[note]
+  .card-content
+    %span.card-title= link_to note, note, class: 'grey-text text-darken-3'
+    %p.grey-text.text-darken-2
+      = render "users/chip", user: note.user
+      %br
+      %b #{t('app.concepts', count: 2)}:
+      #{note.concepts_count}
+    %p.grey-text.text-darken-1= strip_tags(note.content).truncate(180, separator: ' ')
+
+  .card-action
+    = render "notes/buttons", note: note, klass: " "

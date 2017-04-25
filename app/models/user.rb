@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  DEFAULT_SORT_BY = "name"
+  DEFAULT_SORT_DIRECTION = "asc"
 
   has_many :notes, dependent: :destroy
   validates :name, {
@@ -19,6 +21,16 @@ class User < ApplicationRecord
     :timeoutable,
     :trackable,
     :validatable
+
+  scope :by_name, -> { order "#{table_name}.name ASC" }
+
+  #
+  # Class methods
+  #
+
+  def self.sort_by
+    %w(name created_at)
+  end
 
   #
   # Instance methods

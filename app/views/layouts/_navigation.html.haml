@@ -33,13 +33,18 @@
               %li= link_to language, url_for(locale: locale)
 
         -#
-        -# Note links
+        -# Resource links
         -#
 
         - if policy(Note).new?
           %li= link_to_hash_if_current t("note.new"), new_note_path
 
-        %li= link_to_hash_if_current Note.model_name.human(count: 2), notes_path
+        - args = { notes: Note, users: User }
+        - args.each do |plural, model|
+          - if policy(model).index?
+            %li= link_to_hash_if_current model.model_name.human(count: 2), plural
+
+        %li= link_to_hash_if_current t("app.help"), help_path
 
         -#
         -# Account menu
@@ -48,11 +53,20 @@
         - if user_signed_in?
           %li
             %a.dropdown-button{"data-activates": "dropdown2", href: "#!", 'data-beloworigin': "true"}
+              &nbsp;
               = image_tag current_user.image_url, alt: current_user, class: 'circle'
               = material_icon.arrow_drop_down.css_class(:right)
           %ul#dropdown2.dropdown-content
-            %li= link_to_hash_if_current t("app.account"), edit_user_registration_path
-            %li= link_to_hash_if_current t("app.sign_out"), destroy_user_session_path, method: :delete
+            %li
+              = link_to_hash_if_current edit_user_registration_path do
+                = fa_icon("cog")
+                = t("app.account")
+
+            %li
+              = link_to_hash_if_current destroy_user_session_path, method: :delete do
+                = fa_icon("sign-out")
+                = t("app.sign_out")
+
         - else
           %li= link_to_hash_if_current t("app.sign_in"), new_user_session_path
           %li= link_to_hash_if_current t("devise.registrations.new.sign_up"), new_user_registration_path, class: 'btn'
@@ -96,6 +110,7 @@
       = form_tag :notes, method: :get do |f|
         = material_icon.search.css_class("grey-text text")
         = text_field_tag :q, nil, placeholder: t("note.search"), value: params[:q]
+    %li.divider
 
   -#
   -# Sign in/up
@@ -107,12 +122,22 @@
     %li.divider
 
   -#
-  -# Note links
+  -# Resource links
   -#
 
   - if policy(Note).new?
-    %li= link_to_hash_if_current t("note.new"), new_note_path
-  %li= link_to_hash_if_current Note.model_name.human(count: 2), notes_path
+    %li
+      = link_to_hash_if_current new_note_path do
+        = fa_icon("plus")
+        =  t("note.new")
+
+  - args = { notes: [Note, "th"], users: [User, "user-circle"] }
+  - args.each do |plural, array|
+    - if policy(array.first).index?
+      %li
+        = link_to_hash_if_current plural do
+          = fa_icon(array.last)
+          = array.first.model_name.human(count: 2)
 
   -#
   -# Account menu
@@ -120,5 +145,18 @@
 
   - if user_signed_in?
     %li.divider
-    %li= link_to_hash_if_current t("account.update"), edit_user_registration_path
-    %li= link_to_hash_if_current t("app.sign_out"), destroy_user_session_path, method: :delete
+    %li
+      = link_to_hash_if_current edit_user_registration_path do
+        = fa_icon("cog")
+        = t("app.account")
+
+  %li
+    = link_to_hash_if_current help_path do
+      = fa_icon("question-circle")
+      = t("app.help")
+
+  - if user_signed_in?
+    %li
+      = link_to_hash_if_current destroy_user_session_path, method: :delete do
+        = fa_icon("sign-out")
+        = t("app.sign_out")

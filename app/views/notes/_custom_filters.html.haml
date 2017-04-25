@@ -1,0 +1,8 @@
+-#
+-# User
+-#
+
+.section
+  .card-title= Note.human_attribute_name(:user)
+  - collection = User.by_name
+  = f.input :user, required: false, collection: collection, label_method: :to_s, value_method: :to_param, wrapper: false, include_blank: true, allow_blank: true, selected: params[:filter].try(:[], :user), label: false, input_html: { multiple: true }

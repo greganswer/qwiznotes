@@ -1,6 +1,6 @@
 - if record.errors.any?
   .card.padding8.red.lighten-5
-    %h5.red-text.text-darken-5= t('simple_form.error_notification.default_message')
+    %h6.red-text.text-darken-4= t('simple_form.error_notification.default_message')
     %ul.browser-default
       - record.errors.full_messages.uniq.each do |msg|
-        %li.red-text.text-darken-3= msg
+        %li.red-text.text-darken-4= msg

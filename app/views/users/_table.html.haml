@@ -1,0 +1,18 @@
+.card-panel
+  %table.bordered.responsive-table.highlight.users-table
+    %thead
+      %tr
+        %th
+        %th= User.human_attribute_name(:name)
+        %th= User.human_attribute_name(:created_at)
+        %th= User.human_attribute_name(:notes_count)
+        %th= t("app.actions", count: 2)
+    %tbody
+      - users.each do |user|
+        %tr[user]
+          %td.image= render "users/image_link", user: user
+          %td.name= link_to user, user
+          %td.created_at= local_time(user.created_at, :medium)
+          %td.notes_count= link_to user.notes_count, user
+          %td.actions
+            = render "buttons/record_index", record: user, buttons: %i(show edit destroy)

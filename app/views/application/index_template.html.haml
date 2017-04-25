@@ -1,0 +1,63 @@
+- singular = records.model_name.singular
+- plural = records.model_name.plural
+- klass = singular.classify.constantize
+- has_new_button = true if has_new_button.nil?
+- date_columns ||= nil
+
+-#
+-# Meta
+-#
+
+- page_title klass.model_name.human(count: 2)
+- breadcrumb :"#{plural}"
+
+
+-#
+-# Search suggestions
+-#
+
+- if !Rails.env.test? && records.try(:suggestions).try(:present?)
+  .row
+    .col.s12.m6.l4.offset-m6.offset-l8
+      .card-panel
+        .card-header #{t("app.filter_suggestion")}:
+        - records.suggestions.each do |suggestion|
+          = link_to suggestion, q: suggestion
+          %br
+
+-#
+-# Content
+-#
+
+= render "pagination", records: records
+
+.row
+  .col.s12.hide-on-med-and-down
+    - if has_new_button
+      = link_to [:new, singular], class: "btn" do
+        #{fa_icon("plus")} &nbsp; #{t("#{singular}.new")}
+
+    %button.tooltipped.jsToggleTable.btn.grey.lighten-3.grey-text{ "data-tooltip": t("app.toggle_table_or_tiles"), "data-position": "top" }
+      = fa_icon("th")
+
+
+.row
+  .col.s12.m12.l9
+    .hide-on-med-and-down.jsToggleTable__table
+      = render "#{plural}/table", "#{plural}": records
+
+    .hide-on-large-only.jsToggleTable__tile
+      .row{ class: records.present? ? "qa-#{plural}" : "" }
+        - if has_new_button
+          .col.s12.m6.l6.xl4
+            = render "buttons/index_new", type: singular if has_new_button
+
+        - (records || []).each do |record|
+          .col.s12.m6.l6.xl4= render record
+
+
+  .col.s12.m12.l3
+    = render "filter_panel", model: klass, has_new_button: has_new_button, date_columns: date_columns
+
+
+= render "pagination", records: records

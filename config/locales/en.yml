@@ -11,6 +11,7 @@ en:
         created_at: Joined
         deleted_at: Deactivated
         name: Username
+        notes_count: Notes
     errors:
       models:
         user:
@@ -32,6 +33,11 @@ en:
         other: Users
   app:
     account: Account
+    actions:
+      one: Action
+      other: Actions
+    beginning_date: Beginning
+    by: By
     click_here: click here
     click_link_below_if_button_not_working: 'If for some reason the button does not work, copy and paste the link below:'
     concepts:
@@ -41,14 +47,21 @@ en:
     correct_answers:
       one: Correct answer
       other: Correct answers
+    dates:
+      one: Date
+      other: Dates
     definitions:
       one: Definition
       other: Definitions
+    direction: Direction
+    down: Down
     email_me_instructions: Enter the email address associated with your account and you will receive an email with instructions.
     enable_javascript_html: Please enable Javascript to view this site. For instructions %{link}.
+    end_date: Ending
     filter: Filter
     filter_suggestion: Did you mean
     filter_your_results: Filter your results
+    help: Help
     home: Home
     incorrect_answers:
       one: Incorrect answer
@@ -58,6 +71,7 @@ en:
     new: New
     none: None
     none_of_the_above: None of the above.
+    per_page: Per page
     questions:
       one: Question
       other: Questions
@@ -69,12 +83,18 @@ en:
     sign_in: Log in
     sign_out: Log out
     skip_to_content: Skip to main content
+    sort: Sort
     terms:
       one: Term
       other: Terms
+    toggle_table_or_tiles: Switch between grid and table
+    types:
+      one: Type
+      other: Types
     unanswered_questions:
       one: Unanswered question
       other: Unanswered questions
+    up: Up
     viewed: Viewed
   attributes:
     comment: Comment
@@ -103,7 +123,12 @@ en:
     not_created: Comment was not created
     placeholder: Add a comment
     submit: Post
+  contact:
+    message_not_sent: Unable to send message at this time. Please try again in 2 minutes.
+    message_sent: Your message has been sent. We will get back to you shortly.
+    submit: Send message
   helpers:
+    leave_field_blank: Leave this field blank
     page_entries_info:
       more_pages:
         display_entries: Showing <b>%{first} - %{last}</b> of <b>%{total}</b> %{entry_name}

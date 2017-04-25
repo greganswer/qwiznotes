@@ -15,7 +15,7 @@ end
 
 When(/^I click on the note titled "([^"]*)" in the notes list$/) do |title|
   within("nav") { click_on Note.model_name.human(count: 2) }
-  click_on title
+  click_on title, match: :first
 end
 
 When(/^I click the "Notes" button$/) do
@@ -23,7 +23,8 @@ When(/^I click the "Notes" button$/) do
 end
 
 Then(/^I should see (\d+) notes$/) do |count|
-  expect(page).to have_css(".note", count: count)
+  # multiply count * 2 because the table view is hidden and displayed using javascript
+  expect(page).to have_css(".note", count: count * 2)
 end
 
 Then(/^I should see the details of the note$/) do

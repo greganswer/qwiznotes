@@ -7,6 +7,11 @@ crumb :root do
   link title, root_path
 end
 
+crumb :help do
+  link t("app.help"), help_path
+  parent :root
+end
+
 #
 # Legal
 #
@@ -79,4 +84,18 @@ end
 crumb :quiz_results_note do |note|
   link t("app.results"), quiz_results_note_path(note)
   parent :quiz_note, note
+end
+
+#
+# Users
+#
+
+crumb :users do
+  link User.model_name.human(count: 2), users_path
+  parent :root
+end
+
+crumb :user do |user|
+  link user.name, user_path(user)
+  parent :users
 end

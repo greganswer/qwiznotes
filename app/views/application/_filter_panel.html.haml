@@ -65,7 +65,9 @@
 
       .section
         .card-title= t("app.per_page")
-        = f.input :per_page, required: false, as: :radio_buttons, collection: [11, 23, 35, 47, 59], allow_blank: true, checked: cookies[:per_page], label: false, label_html: { class: "block" }, wrapper: false, item_wrapper_tag: :div
+        - collection =  [11, 23, 35, 47, 59]
+        - collection.map! { |number| number + 1 } unless has_new_button
+        = f.input :per_page, required: false, as: :radio_buttons, collection: collection, allow_blank: true, checked: cookies[:per_page], label: false, label_html: { class: "block" }, wrapper: false, item_wrapper_tag: :div
 
       -#
       -# Buttons

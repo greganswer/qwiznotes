@@ -1,0 +1,6 @@
+= link_to [:new, type], id: "qa-new-#{type}" do
+  .card.small.valign-wrapper.transparent-lighten-5.green-text
+    .center.margin-horizontal
+      = fa_icon "plus", class: "fa-4x"
+      %br
+      %h4= t("#{type}.new")

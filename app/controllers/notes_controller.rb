@@ -12,6 +12,7 @@ class NotesController < ApplicationController
 
   def index
     @notes = NotesFilter.new(params: params, cookies: cookies).call
+    render "index_template", locals: { records: @notes }
   end
 
   def new

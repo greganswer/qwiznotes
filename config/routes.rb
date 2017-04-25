@@ -17,7 +17,8 @@ Rails.application.routes.draw do
       %w(privacy terms).each { |route| get route }
     end
     scope "/", controller: :home do
-      %w(contact).each { |route| get route }
+      get "contact" => redirect("/:locale/help")
+      match "help", via: %i(get post)
     end
     root "home#index"
   end
