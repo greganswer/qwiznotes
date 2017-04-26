@@ -47,7 +47,7 @@ Then(/^I should see that I am( not)? signed up$/) do |not_expected|
     step "I should see that I am not logged in"
     expect(page).to have_content(t("simple_form.error_notification.default_message"))
   else
-    expect(page.current_path).to eq(root_path)
+    expect(page.current_path).to eq(notes_path)
     expect(page).to have_content(t("devise.registrations.signed_up"))
   end
 end

@@ -32,15 +32,23 @@
   - parts.each_with_index do |part, index|
     .row
       .col.m12.l9{ class: index.even? ? '' : "push-l3" }
-        .hide-on-large-only
+        .hide-on-med-and-up
           = image_tag "sample/mobile_#{part}.png", width: "100%", alt: t("marketing.#{part}.image_alt")
-        .hide-on-med-and-down
+        .hide-on-small-only
           = image_tag "sample/#{part}.png", width: "100%", alt: t("marketing.#{part}.image_alt")
       .col.m12.l3{ class: index.even? ? '' : "pull-l9" }
         %h3= t("marketing.#{part}.heading")
         %h5= t("marketing.#{part}.text_html", site_name: site_name)
     %br
     %br
+
+  .row.hide-on-small-only
+    .col.m3.l3.offset-l1
+      = image_tag "sample/mobile.png", width: "100%", alt: t("marketing.mobile.image_alt")
+    .col.m9.l6.offset-l1
+      %h3= t("marketing.mobile.heading")
+      %h5= t("marketing.mobile.text_html", site_name: site_name)
+
 
 .empty-space
 .center= link_to t('marketing.link_signup'), new_user_registration_path, class: 'btn-large'

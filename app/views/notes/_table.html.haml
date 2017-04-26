@@ -3,6 +3,7 @@
     %thead
       %tr
         %th= Note.human_attribute_name(:title)
+        %th= Note.human_attribute_name(:concepts_count)
         %th= Note.human_attribute_name(:user)
         %th= Note.human_attribute_name(:updated_at)
         %th= t("app.actions", count: 2)
@@ -10,6 +11,7 @@
       - notes.each do |note|
         %tr[note]
           %td.title= link_to note.title.truncate(60), note
+          %td.concepts_count= note.concepts_count
           %td.user= render "users/chip", user: note.user
           %td.updated_at= local_time(note.updated_at, :medium)
           %td.actions

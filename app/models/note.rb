@@ -22,7 +22,7 @@ class Note < ApplicationRecord
   #
 
   def self.sort_by
-    %w(title created_at updated_at)
+    %w(title concepts_count created_at updated_at)
   end
 
   #

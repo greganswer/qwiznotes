@@ -3,11 +3,7 @@ class HomeController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    if user_signed_in?
-      @notes = current_user.notes.recently_updated
-        .page(params[:page]).per(params[:per_page])
-      render "index_template", locals: { records: @notes }
-    end
+    redirect_to notes_path(filter: { user: current_user.to_param }) if user_signed_in?
   end
 
   def help
