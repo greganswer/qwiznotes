@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   scope "/:locale", shallow: true do
     devise_for :users, path: :account
-    resources :comments, only: %i(show)
+    resources :comments, only: %i(show create update destroy)
     resources :users, only: %i(index show)
     resources :notes do
       member do

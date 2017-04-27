@@ -18,10 +18,4 @@ class NotePolicy < ApplicationPolicy
   def permitted_attributes
     %i(title content)
   end
-
-  class Scope < Scope
-    def resolve
-      scope
-    end
-  end
 end

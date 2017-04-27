@@ -1,7 +1,5 @@
 class CommentPolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      scope
-    end
+  def destroy?
+    user.try(:owns?, record) || user.try(:owns?, record.item)
   end
 end

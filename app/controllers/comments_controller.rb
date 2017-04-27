@@ -26,6 +26,33 @@ class CommentsController < ApplicationController
   end
 
   #
+  # Patch methods
+  #
+
+  def update
+    respond_to do |format|
+      if @comment.update(comment_params)
+        format.json { render :show, status: :ok, location: @comment }
+        format.js
+      else
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  #
+  # Delete methods
+  #
+
+  def destroy
+    @comment.destroy
+    respond_to do |format|
+      format.json { head :no_content }
+      format.js
+    end
+  end
+
+  #
   # Private
   #
 

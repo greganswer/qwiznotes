@@ -68,7 +68,8 @@ feature "Home pages" do
           else
             within("nav") { click_link "site-name" }
           end
-          expect(page).to have_css(".qa-page.home.index")
+          scope = item[:link] == I18n.t("app.sign_out") ? "home" : "notes"
+          expect(page).to have_css(".qa-page.#{scope}.index")
         end
       end
     end

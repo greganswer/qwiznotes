@@ -93,3 +93,10 @@ table {
   top: -20px;
   left: -10px;
 }
+
+textarea.panel {
+  @extend .z-depth-1;
+  border: 0;
+  padding: 12px;
+  resize: none;
+}
