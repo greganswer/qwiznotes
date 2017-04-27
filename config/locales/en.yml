@@ -8,6 +8,7 @@ en:
       note:
         concepts_count: Concepts
         title: Note title
+        tags: Tags
       user:
         created_at: Joined
         deleted_at: Deactivated

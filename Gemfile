@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'acts-as-taggable-on', '~> 4.0'
 gem 'autoprefixer-rails'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
@@ -87,6 +88,9 @@ end
 # Open links in Atom text editor -> Place cursor in the link and pres CTRL-SHIFT-O
 # Open links in Atom editor -> Place cursor in the link and pres CTRL-SHIFT-O
 #-----------------------------------------------------------------------------------------------------------
+#
+# acts-as-taggable-on -> custom tagging and dynamic contexts
+# https://github.com/mbleigh/acts-as-taggable-on
 #
 # autoprefixer-rails -> Parse CSS and add vendor prefixes
 # https://github.com/ai/autoprefixer-rails

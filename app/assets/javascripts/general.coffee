@@ -20,10 +20,9 @@ $(document).ready ->
   # @reference: https://github.com/devbridge/jQuery-Autocomplete
   #
 
-  source = $('.jsAjaxAutocomplete').data("source")
-  noSuggestionNotice = $(".jsAjaxAutocomplete").data("no-suggestion-notice")
-
-  $(".jsAjaxAutocomplete").devbridgeAutocomplete
+  source = $('.jsGlobalSearchAutocomplete').data("source")
+  noSuggestionNotice = $(".jsGlobalSearchAutocomplete").data("no-suggestion-notice")
+  $(".jsGlobalSearchAutocomplete").devbridgeAutocomplete
     paramName: "q"
     serviceUrl: source
     minChars: 2
@@ -35,6 +34,18 @@ $(document).ready ->
     onSelect: (suggestion) ->
       this.closest("form").submit()
       return
+
+  source = $('.jsAjaxAutocomplete').data("source")
+  noSuggestionNotice = $(".jsAjaxAutocomplete").data("no-suggestion-notice")
+  $(".jsAjaxAutocomplete").devbridgeAutocomplete
+    paramName: "q"
+    serviceUrl: source
+    minChars: 2
+    lookupLimit: 10
+    # showNoSuggestionNotice: true
+    # noSuggestionNotice: noSuggestionNotice
+    triggerSelectOnValidInput: false
+
 
   #
   # Materialize CSS

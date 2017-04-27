@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     devise_for :users, path: :account
     resources :comments, only: %i(show)
     resources :users, only: %i(index show)
+    resources :tags, only: %i(index) do
+      collection { get :autocomplete }
+    end
     resources :notes do
       member do
         scope "/", controller: :notes do

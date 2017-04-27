@@ -53,3 +53,19 @@ Note.find_each do |note|
     create(:random_comment, user_id: user_ids.sample, item: note, created_at: created_at)
   end
 end
+
+#
+# Tags
+#
+
+all_tags = %i(math english art languages history business geography technology computer science engineering)
+users.each do |user|
+  tags = all_tags.sample(rand(3..5))
+  user.tag_list = tags.join(', ')
+  user.save
+  puts %{SEEDING "#{tags.join(', ')}" TAGS FOR USER ##{user.id} NOTES}
+  user.notes.find_each do |note|
+    note.tag_list = tags.sample(rand(1..3)).join(', ')
+    note.save
+  end
+end

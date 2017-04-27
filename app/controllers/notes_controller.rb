@@ -37,14 +37,16 @@ class NotesController < ApplicationController
     authorize @note
     suggestions = Note.search(params[:q], {
         suggest: true,
-        fields: [{ title: :word_middle }],
+        fields: [{ title: :word_middle, tag: :word_middle }],
         limit: 10,
-        aggs: [:title],
+        aggs: [:title, :tag],
       })
-    suggestions = suggestions.aggs['title']['buckets']
-    render json: {
-      suggestions: suggestions.map { |item| "#{item['key']} (#{item['doc_count']})" }
-    }
+    render json: suggestions.aggs
+
+    suggestions = suggestions.aggs['title']['buckets'] + suggestions.aggs['tag']['buckets']
+    # render json: {
+    #   suggestions: suggestions.map { |item| "#{item['key']} (#{item['doc_count']})" }
+    # }
   end
 
 
@@ -113,6 +115,6 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:title, :content)
+    params.require(:note).permit(%i(title content tag_list))
   end
 end

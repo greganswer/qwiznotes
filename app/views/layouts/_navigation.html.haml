@@ -18,7 +18,7 @@
           %li.search
             = form_tag :notes, method: :get do |f|
               = material_icon.search.css_class("grey-text text-lighten-3")
-              = text_field_tag :q, nil, placeholder: t("note.search"), class: " jsAjaxAutocomplete", value: params[:q], "data-source": autocomplete_notes_path, "data-no-suggestion-notice": t("autocomplete.no_suggestions")
+              = text_field_tag :q, nil, placeholder: t("note.search"), class: " jsGlobalSearchAutocomplete", value: params[:q], "data-source": autocomplete_notes_path, "data-no-suggestion-notice": t("autocomplete.no_suggestions")
 
         -#
         -# Languages

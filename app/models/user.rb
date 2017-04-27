@@ -11,6 +11,8 @@ class User < ApplicationRecord
   before_validation :create_image_url_from_email, on: :create
   before_validation :create_unique_name_from_email, on: :create
 
+  acts_as_taggable
+
   # TODO: add :omniauthable
   devise :database_authenticatable,
     :confirmable,

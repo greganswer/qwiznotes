@@ -2,7 +2,7 @@ class NotesFilter  < ApplicationFilter
   def call
     return Note.page(params[:page]).per(cookies[:per_page]) if Note.count.zero?
     set_input
-    methods = %i(sort_by beginning_date end_date user)
+    methods = %i(sort_by beginning_date end_date user tag)
     methods.each { |method| send(method) if filter_params[method] }
     Note.search(params[:q].presence || '*', @input)
   end
@@ -41,5 +41,9 @@ class NotesFilter  < ApplicationFilter
     ids = [filter_params[:user]].flatten
     ids = ids.map { |hashid| User.hashid_decode(hashid) }
     (@input[:where]||= {})[:user_id] = ids
+  end
+
+  def tag
+    # (@input[:where]||= {})["taggings.tag.name"] = filter_params[:tag]
   end
 end

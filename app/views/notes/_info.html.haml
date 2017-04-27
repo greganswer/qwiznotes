@@ -22,6 +22,12 @@
         %b= "#{Note.human_attribute_name(:updated_at)}:"
         = local_time(note.updated_at, :medium)
 
+      - if (tags = note.tag_list).present?
+        %br
+        %br
+        - tags.each do |tag|
+          .chip= link_to tag, notes_path(filter: { tag: tag })
+
     - else
       -# OTHER PAGES
       %b #{t("app.viewed")}:

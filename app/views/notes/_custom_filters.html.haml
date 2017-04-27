@@ -1,3 +1,5 @@
+- args = { required: false, wrapper: false, include_blank: true, label: false}
+
 -#
 -# User
 -#
@@ -5,4 +7,12 @@
 .section
   .card-title= Note.human_attribute_name(:user)
   - collection = User.by_name
-  = f.input :user, required: false, collection: collection, label_method: :to_s, value_method: :to_param, wrapper: false, include_blank: true, allow_blank: true, selected: params[:filter].try(:[], :user), label: false, input_html: { multiple: true }
+  = f.input :user, args.merge(collection: collection, label_method: :to_s, value_method: :to_param, selected: params[:filter].try(:[], :user), input_html: { class: "icons", multiple: true })
+
+-#
+-# Tag
+-#
+
+.section
+  .card-title= Note.human_attribute_name(:tags)
+  = f.input :tag, args.merge(input_html: { class: "chips jsAjaxAutocomplete" })

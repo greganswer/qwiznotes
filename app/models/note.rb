@@ -10,12 +10,24 @@ class Note < ApplicationRecord
   after_initialize :set_defaults, unless: :persisted?
   before_validation :prepare_input
 
+  acts_as_taggable
+
+  #
+  # Searchkick
   #
   # To reindex run one of the following:
   # rake searchkick:reindex CLASS=Note
   # rake searchkick:reindex:all
   #
+
   searchkick index_prefix: :qwiznotes, word_middle: [:title], suggest: [:title], highlight: [:title], searchable: [:title]
+  # searchkick index_prefix: :qwiznotes, word_middle: [:title], suggest: [:title, :tag], highlight: [:title, :tag], searchable: [:title, :tag]
+
+  # scope :search_import, -> { includes(:tags) }
+
+  # def search_data
+  #   attributes.merge tag: tag_list
+  # end
 
   #
   # Class methods
