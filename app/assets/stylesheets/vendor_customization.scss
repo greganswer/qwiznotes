@@ -11,7 +11,6 @@
   cursor: pointer;
   padding: 6px 0 6px 50px;
   overflow: hidden;
-  white-space: nowrap;
 }
 .autocomplete-selected {
   background: #F0F0F0;
@@ -61,7 +60,8 @@ a.brand-logo {
 // C
 //
 
-.card, .card-panel {
+.card,
+.card-panel {
   &.transparent {
     @extend .transparent-lighten-5;
   }
@@ -75,6 +75,9 @@ a.brand-logo {
     font-weight: 300;
   }
   .card-title { font-size: 1.8em }
+  .card-action {
+    i.fa { line-height: initial }
+  }
 }
 
 .chip {
@@ -114,10 +117,6 @@ footer {
   .footer-copyright { background: darken($color, 5%) !important }
 }
 
-//
-// I
-//
-
 input.browser-default {
   border-bottom: none;
 
@@ -128,8 +127,15 @@ input.browser-default {
 }
 
 //
+// M
+//
+
+.material-icons, .mi { line-height: 1.2 }
+
+//
 // N
 //
+
 nav {
   input:not([type]):focus:not([readonly]),
   input[type=date]:focus:not([readonly]),

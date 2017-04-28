@@ -1,11 +1,11 @@
 - if flash[:notice] && flash[:notice].size >= 50
   .container.max-width600
-    #flash-message.card.padding8.blue.lighten-5
-      %h6.blue-text.text-darken-4= raw flash[:notice]
+    #flash-message.card.padding12.blue.lighten-5
+      %h6.blue-text.text-darken-4{ style: "font-size: 1.5em" }= raw flash[:notice]
     %br
 
 - if flash[:alert]
   .container.max-width600
-    #flash-message.card.padding8.red.lighten-5
-      %h6.red-text.text-darken-4= raw flash[:alert]
+    #flash-message.card.padding12.red.lighten-5
+      %h6.red-text.text-darken-4{ style: "font-size: 1.5em" }= raw flash[:alert]
     %br

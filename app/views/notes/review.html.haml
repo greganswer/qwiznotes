@@ -1,14 +1,32 @@
+
 -#
 -# Meta
 -#
 
--# meta_tag :keywords, @note.tags.join(",")
-- page_title "#{t("app.review")}: #{@note}"
-- breadcrumb :review_note, @note
+- if url_for[/demo/]
+  - page_title t("demo.review.title")
+  - breadcrumb :demo_review
+- else
+  -# meta_tag :keywords, @note.tags.join(",")
+  - page_title "#{t("app.review")}: #{@note}"
+  - breadcrumb :review_note, @note
 
 -#
 -# Content
 -#
+
+- if url_for[/demo/]
+  .container
+    .card
+      .card-content
+        .card-header= t("demo.header", step: 2)
+        %h5= t("demo.review.description_html", button: t("demo.quiz.link"))
+        - if flash[:not_enough_pairs]
+          %br
+          - count = Note::MINIMUM_NUMBER_OF_CONCEPTS
+          = t("demo.review.not_enough_pairs", count: count)
+  .empty-space
+
 
 .container.m-full-width
   .card-panel.m-no-margin-horizontal
@@ -38,4 +56,11 @@
               %td.term= concept[:term]
               %td.definition= concept[:definition]
       %br
-      .center= render "notes/buttons", note: @note
+      - unless url_for[/demo/]
+        .center= render "notes/buttons", note: @note
+
+- if url_for[/demo/]
+  %br
+  .center.max-width500.padding8.margin-horizontal
+    - klass = "waves-effect waves-light btn-large width-100percent"
+    = link_to t("demo.quiz.link"), demo_quiz_path, class: klass

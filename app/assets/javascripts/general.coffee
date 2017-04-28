@@ -1,21 +1,6 @@
 $(document).ready ->
 
   #
-  # Scroll to hash link on page
-  # Example link: /about#header-2, will scroll to the header with this id
-  #
-  $("html, body").hide()
-  if window.location.hash.length > 0
-    setTimeout (->
-      $("html, body").scrollTop(0).show()
-      $("html, body").animate { scrollTop: $(window.location.hash).offset().top }, 2000
-      return
-    ), 0
-  else
-    $("html, body").show()
-
-
-  #
   # Devbridge Autocomplete
   # @reference: https://github.com/devbridge/jQuery-Autocomplete
   #

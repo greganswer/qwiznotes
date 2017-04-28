@@ -1,6 +1,3 @@
-- klass ||= " "
-
-
 - if user_signed_in? && current_user.voted_for?(item)
   - key = :delete
   - method = :delete
@@ -11,7 +8,12 @@
   - icon = "star-o"
 
 
+- klass ||= "btn-flat waves-effect no-margin padding12-horizontal"
+- klass += " tooltipped" unless user_signed_in?
+- key = :needs_login unless user_signed_in?
+- tooltip = t("vote.#{key}", item: item.model_name.singular)
 
-= link_to [item, :vote], id: "vote_#{item.model_name.singular}_#{item.id}", class: klass, method: method, remote: true do
+
+= link_to [item, :vote], class: klass, method: method, remote: user_signed_in?, "data-tooltip": tooltip do
   = fa_icon(icon)
-  = item.votes_count
+  = number_with_delimiter(item.votes_count)

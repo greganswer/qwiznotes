@@ -36,6 +36,9 @@
         -# Resource links
         -#
 
+        - unless user_signed_in?
+          %li= link_to_hash_if_current t("demo.index.link"), demo_path
+
         - if policy(Note).new?
           %li= link_to_hash_if_current t("note.new"), new_note_path
 
@@ -124,6 +127,12 @@
   -#
   -# Resource links
   -#
+
+  - unless user_signed_in?
+    %li
+      = link_to_hash_if_current demo_path do
+        = fa_icon("play-circle-o")
+        = t("demo.index.link")
 
   - if policy(Note).new?
     %li

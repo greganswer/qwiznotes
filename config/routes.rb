@@ -30,6 +30,11 @@ Rails.application.routes.draw do
       get "contact" => redirect("/:locale/help")
       match "help", via: %i(get post)
     end
+    scope "/demo", as: :demo, controller: :demo do
+      get "/" => "demo#index"
+      %w(reload quiz).each { |route| get route => "demo##{route}"}
+      %w(review quiz-results).each { |route| match route, via: [:get, :post] }
+    end
     root "home#index"
   end
   get "/" => redirect("/en")

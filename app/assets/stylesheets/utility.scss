@@ -14,12 +14,14 @@
 .no-padding { padding: 0 }
 .margin2 { margin: 2px }
 .padding2 { padding: 2px }
+.padding2-horizontal { padding-left: 2px; padding-right: 2px }
 
 $i: 4;
 @while $i <= 32 {
   $px: unquote($i + "px");
   .margin#{$i} { margin: $px }
   .padding#{$i} { padding: $px }
+  .padding#{$i}-horizontal { padding-left: $px; padding-right: $px }
   $i: $i + 4;
 }
 

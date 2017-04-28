@@ -1,9 +1,15 @@
-- klass ||= "btn waves-effect margin4 width9em"
+- klass ||= "btn-flat waves-effect margin4 width9em"
 - full_view = true if full_view.nil?
+- namespace ||= "normal"
 
 
 %span.note-buttons
-  %span{ id: "vote_#{note.model_name.singular}_#{note.id}" }
+
+  -#
+  -# Vote, Show, review, quiz
+  -#
+
+  %span{ class: "vote_#{note.model_name.singular}_#{note.id}" }
     = render "votes/button", item: note
 
   - if policy(note).show?
@@ -18,6 +24,11 @@
 
   - if policy(note).edit?
     - if full_view
+
+      -#
+      -# Full view
+      -#
+
       = link_to_hash_if_current t('button.edit'), [:edit, note], class: klass
 
       - if policy(note).destroy?
@@ -25,17 +36,21 @@
 
     - else
 
-      %button.flat.secondary-color-text.dropdown-button.right{"data-activates": "note_dropdown_#{note.id}"}
+      -#
+      -# Menu view
+      -#
+
+      %button.flat.secondary-color-text.dropdown-button.right{"data-activates": "note_dropdown_#{note.id}_#{namespace}"}
         = material_icon.more_vert
 
-      %ul.dropdown-content{ id: "note_dropdown_#{note.id}" }
+      %ul.dropdown-content{ id: "note_dropdown_#{note.id}_#{namespace}" }
         %li
-          = link_to_hash_if_current [:edit, note], class: klass do
+          = link_to_hash_if_current [:edit, note] do
             = fa_icon("pencil")
             = t('button.edit')
 
         - if policy(note).destroy?
           %li
-            = link_to_hash_if_current note, method: :delete, data: { confirm: t("note.confirm_delete") }, class: klass do
+            = link_to_hash_if_current note, method: :delete, data: { confirm: t("note.confirm_delete") } do
               = fa_icon("times")
               = t('button.delete')

@@ -48,6 +48,30 @@ args.each do |route, translation|
 end
 
 #
+# Demo
+#
+
+crumb :demo do
+  link t("demo.index.link"), demo_path
+  parent :root
+end
+
+crumb :demo_review do
+  link t("demo.review.link"), demo_review_path
+  parent :demo
+end
+
+crumb :demo_quiz do
+  link Quiz.model_name.human, demo_quiz_path
+  parent :demo_review
+end
+
+crumb :demo_quiz_results do
+  link t("app.results"), demo_quiz_results_path
+  parent :demo_quiz
+end
+
+#
 # Notes
 #
 

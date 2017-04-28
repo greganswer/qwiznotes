@@ -2,13 +2,25 @@
 -# Meta
 -#
 
--# meta_tag :keywords, @note.tags.join(",")
-- page_title "#{t("app.quiz_results")}: #{@note}"
-- breadcrumb :quiz_results_note, @note
+- if url_for[/demo/]
+  - page_title t("demo.quiz_results.title")
+  - breadcrumb :demo_quiz_results
+- else
+  -# meta_tag :keywords, @note.tags.join(",")
+  - page_title "#{t("app.quiz_results")}: #{@note}"
+  - breadcrumb :quiz_results_note, @note
 
 -#
 -# Content
 -#
+
+- if url_for[/demo/]
+  .container
+    .card
+      .card-content
+        .card-header= t("demo.header", step: 4)
+        %h5= t("demo.quiz_results.description_html", button: t("quiz.regenerate"))
+  .empty-space
 
 -# RESULTS
 
@@ -34,66 +46,76 @@
     - text_color = "red-text"
 
   .container.m-full-width
-    .card.padding8
-      -# Percentage
+    .row
+      .card.padding8
+        -# Percentage
 
-      .row
-        .col.s12.m4#results-percentage.center
-          %h2{class: text_color}
-            %i.material-icons.md-36= icon
-            = percent
-            %span.small-superscript %
-          %p.bold{class: text_color} #{t("app.correct_answers", count: 2)}: #{quiz.correct_answers.count} / #{quiz.questions.count}
+        .row
+          .col.s12.m4#results-percentage.center
+            %h2{class: text_color}
+              %i.material-icons.md-36= icon
+              = percent
+              %span.small-superscript %
+            %p.bold{class: text_color} #{t("app.correct_answers", count: 2)}: #{quiz.correct_answers.count} / #{quiz.questions.count}
 
-        -# Incorrect answers
+          -# Incorrect answers
 
-        .col.s12.m4
-          %h5.grey-text= t("app.incorrect_answers", count: quiz.incorrect_answers.count)
-          - if quiz.incorrect_answers.count.zero?
-            = t("app.none")
-          - else
-            - quiz.incorrect_answers.each do |question|
-              %a.btn.btn-small.grey{href: "#question_#{question.number}"}= question.number
+          .col.s12.m4
+            %h5.grey-text= t("app.incorrect_answers", count: quiz.incorrect_answers.count)
+            - if quiz.incorrect_answers.count.zero?
+              = t("app.none")
+            - else
+              - quiz.incorrect_answers.each do |question|
+                %a.btn.btn-small.grey.jsScrollToLink{href: "#question_#{question.number}"}= question.number
 
-        -# Unanswered questions
+          -# Unanswered questions
 
-        .col.s12.m4
-          %h5.grey-text= t("app.unanswered_questions", count: quiz.unanswerd_questions.count)
-          - if quiz.unanswerd_questions.count.zero?
-            = t("app.none")
-          - else
-            - quiz.unanswerd_questions.each do |question|
-              %a.btn.btn-small.grey{href: "#question_#{question.number}"}= question.number
+          .col.s12.m4
+            %h5.grey-text= t("app.unanswered_questions", count: quiz.unanswerd_questions.count)
+            - if quiz.unanswerd_questions.count.zero?
+              = t("app.none")
+            - else
+              - quiz.unanswerd_questions.each do |question|
+                %a.btn.btn-small.grey.jsScrollToLink{href: "#question_#{question.number}"}= question.number
 
     -# QUIZ
 
-    .card-panel.m-no-margin-horizontal
-      = render "notes/info", note: @note
+    .row
+      .card-panel.m-no-margin-horizontal
+        = render "notes/info", note: @note
 
-      -# Question
+        -# Question
 
-      -quiz.questions.each do |question|
-        -# This ID is an anchor.
-        .anchor{id: "question_#{question.number}"}
-        %h5= "#{question.number}) #{question}"
+        -quiz.questions.each do |question|
+          -# This ID is an anchor.
+          .anchor{id: "question_#{question.number}"}
+          %h5= "#{question.number}) #{question}"
 
-        -# Options
+          -# Options
 
-        - question.options.each do |option|
-          - if option.selected? && option.correct_answer?
-            .green-text.text-darken-2.bold= raw "#{fa_icon "check"} (#{option.letter}) #{sanitize(option.to_s)}"
-          - elsif option.selected?
-            .red-text.text-darken-3.bold= raw "#{fa_icon "close"} (#{option.letter}) #{sanitize(option.to_s)}"
-          - else
-            .grey-text.text-darken-2{style: "margin-left: 1.2em"}= raw "(#{option.letter}) #{sanitize(option.to_s)}"
+          - question.options.each do |option|
+            - if option.selected? && option.correct_answer?
+              .green-text.text-darken-2.bold= raw "#{fa_icon "check"} (#{option.letter}) #{sanitize(option.to_s)}"
+            - elsif option.selected?
+              .red-text.text-darken-3.bold= raw "#{fa_icon "close"} (#{option.letter}) #{sanitize(option.to_s)}"
+            - else
+              .grey-text.text-darken-2{style: "margin-left: 1.2em"}= raw "(#{option.letter}) #{sanitize(option.to_s)}"
 
-        %br
-        %h5= t("app.correct_answers", count: 1)
-        %p{style: "margin: 0 0 2em 2em"}= question.correct_answer
-        .divider
-        %br
+          %br
+          %h5= t("app.correct_answers", count: 1)
+          %p{style: "margin: 0 0 2em 2em"}= question.correct_answer
+          .divider
+          %br
 
-      -# Action buttons
+-# Action buttons
 
-      .center
-        = link_to t("quiz.regenerate"), quiz_note_path(@note), class: "waves-effect waves-light btn-large"
+.center.max-width500.padding8.margin-horizontal
+  - if url_for[/demo/]
+    = link_to t('marketing.link_signup'), new_user_registration_path, class: 'btn-large green'
+    %h5= t("app.or").upcase
+
+  - link = url_for[/demo/] ? demo_quiz_path : [:quiz, @note]
+  - klass = "waves-effect waves-light btn-large"
+  - klass += " width-100percent" unless url_for[/demo/]
+  = link_to t("quiz.regenerate"), link, class: klass
+

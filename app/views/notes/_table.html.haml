@@ -15,4 +15,4 @@
           %td.user= render "users/chip", user: note.user
           %td.updated_at= local_time(note.updated_at, :medium)
           %td.actions
-            = render "buttons/record_index", record: note, buttons: %i(show edit destroy)
+            = render "notes/buttons", note: note, klass: "secondary-color-text", full_view: false, namespace: "table"

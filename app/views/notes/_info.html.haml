@@ -1,36 +1,37 @@
 .grey-text
 
-  %p.right
+  .right
     - translation = url_for[/quiz/] ? "app.questions" : "app.concepts"
     %b= "#{t(translation, count: 2)}:"
     = url_for[/quiz/] ? note.quiz.questions.count : note.concepts_count
 
-  %p.left
-    = render "users/chip", user: note.user
+  .left
+    - if note.user
+      = render "users/chip", user: note.user
+      %br
 
-    %br
 
-    - if current_page?(note)
-      -# THE SHOW PAGE
+    - if url_for[/quiz/]
+      %b #{t("app.viewed")}:
+      = local_time(Time.current, :medium)
 
+    - else
       %b= "#{Note.human_attribute_name(:created_at)}:"
-      = local_time(note.created_at, :medium)
+      = local_time(note.created_at || Time.current, :medium)
 
       - if note.updated_at != note.created_at
         %br
         %b= "#{Note.human_attribute_name(:updated_at)}:"
-        = local_time(note.updated_at, :medium)
+        = local_time(note.updated_at || Time.current, :medium)
 
-    - else
-      -# OTHER PAGES
-      %b #{t("app.viewed")}:
-      = local_time(Time.current, :medium)
 
-    %br
-    %br
-    = render "notes/buttons", note: note, klass: "btn-flat waves-effect"
+    - unless url_for[/demo/]
+      %br
+      %br
+      = render "notes/buttons", note: note, klass: "btn-flat waves-effect"
 
 .clear-both
-- unless current_page?(review_note_path(note))
+- unless url_for[/review/]
+  %br
   .divider
 %br

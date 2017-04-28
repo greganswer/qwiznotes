@@ -42,9 +42,7 @@ class NotesController < ApplicationController
         aggs: [:title],
       })
     suggestions = suggestions.aggs['title']['buckets']
-    render json: {
-      suggestions: suggestions.map { |item| "#{item['key']} (#{item['doc_count']})" }
-    }
+    render json: { suggestions: suggestions.map { |item| item['key'] } }
   end
 
 
@@ -110,6 +108,17 @@ class NotesController < ApplicationController
   def set_note
     @note = Note.find_using_hashid(params[:id])
       authorize @note
+      set_recently_viewed_notes
+  end
+
+  def set_recently_viewed_notes
+    cookies.permanent[:recently_viewed_notes] ||= ""
+    cookie_as_array = cookies.permanent[:recently_viewed_notes].split(',')
+    return if !request.get? || request.xhr?
+    return if cookie_as_array.last == @note.id.to_s
+    cookie_as_array.delete_at(0) if cookie_as_array.size >= 3
+    cookie_as_array << @note.id
+    cookies.permanent[:recently_viewed_notes] = cookie_as_array.join(',')
   end
 
   def note_params

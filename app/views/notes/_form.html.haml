@@ -1,7 +1,8 @@
 = tinymce_assets
 
 .container.s-full-width
-  = simple_form_for note do |f|
+  - input = url_for[/demo/] ? { url: demo_review_path } : {}
+  = simple_form_for note, input do |f|
     = render "form_errors", record: note
 
     .hide-on-med-and-down

@@ -8,6 +8,7 @@ en:
       note:
         concepts_count: Concepts
         title: Note title
+        votes_count: Favourites
       user:
         created_at: Joined
         deleted_at: Deactivated
@@ -67,16 +68,19 @@ en:
     incorrect_answers:
       one: Incorrect answer
       other: Incorrect answers
+    instructions: Instructions
     keep_me_signed_in: Keep me signed in
     minimum_characters: "%{count} characters minimum"
     new: New
     none: None
     none_of_the_above: None of the above.
+    or: or
     per_page: Per page
     questions:
       one: Question
       other: Questions
     quiz_results: Quiz results
+    recently_viewed: Recently viewed
     required_fields: "* indicates required fields"
     results: Results
     review: Review
@@ -132,6 +136,26 @@ en:
     message_not_sent: Unable to send message at this time. Please try again in 2 minutes.
     message_sent: Your message has been sent. We will get back to you shortly.
     submit: Send message
+  demo:
+    header: Instructions - Step %{step}
+    index:
+      description_html: Welcome to the %{site_name} demo. We will demonstrate how take notes and quizzes in <b> 4 easy steps</b>.<br><br>Below is a sample of acceptable <b>term/defintion pairs</b> for your notes. Click the %{reload_button} button below to reload the demo term/defintion pairs. Once you click the green <b>Save</b> button below, it will be automatically formatted into a table for viewing. We need a minimum of %{count} pairs in order to generate a quiz.
+      link: Demo
+      reload_button: Reload sample content
+      title: 'Demo - Step 1: Enter your note'
+    quiz:
+      description_html: This quiz was automatically generated based on the note you saved in Step 1. Everytime you generate a quiz, the questions and options are randomized. Answer at least one question then click <b>%{button}</b> button at the bottom of the page.
+      link: Take a quiz
+      title: 'Demo - Step 3: Quiz your note'
+    quiz_results:
+      description_html: Here are the results for your quiz. The first secttion below shows the number of correct answers. If you missed any questions or got them wrong, you can click on the number below to jump directly to that question.<br><br>The next section shows the quiz results along with the correct answers underneath each question.
+      title: 'Demo - Step 4: View your results'
+    review:
+      description_html: Here is a sample table based on terms and definitions from the previous page. When ready, click the <b>%{button}</b> button, located at the bottom of the page.
+      link: Review
+      not_enough_pairs: 'Note: Sample concepts are being displayed because the note you saved had less than %{count} concepts.'
+      submit: Continue to quiz
+      title: 'Demo - Step 2: Review your note'
   helpers:
     leave_field_blank: Leave this field blank
     page_entries_info:
@@ -159,7 +183,7 @@ en:
       text_html: Not only can you write notes and take quizzes, you can also share them with your friends. The notes and quizzes that you save are available to the community and guess what? <strong>It's totaly free!</strong>
     header: Stay focused
     keywords: quiz, quizzes, test, testing, note, multiple choice, students, study, studying
-    link_signup: Want better grades?
+    link_signup: Sign up for free
     mobile:
       heading: Mobile ready
       image_alt: Sample of mobile view
@@ -190,7 +214,7 @@ en:
     restored: Note restored
     sample:
       content: "<b>Sample Content (can be deleted or modified)</b><br><br><strong>Flummox</strong> to perplex or bewilder<br><br>Crest - the highest part of a hill or mountain range; summit.<br><br>Portent -&gt; an indication or omen of something about to happen, especially something momentous.<br><br>Compile ~ to put together (documents, selections, or other materials) in one book or work.<br><br>Lease: a contract renting land, buildings, etc., to another; a contract or instrument conveying property to another for a specified period or for a period determinable at the will of either lessor or lessee in consideration of rent or other compensation.<br><br>Missive = sent or about to be sent, especially of a letter from an official source."
-      title: Note Title
+      title: Demo note
     search: Search notes
     untitled_note: Untitled note
     updated: Note updated
@@ -215,5 +239,5 @@ en:
     created: "%{item} favourited"
     delete: Unfavorite this %{item}
     deleted: "%{item} unfavourited"
-    needs_login_html: Please %{link} to favourite this %{item}
+    needs_login: Please login to favourite this %{item}
     not_created: Unable to favourite %{item}

@@ -2,12 +2,28 @@
 -# Meta
 -#
 
-- meta_tag :robots, "noindex, nofollow"
-- page_title t('note.new')
-- breadcrumb :new_note
+- if url_for[/demo/]
+  - page_title t("demo.index.title")
+  - breadcrumb :demo
+- else
+  - meta_tag :robots, "noindex, nofollow"
+  - page_title t("note.new")
+  - breadcrumb :new_note
 
 -#
 -# Content
 -#
 
-= render 'form', note: @note
+- if url_for[/demo/]
+  .container
+    .card
+      .card-content
+        .card-header= t("demo.header", step: 1)
+        - reload_button = link_to t("demo.index.reload_button"), demo_reload_path
+        - count = Note::MINIMUM_NUMBER_OF_CONCEPTS
+        %h5= t("demo.index.description_html", reload_button: reload_button, count: count, site_name: site_name)
+
+    .right= link_to t("demo.index.reload_button"), demo_reload_path, class: "btn z-depth-0 blue-grey"
+  .empty-space
+
+= render "notes/form", note: @note

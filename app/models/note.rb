@@ -9,7 +9,7 @@ class Note < ApplicationRecord
 
   validates :content, presence: true
   after_initialize :set_defaults, unless: :persisted?
-  before_validation :prepare_input
+  before_validation :prepare_inputs
 
   #
   # To reindex run one of the following:
@@ -35,7 +35,7 @@ class Note < ApplicationRecord
   #
 
   def self.sort_by
-    %w(title concepts_count created_at updated_at)
+    %w(title concepts_count votes_count created_at updated_at)
   end
 
   #
@@ -65,6 +65,15 @@ class Note < ApplicationRecord
     @quiz_results = Quiz.build_from_quiz_hash(quiz_hash, user_answers)
   end
 
+  def prepare_inputs
+    self.title = html_clean(self.title.to_s)
+    self.title = I18n.t('note.untitled_note') if self.title.blank?
+    self.content = html_clean(self.content.to_s)
+    @concepts = nil
+    self.concepts_count = concepts.count
+    self
+  end
+
   #
   # Private
   #
@@ -73,12 +82,5 @@ class Note < ApplicationRecord
 
   def set_defaults
     self.content = '' if self.content.blank?
-  end
-
-  def prepare_input
-    self.title = html_clean(self.title.to_s)
-    self.title = I18n.t('note.untitled_note') if self.title.blank?
-    self.content = html_clean(self.content.to_s)
-    self.concepts_count = concepts.count
   end
 end
