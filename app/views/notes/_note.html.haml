@@ -9,4 +9,4 @@
     %p.grey-text.text-darken-1= strip_tags(note.content).truncate(180, separator: ' ')
 
   .card-action
-    = render "notes/buttons", note: note, klass: " "
+    = render "notes/buttons", note: note, klass: " ", full_view: false

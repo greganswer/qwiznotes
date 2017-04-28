@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   scope "/:locale", shallow: true do
-    devise_for :users, path: :account
-    resources :comments, only: %i(show create update destroy)
-    resources :users, only: %i(index show)
+
+    #
+    # User
+    #
+
     resources :notes do
       member do
         scope "/", controller: :notes do
@@ -10,9 +12,17 @@ Rails.application.routes.draw do
           %w(quiz-results).each { |route| post route }
         end
       end
-      resources :comments, only: %i(create)
+      resources :comments, only: %i(show create update destroy)
+      resource :vote, only: %i(create destroy)
       collection { get :autocomplete }
     end
+    resources :users, only: %i(index show)
+
+    #
+    # Guest
+    #
+
+    devise_for :users, path: :account
     scope "legal", controller: :legal do
       %w(privacy terms).each { |route| get route }
     end

@@ -53,3 +53,18 @@ Note.find_each do |note|
     create(:random_comment, user_id: user_ids.sample, item: note, created_at: created_at)
   end
 end
+
+#
+# Votes
+#
+
+MAX_VOTES_PER_ITEM = 5
+user_ids = User.ids
+Note.find_each do |note|
+  puts "SEEDING UP TO #{MAX_VOTES_PER_ITEM} VOTES FOR NOTE ##{note.id}"
+  count = rand(0..MAX_VOTES_PER_ITEM)
+  count.times do
+    created_at = Faker::Time.between(note.created_at, Time.current)
+    create(:vote, user_id: user_ids.sample, item: note, created_at: created_at)
+  end
+end

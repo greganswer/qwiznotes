@@ -179,6 +179,7 @@ en:
       text_html: In order to magically generate a quiz from your notes, enter your notes as term/definition pairs. You can "separate" the pair by making the term <strong>bold or by adding one of the following separator symbols:</strong> dash, equal, colon, tilde, or arrow.
     title: How does %{site_name} work?
   note:
+    confirm_delete: Are you sure you want to delete this note?
     created: Note created
     deleted: Note deleted
     fix_this_note: Please click the "edit" button below to improve this note.
@@ -205,3 +206,14 @@ en:
   simple_form:
     required:
       html: <abbr class="tooltipped" data-tooltip="required" data-position="right">*</abbr>
+  vote:
+    count:
+      one: 1 favourite
+      other: "%{count} favourites"
+      zero: 0 favourites
+    create: Favorite this %{item}
+    created: "%{item} favourited"
+    delete: Unfavorite this %{item}
+    deleted: "%{item} unfavourited"
+    needs_login_html: Please %{link} to favourite this %{item}
+    not_created: Unable to favourite %{item}

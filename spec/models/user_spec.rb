@@ -77,4 +77,14 @@ RSpec.describe User do
       expect(current_user.owns?(create(:note))).to be false
     end
   end
+
+  context "#voted_for?" do
+    it "it returns true if the user voted_for the model" do
+      expect(current_user.voted_for?(create(:vote, user: current_user).item)).to be true
+    end
+
+    it "returns false if the user DID NOT vote for the model" do
+      expect(current_user.voted_for?(create(:vote).item)).to be false
+    end
+  end
 end

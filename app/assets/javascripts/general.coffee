@@ -44,6 +44,7 @@ $(document).ready ->
   $("select").material_select();
   $(".jsParallax").parallax()
   $(".datepicker").pickadate(selectMonths: true, selectYears: 20)
+  $('.dropdown-button').dropdown({ constrainWidth: false, hover: true })
 
   #
   # JS Timezone Detect

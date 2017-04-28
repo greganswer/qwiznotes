@@ -1,0 +1,17 @@
+- klass ||= " "
+
+
+- if user_signed_in? && current_user.voted_for?(item)
+  - key = :delete
+  - method = :delete
+  - icon = "star"
+- else
+  - key = :create
+  - method = :post
+  - icon = "star-o"
+
+
+
+= link_to [item, :vote], id: "vote_#{item.model_name.singular}_#{item.id}", class: klass, method: method, remote: true do
+  = fa_icon(icon)
+  = item.votes_count

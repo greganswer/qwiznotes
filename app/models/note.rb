@@ -4,7 +4,8 @@ class Note < ApplicationRecord
   MINIMUM_NUMBER_OF_CONCEPTS = Quiz::OPTIONS_COUNT + 1
 
   belongs_to :user, counter_cache: true
-  has_many :comments, as: :item
+  has_many :comments, as: :item, dependent: :destroy
+  has_many :votes, as: :item, dependent: :destroy
 
   validates :content, presence: true
   after_initialize :set_defaults, unless: :persisted?
@@ -16,6 +17,18 @@ class Note < ApplicationRecord
   # rake searchkick:reindex:all
   #
   searchkick index_prefix: :qwiznotes, word_middle: [:title], suggest: [:title], highlight: [:title], searchable: [:title]
+
+  #
+  # Scopes
+  #
+
+  scope :most_voted, -> { order "votes_count DESC" }
+
+  scope :by_voted_by, -> (input) do
+    return unless (voted_by = User.find_by name: input[:voted_by])
+    ids = Vote.where(user_id: voted_by.id, item_type: model_name.name).pluck(:item_id)
+    where id: ids
+  end
 
   #
   # Class methods

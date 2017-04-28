@@ -1,13 +1,11 @@
 FactoryGirl.define do
-  factory :comment do
+  factory :vote do
     user
     item { create(:note) }
-    sequence(:content) { |n| "Content #{n}" }
 
-    factory :random_comment do
+    factory :random_vote do
       user { create(:random_user) }
       item { create(:random_note, user: create(:random_user)) }
-      content { Faker::Hipster.paragraph(rand(1..3)) }
       has_random_dates
     end
   end

@@ -2,7 +2,10 @@ class User < ApplicationRecord
   DEFAULT_SORT_BY = "name"
   DEFAULT_SORT_DIRECTION = "asc"
 
+  has_many :favorites, class_name: "Vote"
   has_many :notes, dependent: :destroy
+  has_many :votes, as: :item, dependent: :destroy
+
   validates :name, {
     format: { with: /\A[-\w]+\z/ },
     presence: true,
@@ -42,6 +45,10 @@ class User < ApplicationRecord
 
   def owns?(model)
     id == model.try(:user_id)
+  end
+
+  def voted_for?(model)
+    model.votes.where(user_id: id).any?
   end
 
   #
