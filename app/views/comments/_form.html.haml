@@ -1,56 +1,59 @@
 - if policy(Comment).index?
   .anchor#comments
-  .card
-    .card-content
-      .card-title= t("comment.count", count: item.comments.count)
+  .row
+    .card
+      .card-content
+        .card-title= t("comment.count", count: item.comments.count)
 
-      - #
-      - # Comments
-      - #
+        - #
+        - # Comments
+        - #
 
-      - comments = item.comments.includes(:user, :item).by_created.page(params[:page])
-      - comments.each do |comment|
-        - user = comment.user
+        - comments = item.comments.includes(:user, :item).by_created.page(params[:page])
         %ul.collection.no-border
-          %li.collection-item.avatar.no-border[comment]
-            = render "users/image_link", user: user
-            .user-name= link_to user, user
-            .grey-text= local_time(comment.created_at, :medium_with_time)
-            .jsCommentContent= comment.content
+          - comments.each do |comment|
+            - user = comment.user
+            %li.collection-item.avatar.no-border[comment]
+              = render "users/image_link", user: user
+              .user-name= link_to user, user
+              .grey-text= local_time(comment.created_at, :medium_with_time)
+              .jsCommentContent= comment.content
 
-            -# Buttons
+              -# Buttons
 
-            - if policy(comment).destroy?
-              .jsCommentButtons
-                - if policy(comment).edit?
-                  %button.btn-flat.jsCommentEditButton= t("button.edit")
-                = link_to t("button.delete"), comment, method: :delete, data: { confirm: t("comment.confirm_delete") }, remote: true, class: "btn-flat"
+              - if policy(comment).destroy?
+                .jsCommentButtons
+                  - if policy(comment).edit?
+                    %button.btn-flat.jsCommentEditButton= t("button.edit")
+                  = link_to t("button.delete"), comment, method: :delete, data: { confirm: t("comment.confirm_delete") }, remote: true, class: "btn-flat"
 
-            -# Edit form
+              -# Edit form
 
-            - if policy(comment).edit?
-              .jsCommentEditForm.hide
-                = simple_form_for(comment, remote: true, method: :patch) do |f|
-                  = f.input :content, required: true, label: false, wrapper: false, value: comment.content, input_html: { class: "panel" }
-                  = f.button :submit, t("comment.submit"), class: "btn"
-                  %button.btn.grey.lighten-2.z-depth-0.jsCommentEditCancelButton{ type: :button }= t("button.cancel")
+              - if policy(comment).edit?
+                .jsCommentEditForm.hide
+                  = simple_form_for(comment, remote: true, method: :patch) do |f|
+                    = f.input :content, required: true, label: false, wrapper: false, value: comment.content, input_html: { class: "panel" }
+                    = f.button :submit, t("comment.submit"), class: "btn"
+                    %button.btn.grey.lighten-2.z-depth-0.jsCommentEditCancelButton{ type: :button }= t("button.cancel")
 
 
-      - #
-      - # Create form
-      - #
+          - #
+          - # Create form
+          - #
 
-      - if policy(Comment).new?
-        - @comment ||= Comment.new
-        = simple_form_for([item, @comment]) do |f|
-          = render "form_errors", record: @comment
-          = f.input :content, required: true, label: false, placeholder: t("comment.placeholder"), wrapper_html: { class: "no-margin" }, input_html: { class: "materialize-textarea" }
-          = f.button :submit, t("comment.submit"), id: "qa-comment-save", class: "btn"
+          - if policy(Comment).new?
+            %li.collection-item.avatar.no-border
+              - @comment ||= Comment.new
+              = render "users/image_link", user: current_user
+              = simple_form_for([item, @comment]) do |f|
+                = render "form_errors", record: @comment
+                = f.input :content, required: true, label: false, placeholder: t("comment.placeholder"), wrapper_html: { class: "no-margin" }, input_html: { class: "materialize-textarea" }
+                = f.button :submit, t("comment.submit"), id: "qa-comment-save", class: "btn"
 
-      - unless user_signed_in?
-        %br
-        - link = link_to t("app.sign_in").downcase, new_user_session_path
-        %h3.center= t("comment.needs_login_html", link: link)
+        - unless user_signed_in?
+          %br
+          - link = link_to t("app.sign_in").downcase, new_user_session_path
+          %h3.center= t("comment.needs_login_html", link: link)
 
 
   = render "pagination", records: comments

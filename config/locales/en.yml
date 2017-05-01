@@ -81,6 +81,7 @@ en:
       other: Questions
     quiz_results: Quiz results
     recently_viewed: Recently viewed
+    recently_viewed_items: Recently viewed %{items}
     required_fields: "* indicates required fields"
     results: Results
     review: Review
@@ -176,7 +177,7 @@ en:
     add_notes:
       heading: Add your notes
       image_alt: Sample of note editor
-      text_html: Effortlessly add a variety of notes using the text editor here on %{site_name}. When you're done, <strong>save them to your account</strong> and share them with your friends. Don't worry, we got you covered with formatting and spell check.
+      text_html: Effortlessly add a variety of notes using the text editor here on %{site_name}. When you're done, <strong>save them to your account</strong> and share them with your friends.
     community:
       heading: Share with the community
       image_alt: Sample of community notes

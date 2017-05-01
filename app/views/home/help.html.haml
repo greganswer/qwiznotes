@@ -14,8 +14,8 @@
     = render "form_errors", record: @contact
 
     .card-panel
-      = f.input :email, required: true, autofocus: user_signed_in?
-      = f.input :message, required: true, autofocus: !user_signed_in?, as: :text, input_html: { class: "materialize-textarea" }
+      = f.input :email, required: true, autofocus: !user_signed_in?
+      = f.input :message, required: true, autofocus: user_signed_in?, as: :text, input_html: { class: "materialize-textarea" }
       .hide=f.input :nickname, hint: t("helpers.leave_field_blank")
 
     = render "buttons/submit", f: f, submit_text: t("contact.submit")

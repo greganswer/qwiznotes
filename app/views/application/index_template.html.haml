@@ -26,25 +26,6 @@
           %br
 
 -#
--# Recently viewed records
--#
-
-- if cookies[:recently_viewed_notes].present?
-  .row
-    .col.s12.m6.l4.offset-m6.offset-l8
-      .card-panel
-        .card-title #{t("app.recently_viewed")}:
-        - ids = cookies[:recently_viewed_notes].split(',').reverse
-        - notes = Note.includes(:user).find(ids)
-        %ol
-          - notes.each do |note|
-            %li
-              = link_to note, note
-              %br
-              = render "users/chip", user: note.user
-            %br
-
--#
 -# Content
 -#
 
@@ -76,6 +57,26 @@
 
 
   .col.s12.m12.l3
+
+    -#
+    -# Recently viewed records
+    -#
+
+    - if cookies[:recently_viewed_notes].present?
+      .card-panel
+        - items = Note.model_name.human(count: 2).downcase
+        .card-title= t("app.recently_viewed_items", items: items)
+        - ids = cookies[:recently_viewed_notes].split(',').reverse
+        - notes = Note.includes(:user).find(ids)
+        %ol
+          - notes.each do |note|
+            %li= link_to note, note
+            %br
+
+    -#
+    -# Filter panel
+    -#
+
     = render "filter_panel", model: klass, has_new_button: has_new_button, date_columns: date_columns
 
 
