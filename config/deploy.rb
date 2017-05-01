@@ -14,4 +14,5 @@ end
 
 task :staging do
   set :deploy_to, "/home/deploy/staging.#{app_name}"
+  set :branch, 'staging'
 end
