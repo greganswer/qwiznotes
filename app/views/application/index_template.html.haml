@@ -67,7 +67,7 @@
         - items = Note.model_name.human(count: 2).downcase
         .card-title= t("app.recently_viewed_items", items: items)
         - ids = cookies[:recently_viewed_notes].split(',').reverse
-        - notes = Note.includes(:user).find(ids)
+        - notes = Note.find(ids)
         %ol
           - notes.each do |note|
             %li= link_to note, note
