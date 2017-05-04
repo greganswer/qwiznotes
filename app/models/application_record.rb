@@ -27,6 +27,10 @@ class ApplicationRecord < ActiveRecord::Base
     find(hashid_decode(hashid))
   end
 
+  def css_class
+    "#{model_name.singular} #{model_name.singular}_#{id}"
+  end
+
   def to_param
     self.class.hashids.encode(id)
   end

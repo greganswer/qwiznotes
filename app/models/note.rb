@@ -1,5 +1,5 @@
 class Note < ApplicationRecord
-  DEFAULT_SORT_BY = "created_at"
+  DEFAULT_SORT_BY = "notes.created_at"
   DEFAULT_SORT_DIRECTION = "desc"
   MINIMUM_NUMBER_OF_CONCEPTS = Quiz::OPTIONS_COUNT + 1
 
@@ -10,13 +10,6 @@ class Note < ApplicationRecord
   validates :content, presence: true
   after_initialize :set_defaults, unless: :persisted?
   before_validation :prepare_inputs
-
-  #
-  # To reindex run one of the following:
-  # rake searchkick:reindex CLASS=Note
-  # rake searchkick:reindex:all
-  #
-  searchkick index_prefix: :qwiznotes, word_middle: [:title], suggest: [:title], highlight: [:title], searchable: [:title]
 
   #
   # Scopes
@@ -35,7 +28,7 @@ class Note < ApplicationRecord
   #
 
   def self.sort_by
-    %w(title concepts_count votes_count created_at updated_at)
+    %w(notes.title notes.concepts_count users.name notes.votes_count notes.created_at notes.updated_at)
   end
 
   #

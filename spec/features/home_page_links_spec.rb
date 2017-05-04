@@ -6,12 +6,17 @@ feature "Home pages" do
 
   GUEST_LINKS = {
     "nav" => [
+      { link: I18n.t("demo.index.link"), css: ".qa-page.demo.index" },
       { link: Note.model_name.human(count: 2), css: ".qa-page.notes.index" },
+      { link: I18n.t("app.help"), css: ".qa-page.home.help" },
       { link: I18n.t("devise.registrations.new.sign_up"), css: ".qa-page.devise.registrations.new" },
       { link: I18n.t("app.sign_in"), css: ".qa-page.devise.sessions.new" },
     ],
     "footer" => [
-      { link: Note.model_name.human(count: 2), css: ".qa-page.notes.index" },
+      { link: I18n.t("demo.index.link"), css: ".qa-page.demo.index" },
+      { link: I18n.t("app.help"), css: ".qa-page.home.help" },
+      { link: I18n.t("legal.terms"), css: ".qa-page.legal.terms" },
+      { link: I18n.t("legal.privacy"), css: ".qa-page.legal.privacy" },
       { link: I18n.t("devise.registrations.new.sign_up"), css: ".qa-page.devise.registrations.new" },
       { link: I18n.t("app.sign_in"), css: ".qa-page.devise.sessions.new" },
     ],
@@ -21,11 +26,16 @@ feature "Home pages" do
     "nav" => [
       { link: I18n.t("note.new"), css: ".qa-page.notes.new" },
       { link: Note.model_name.human(count: 2), css: ".qa-page.notes.index" },
+      { link: User.model_name.human(count: 2), css: ".qa-page.users.index" },
+      { link: I18n.t("app.help"), css: ".qa-page.home.help" },
+      { link: I18n.t("app.account"), css: ".qa-page.devise.registrations.edit" },
       { link: I18n.t("app.sign_out"), css: ".qa-page.devise.sessions.destroy" },
     ],
     "footer" => [
-      { link: I18n.t("note.new"), css: ".qa-page.notes.new" },
-      { link: Note.model_name.human(count: 2), css: ".qa-page.notes.index" },
+      { link: I18n.t("demo.index.link"), css: ".qa-page.demo.index" },
+      { link: I18n.t("app.help"), css: ".qa-page.home.help" },
+      { link: I18n.t("legal.terms"), css: ".qa-page.legal.terms" },
+      { link: I18n.t("legal.privacy"), css: ".qa-page.legal.privacy" },
       { link: I18n.t("app.sign_out"), css: ".qa-page.devise.sessions.destroy" },
     ],
   }

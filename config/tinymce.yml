@@ -21,3 +21,5 @@ height: 75vh
 schema: html5
 removed_menuitems: newdocument
 menubar: false
+browser_spellcheck: true
+gecko_spellcheck: true

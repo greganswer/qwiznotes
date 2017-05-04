@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def index
     @users = User.by_name.page(params[:page]).per(params[:per_page])
     render "index_template", locals: { records: @users, has_new_button: false, date_columns: %i(created_at) }

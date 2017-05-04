@@ -11,42 +11,11 @@
 - page_title klass.model_name.human(count: 2)
 - breadcrumb :"#{plural}"
 
-
--#
--# Search suggestions
--#
-
-- if !Rails.env.test? && records.try(:suggestions).try(:present?)
-  .row
-    .col.s12.m6.l4.offset-m6.offset-l8
-      .card-panel
-        .card-title #{t("app.filter_suggestion")}:
-        - records.suggestions.each do |suggestion|
-          = link_to suggestion, q: suggestion
-          %br
-
--#
--# Recently viewed records
--#
-
-- if cookies[:recently_viewed_notes].present?
-  .row
-    .col.s12.m6.l4.offset-m6.offset-l8
-      .card-panel
-        .card-title #{t("app.recently_viewed")}:
-        - ids = cookies[:recently_viewed_notes].split(',').reverse
-        - notes = Note.includes(:user).find(ids)
-        %ol
-          - notes.each do |note|
-            %li
-              = link_to note, note
-              %br
-              = render "users/chip", user: note.user
-            %br
-
 -#
 -# Content
 -#
+
+.hide-on-extra-large-only= render "notes/recently_viewed"
 
 = render "pagination", records: records
 
@@ -59,24 +28,31 @@
     %button.tooltipped.jsToggleTable.btn.grey.lighten-3.grey-text{ "data-tooltip": t("app.toggle_table_or_tiles"), "data-position": "top" }
       = fa_icon("th")
 
-
 .row
-  .col.s12.m12.l9
+  .col.s12.xl9
     .hide-on-med-and-down.jsToggleTable__table
       = render "#{plural}/table", "#{plural}": records
 
     .hide-on-large-only.jsToggleTable__tile
       .row{ class: records.present? ? "qa-#{plural}" : "" }
         - if has_new_button
-          .col.s12.m6.l6.xl4
+          .col.s12.m6.l4
             = render "buttons/index_new", type: singular if has_new_button
 
         - (records || []).each do |record|
-          .col.s12.m6.l6.xl4= render record
+          .col.s12.m6.l4= render record
 
 
-  .col.s12.m12.l3
-    = render "filter_panel", model: klass, has_new_button: has_new_button, date_columns: date_columns
+  .col.s12.xl3
+    .hide-on-extra-large-and-down= render "notes/recently_viewed"
+
+    -#
+    -# Filter panel
+    -#
+
+    .row
+      .col.s12
+        = render "filter_panel", model: klass, has_new_button: has_new_button, date_columns: date_columns
 
 
 = render "pagination", records: records

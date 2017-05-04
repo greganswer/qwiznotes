@@ -1,5 +1,5 @@
 Materialize.toast("<%= t('comment.updated') %>", 4000)
-commentDiv = $("#comment_<%= @comment.id %>")
+commentDiv = $(".comment_<%= @comment.id %>")
 commentDiv.find(".jsCommentContent").html("<%= @comment.content %>")
 commentDiv.find(".jsCommentContent").toggleClass("hide")
 commentDiv.find(".jsCommentButtons").toggleClass("hide")

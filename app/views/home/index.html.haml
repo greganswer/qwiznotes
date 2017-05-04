@@ -2,7 +2,7 @@
 -# Meta
 -#
 
-- page_title t('note.my_notes')
+- page_title user_signed_in? ? t("note.my_notes") : t("marketing.tagline")
 - breadcrumb :root
 
 -#
