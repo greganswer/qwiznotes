@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  DEFAULT_SORT_BY = "name"
+  DEFAULT_SORT_BY = "users.name"
   DEFAULT_SORT_DIRECTION = "asc"
 
   has_many :favorites, class_name: "Vote"
@@ -32,7 +32,7 @@ class User < ApplicationRecord
   #
 
   def self.sort_by
-    %w(name created_at)
+    %w(users.name users.created_at)
   end
 
   #

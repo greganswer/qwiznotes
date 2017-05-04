@@ -13,7 +13,7 @@
         %ul.collection.no-border
           - comments.each do |comment|
             - user = comment.user
-            %li.collection-item.avatar.no-border[comment]
+            %li.collection-item.avatar.no-border{ class: comment.css_class }
               = render "users/image_link", user: user
               .user-name= link_to user, user
               .grey-text= local_time(comment.created_at, :medium_with_time)
@@ -35,7 +35,7 @@
                     = f.input :content, required: true, label: false, wrapper: false, value: comment.content, input_html: { class: "panel" }
                     = f.button :submit, t("comment.submit"), class: "btn"
                     %button.btn.grey.lighten-2.z-depth-0.jsCommentEditCancelButton{ type: :button }= t("button.cancel")
-
+            %br
 
           - #
           - # Create form

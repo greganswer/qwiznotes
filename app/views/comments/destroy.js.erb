@@ -1,4 +1,4 @@
 Materialize.toast("<%= t('comment.deleted') %>", 4000)
-$("#comment_<%= @comment.id %>").fadeOut("normal", function() {
+$(".comment_<%= @comment.id %>").fadeOut("normal", function() {
     $(this).remove();
 });

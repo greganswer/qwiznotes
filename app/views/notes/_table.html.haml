@@ -9,7 +9,7 @@
         %th= t("app.actions", count: 2)
     %tbody
       - notes.each do |note|
-        %tr[note]
+        %tr{ class: note.css_class }
           %td.title= link_to note.title.truncate(60), note
           %td.concepts_count= note.concepts_count
           %td.user= render "users/chip", user: note.user

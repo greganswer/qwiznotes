@@ -1,0 +1,16 @@
+- if cookies[:recently_viewed_notes].present?
+  .row
+    .col.s12
+      .card-panel
+        - items = Note.model_name.human(count: 2).downcase
+        .card-title= t("app.recently_viewed_items", items: items)
+        - ids = cookies[:recently_viewed_notes].split(',').reverse
+        - @recently_viewed_notes ||= Note.includes(:user).find(ids)
+
+        %ul.collection.no-border
+          - @recently_viewed_notes.each do |note|
+            %li.collection-item.avatar.no-border{ class: "note_#{note.id}"}
+              = render "users/image_link", user: note.user
+              %span.title= link_to note, note
+              %br
+              = render "notes/buttons", note: note, klass: "btn-flat waves-effect padding8-horizontal"

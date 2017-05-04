@@ -127,6 +127,23 @@ input.browser-default {
 }
 
 //
+// H
+//
+
+// HIde and show
+
+.hide-on-extra-large-only {
+  @media #{$xlarge-and-up} {
+    display: none !important;
+  }
+}
+.hide-on-extra-large-and-down {
+  @media #{$xlarge-and-down} {
+    display: none !important;
+  }
+}
+
+//
 // M
 //
 
@@ -166,6 +183,16 @@ nav {
 }
 
 nav {
+  i.right {
+    margin-left: 5px;
+  }
+  ul.dropdown-content {
+    background: $primary-color;
+    li {
+      a { color: white }
+      &:hover { background: darken($primary-color, 2%) }
+    }
+  }
   li.search {
     input {
       @include placeholder_color(white);
