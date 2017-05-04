@@ -1,4 +1,5 @@
 - args = { required: false, wrapper: false, include_blank: true, allow_blank: true }
+- plural = model.model_name.plural
 
 
 .card.transparent-lighten-5.max-width600.margin-horizontal.z-depth-0
@@ -11,7 +12,7 @@
       -#
 
       - begin
-        = render "#{model.model_name.plural}/custom_filters", f: f
+        = render "#{plural}/custom_filters", f: f
       - rescue ActionView::MissingTemplate
         = nil
 
@@ -25,9 +26,9 @@
         -# Columns
 
         .col.s6.m6.l12.xl6
-          - collection = model.sort_by.map { |type| [model.human_attribute_name(type), type] }.to_h
+          - collection = model.sort_by.map { |type| [type.split('.')[-2].singularize.classify.constantize.human_attribute_name(type.split('.').last), type] }.to_h
           - checked = params.fetch(:filter, {}).fetch(:sort_by, model::DEFAULT_SORT_BY)
-          = f.input :sort_by, required: false, as: :radio_buttons, collection: collection, wrapper: false, allow_blank: true, checked: checked, label: t("app.by", count: 1), label_html: { class: "block" }, item_wrapper_tag: :div
+          = f.input :sort_by, required: false, as: :radio_buttons, collection: collection, wrapper: false, allow_blank: true, checked: checked, label: t("app.by"), label_html: { class: "block" }, item_wrapper_tag: :div
           %br
 
         -# Direction
@@ -54,7 +55,7 @@
               = f.input type, as: :date, html5: true, required: false, wrapper: false, label: false, placeholder: t("app.#{type}"), input_html: { value: params[:filter].try(:[], type), class: "datepicker" }
 
         .row
-          - date_columns ||= %i(created_at updated_at deleted_at)
+          - date_columns ||= %i(created_at updated_at deleted_at).map { |item| "#{plural}.#{item}"}
           - collection = date_columns.map { |type| [model.human_attribute_name(type), type] }.to_h
           - checked = params.fetch(:filter, {}).fetch(:date_type, nil)
           = f.input :date_type, args.merge(as: :radio_buttons, collection: collection, checked: checked, label: t("app.types", count: 1), label_html: { class: "block" }, item_wrapper_tag: :div)

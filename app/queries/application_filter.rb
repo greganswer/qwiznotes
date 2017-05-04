@@ -38,20 +38,14 @@ class ApplicationFilter
   end
 
   def date_type
-    case filter_params[:date_type]
-    when "updated_at"
-      :updated_at
-    when "deleted_at"
-      :deleted_at
-    else
-      :created_at
-    end
+    return @scope.model_name.plural + ".created_at" unless filter_params[:date_type]
+    model = @scope.model_name.singular.classify.constantize
+    return filter_params[:date_type] if model::sort_by.include?(filter_params[:date_type])
   end
 
   def user
-    ids = [filter_params[:user]].flatten
-    ids = ids.map { |hashid| User.hashid_decode(hashid) }
-    @scope = @scope.where(user_id: ids)
+    ids = [filter_params[:user]].flatten.map { |id| User.hashid_decode(id) }
+    @scope = @scope.where(user_id: ids).reorder("users.name ASC")
   end
 
   def sort_by

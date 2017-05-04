@@ -11,22 +11,14 @@
       %ul.right.hide-on-med-and-down
 
         -#
-        -# Search
-        -#
-
-        - if user_signed_in?
-          %li.search
-            = form_tag :notes, method: :get do |f|
-              = material_icon.search.css_class("grey-text text-lighten-3")
-              = text_field_tag :q, nil, placeholder: t("note.search"), class: " jsAjaxAutocomplete", value: params[:q], "data-source": autocomplete_notes_path, "data-no-suggestion-notice": t("autocomplete.no_suggestions")
-
-        -#
         -# Languages
         -#
 
           %li
             %a.dropdown-button{"data-activates": "dropdown1", href: "#!", 'data-beloworigin': "true"}
-              = APP_CONFIG[:languages][I18n.locale]
+              = fa_icon("globe")
+              &nbsp;
+              = I18n.locale.upcase
               = material_icon.arrow_drop_down.css_class(:right)
           %ul#dropdown1.dropdown-content
             - APP_CONFIG[:languages].except(I18n.locale).each do |locale, language|
@@ -63,7 +55,7 @@
             %li
               = link_to_hash_if_current edit_user_registration_path do
                 = fa_icon("cog")
-                = t("app.account")
+                = t("account.update")
 
             %li
               = link_to_hash_if_current destroy_user_session_path, method: :delete do
@@ -97,23 +89,14 @@
     %ul.collapsible.collapsible-accordion
       %li
         %a.collapsible-header
+          = fa_icon("globe")
+          &nbsp;
           = APP_CONFIG[:languages][I18n.locale]
-          = material_icon.arrow_drop_down
+          = material_icon.arrow_drop_down.css_class(:right)
         .collapsible-body
           %ul
             - APP_CONFIG[:languages].except(I18n.locale).each do |locale, language|
               %li= link_to language, url_for(locale: locale)
-
-  -#
-  -# Search
-  -#
-
-  - if user_signed_in?
-    %li.search
-      = form_tag :notes, method: :get do |f|
-        = material_icon.search.css_class("grey-text text")
-        = text_field_tag :q, nil, placeholder: t("note.search"), value: params[:q]
-    %li.divider
 
   -#
   -# Sign in/up
@@ -157,7 +140,7 @@
     %li
       = link_to_hash_if_current edit_user_registration_path do
         = fa_icon("cog")
-        = t("app.account")
+        = t("account.update")
 
   %li
     = link_to_hash_if_current help_path do

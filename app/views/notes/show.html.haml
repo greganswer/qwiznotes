@@ -16,7 +16,7 @@
       = render 'notes/info', note: @note
       %p= raw(@note.content)
       %br
-      = render "notes/buttons", note: @note, klass: "btn-flat waves-effect"
+      = render "notes/buttons", note: @note
 
   = render "comments/form", item: @note
 
