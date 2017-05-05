@@ -3,6 +3,7 @@
 - klass = singular.classify.constantize
 - has_new_button = true if has_new_button.nil?
 - date_columns ||= nil
+- card_size ||= :small
 
 -#
 -# Meta
@@ -29,21 +30,29 @@
       = fa_icon("th")
 
 .row
-  .col.s12.xl9
+  .col.s12.xl8.xxl9
+
+    -# Table
+
     .hide-on-med-and-down.jsToggleTable__table
-      = render "#{plural}/table", "#{plural}": records
+      .row
+        .col.s12
+          = render "#{plural}/table", "#{plural}": records
+
+    -# Tiles
 
     .hide-on-large-only.jsToggleTable__tile
       .row{ class: records.present? ? "qa-#{plural}" : "" }
+        - card_class = card_size == :small ? "m6 l6 xxl4" : "m6 xxl4"
         - if has_new_button
-          .col.s12.m6.l4
-            = render "buttons/index_new", type: singular if has_new_button
+          .col.s12{ class: card_class }
+            = render "buttons/index_new", type: singular, card_size: card_size if has_new_button
 
         - (records || []).each do |record|
-          .col.s12.m6.l4= render record
+          .col.s12{ class: card_class }= render record
 
 
-  .col.s12.xl3
+  .col.s12.xl4.xxl3
     .hide-on-extra-large-and-down= render "notes/recently_viewed"
 
     -#
