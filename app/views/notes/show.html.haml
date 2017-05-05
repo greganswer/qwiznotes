@@ -10,9 +10,9 @@
 -# Content
 -#
 
-.container.m-full-width
+.container
   .row
-    .card-panel.m-no-margin-horizontal.qa-note[@note]
+    .card-panel.qa-note
       = render 'notes/info', note: @note
       %p= raw(@note.content)
       %br

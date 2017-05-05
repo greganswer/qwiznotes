@@ -34,6 +34,10 @@ en:
         one: User
         other: Users
   app:
+    code_license_html: "%{site_name} code licensed under %{link}"
+    mit_license: MIT License
+    github_project: GitHub Project
+    issues: Issues
     account: Account
     actions:
       one: Action

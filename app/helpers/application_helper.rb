@@ -67,7 +67,11 @@ module ApplicationHelper
   end
 
   def site_owner
-    "Banana Simplicity Inc."
+    "Greg Answer"
+  end
+
+  def site_owner_site
+    "http://greganswer.com"
   end
 
   #

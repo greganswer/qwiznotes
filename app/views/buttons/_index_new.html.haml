@@ -1,5 +1,8 @@
+- card_size ||= :small
+
+
 = link_to [:new, type], id: "qa-new-#{type}" do
-  .card.small.valign-wrapper.transparent-lighten-5.green-text
+  .card.valign-wrapper.transparent-lighten-5.green-text{ class: card_size }
     .center.margin-horizontal
       = fa_icon "plus", class: "fa-4x"
       %br

@@ -85,10 +85,16 @@ a.brand-logo {
   a { color: #666 }
 }
 
+.collection {
+  .collection-item.no-border {
+    margin-bottom: 1em;
+  }
+}
+
 .container {
   max-width: 1600px;
-  @media #{$medium-and-up} { width: 90% }
-  @media #{$large-and-up} { width: 90% }
+  // @media #{$medium-and-up} { width: 90% }
+  @media #{$large-and-up} { width: 80% }
 }
 
 //
@@ -242,6 +248,7 @@ nav {
 
 .row {
   .col {
+    padding: 1rem;
     @media #{$xlarge-and-up} {
       $i: 1;
       @while $i <= $num-cols {
@@ -263,6 +270,30 @@ nav {
         &.offset-xl#{$i} { margin-xleft: $perc }
         &.pull-xl#{$i} { right: $perc }
         &.push-xl#{$i} { left: $perc }
+        $i: $i + 1;
+      }
+    }
+    @media #{$xxlarge-and-up} {
+      $i: 1;
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + "%");
+
+        &.xxl#{$i} {
+          width: $perc;
+          margin-left: auto;
+          left: auto;
+          right: auto;
+        }
+        $i: $i + 1;
+      }
+
+      $i: 1;
+      @while $i <= $num-cols {
+        $perc: unquote((100 / ($num-cols / $i)) + "%");
+
+        &.offset-xxl#{$i} { margin-xxleft: $perc }
+        &.pull-xxl#{$i} { right: $perc }
+        &.push-xxl#{$i} { left: $perc }
         $i: $i + 1;
       }
     }

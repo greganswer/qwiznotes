@@ -5,7 +5,7 @@ $(document).ready ->
   # @reference: https://github.com/devbridge/jQuery-Autocomplete
   #
 
-  source = $('.jsAjaxAutocomplete').data("source")
+  source = $(".jsAjaxAutocomplete").data("source")
   noSuggestionNotice = $(".jsAjaxAutocomplete").data("no-suggestion-notice")
 
   $(".jsAjaxAutocomplete").devbridgeAutocomplete
@@ -29,7 +29,8 @@ $(document).ready ->
   $("select").material_select();
   $(".jsParallax").parallax()
   $(".datepicker").pickadate(selectMonths: true, selectYears: 20)
-  $('.dropdown-button').dropdown({ constrainWidth: false, hover: true,alignment: 'right' })
+  $(".dropdown-button").dropdown({ constrainWidth: false, alignment: "right" })
+  $("nav .dropdown-button").dropdown({ constrainWidth: false, alignment: "right", hover: true })
 
   #
   # JS Timezone Detect
