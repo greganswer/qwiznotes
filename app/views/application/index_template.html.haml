@@ -20,28 +20,32 @@
 
 = render "pagination", records: records
 
-.row
-  .col.s12.hide-on-med-and-down
-    - if has_new_button
-      = link_to [:new, singular], class: "btn" do
-        #{fa_icon("plus")} &nbsp; #{t("#{singular}.new")}
+-# Index buttons
 
-    %button.tooltipped.jsToggleTable.btn.grey.lighten-3.grey-text{ "data-tooltip": t("app.toggle_table_or_tiles"), "data-position": "top" }
-      = fa_icon("th")
+.row.no-margin
+  .col.s12.hide-on-med-and-down
+    .row.no-margin
+      .col.s12
+        - if has_new_button
+          = link_to [:new, singular], class: "btn" do
+            #{fa_icon("plus")} &nbsp; #{t("#{singular}.new")}
+
+        %button.tooltipped.jsToggleTable.btn.grey.lighten-3.grey-text{ "data-tooltip": t("app.toggle_table_or_tiles"), "data-position": "top" }
+          = fa_icon("th")
 
 .row
   .col.s12.xl8.xxl9
 
     -# Table
 
-    .hide-on-med-and-down.jsToggleTable__table
+    .hide.jsToggleTable__table
       .row
         .col.s12
           = render "#{plural}/table", "#{plural}": records
 
     -# Tiles
 
-    .hide-on-large-only.jsToggleTable__tile
+    .jsToggleTable__tile
       .row{ class: records.present? ? "qa-#{plural}" : "" }
         - card_class = card_size == :small ? "m6 l6 xxl4" : "m6 xxl4"
         - if has_new_button
