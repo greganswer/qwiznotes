@@ -1,12 +1,18 @@
+<<<<<<< HEAD
 .card.small.qa-note.note{ class: note.css_class }
+=======
+.card.medium.qa-note.note{ class: note.css_class }
+>>>>>>> squashing_branch
   .card-content
-    %span.card-title= link_to note.title.truncate(45), note, class: 'grey-text text-darken-3'
+    %span.card-title= link_to note.title.truncate(60), note, class: 'grey-text text-darken-3'
     %p.grey-text.text-darken-2
+      %br
       = render "users/chip", user: note.user
       %br
       %b #{t('app.concepts', count: 2)}:
       #{note.concepts_count}
-    %p.grey-text.text-darken-1= strip_tags(note.content).truncate(180, separator: ' ')
+    %br
+    %p.grey-text.text-darken-1= strip_tags(note.content)
 
   .card-action
     = render "notes/buttons", note: note, klass: "", full_view: false

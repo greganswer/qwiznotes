@@ -45,9 +45,19 @@ module ApplicationHelper
   # @see http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-link_to
   #
   def link_to_hash_if_current(name = nil, options = nil, html_options = nil, &block)
-    options = '#' if !block && options.present? && request.fullpath == url_for(options)
-    name = '#' if block && name.present? && request.fullpath == url_for(name)
+    if !block && options.present? && request.fullpath == url_for(options)
+      options = '#'
+      ((html_options ||= {})[:class] ||= "") << "active"
+    end
+    if block && name.present? && request.fullpath == url_for(name)
+      name = '#'
+      ((options ||= {})[:class] ||= "") << "active"
+    end
     link_to(name, options, html_options, &block)
+  end
+
+  def link_to_external_page(link)
+    link_to raw("#{link} #{fa_icon "external-link"}"), link
   end
 
   def link_to_external_page(link)
@@ -67,7 +77,11 @@ module ApplicationHelper
   end
 
   def site_owner
-    "Banana Simplicity Inc."
+    "Greg Answer"
+  end
+
+  def site_owner_site
+    "http://greganswer.com"
   end
 
   #

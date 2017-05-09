@@ -85,7 +85,21 @@
 
       .footer-copyright
         .container.center
-          %small &copy; #{t("app.copyright")} #{Date.today.year} #{site_owner}
+          %small
+            %ul
+              %li
+                &copy;
+                = t("app.copyright")
+                = Date.today.year
+                = link_to site_owner, site_owner_site
+              %li
+                - link = link_to t("app.mit_license"), "http://opensource.org/licenses/mit-license.html"
+                = t("app.code_license_html", site_name: site_name, link: link)
+              %li
+                = link_to t("app.github_project"), "https://github.com/greganswer/qwiznotes"
+              %li
+                = link_to t("app.issues"), "https://github.com/greganswer/qwiznotes/issues"
+
 
     -#
     -# Javascript & javascript flash messages

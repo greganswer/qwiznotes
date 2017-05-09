@@ -28,7 +28,7 @@ feature "Home pages" do
       { link: Note.model_name.human(count: 2), css: ".qa-page.notes.index" },
       { link: User.model_name.human(count: 2), css: ".qa-page.users.index" },
       { link: I18n.t("app.help"), css: ".qa-page.home.help" },
-      { link: I18n.t("app.account"), css: ".qa-page.devise.registrations.edit" },
+      { link: I18n.t("account.update"), css: ".qa-page.devise.registrations.edit" },
       { link: I18n.t("app.sign_out"), css: ".qa-page.devise.sessions.destroy" },
     ],
     "footer" => [
@@ -85,4 +85,3 @@ feature "Home pages" do
     end
   end
 end
-

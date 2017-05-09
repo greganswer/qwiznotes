@@ -22,8 +22,8 @@ end
 
 Then(/^I should not see the "Edit" button on the note titled "([^"]*)"$/) do |title|
   note = Note.where(title: title).first
-  expect(page).to have_css("#note_#{note.id}")
-  within("#note_#{note.id}") do
+  expect(page).to have_css(".note_#{note.id}")
+  within(".note_#{note.id}") do
     expect(page).not_to have_content(t("button.edit"))
   end
 end

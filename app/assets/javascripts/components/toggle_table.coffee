@@ -3,35 +3,35 @@
 $ ->
   toggleTableButton =
     button: $(".jsToggleTable")
-    cookieName: "is_index_showing_tiles"
+    cookieName: "is_index_showing_table"
     tableDiv: $(".jsToggleTable__table")
     tileDiv: $(".jsToggleTable__tile")
 
     initialize: ->
       self = this
-      @switchToTileView(@button) if @isIndexShowingTiles()
+      @switchToTableView(@button) if @isIndexShowingTable()
       @button.on "click", -> self.toggle $(this)
 
     toggle: (button) ->
-      if @isIndexShowingTiles()
-        @switchToTableView(button)
-      else
+      if @isIndexShowingTable()
         @switchToTileView(button)
+      else
+        @switchToTableView(button)
 
-    isIndexShowingTiles:  ->
+    isIndexShowingTable:  ->
       $.cookie(@cookieName) == "true"
 
     switchToTableView: (button) ->
       @button.find("i").removeClass("fa-list").addClass("fa-th")
       @tableDiv.removeClass("hide")
-      @tileDiv.addClass("hide-on-large-only")
-      $.cookie(@cookieName, "false", path: "/")
+      @tileDiv.addClass("hide")
+      $.cookie(@cookieName, "true", path: "/")
 
     switchToTileView: (button) ->
       @button.find("i").removeClass("fa-th").addClass("fa-list")
       @tableDiv.addClass("hide")
-      @tileDiv.removeClass("hide-on-large-only")
-      $.cookie(@cookieName, "true", path: "/")
+      @tileDiv.removeClass("hide")
+      $.cookie(@cookieName, "false", path: "/")
 
   #
   # Main
