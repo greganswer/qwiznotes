@@ -59,9 +59,10 @@
           %br
         - else
           = breadcrumbs display_single_fragment: true
-        = render 'layouts/flash_static'
-        = yield
-        %button.jsScrollToTop.scroll-to-top= fa_icon("chevron-up")
+        .padded-width
+          = render 'layouts/flash_static'
+          = yield
+          %button.jsScrollToTop.scroll-to-top= fa_icon("chevron-up")
 
     -#
     -# Footer

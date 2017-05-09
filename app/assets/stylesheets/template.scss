@@ -47,11 +47,11 @@ label,
 }
 
 main {
-  margin: 0 auto;
-  // width: 98%;
   flex: 1 0 auto;
-  @media #{$medium-and-up} { width: 95% }
-  // @media #{$large-and-up} { width: 80% }
+  .padded-width {
+    margin: 0 auto;
+    @media #{$medium-and-up} { width: 95% }
+  }
 }
 
 nav {

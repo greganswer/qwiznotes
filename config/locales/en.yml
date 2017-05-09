@@ -34,10 +34,6 @@ en:
         one: User
         other: Users
   app:
-    code_license_html: "%{site_name} code licensed under %{link}"
-    mit_license: MIT License
-    github_project: GitHub Project
-    issues: Issues
     account: Account
     actions:
       one: Action
@@ -46,6 +42,7 @@ en:
     by: By
     click_here: click here
     click_link_below_if_button_not_working: 'If for some reason the button does not work, copy and paste the link below:'
+    code_license_html: "%{site_name} code licensed under %{link}"
     concepts:
       one: Concept
       other: Concepts
@@ -67,14 +64,17 @@ en:
     filter: Filter
     filter_suggestion: Did you mean
     filter_your_results: Filter your results
+    github_project: GitHub Project
     help: Help
     home: Home
     incorrect_answers:
       one: Incorrect answer
       other: Incorrect answers
     instructions: Instructions
+    issues: Issues
     keep_me_signed_in: Keep me signed in
     minimum_characters: "%{count} characters minimum"
+    mit_license: MIT License
     new: New
     none: None
     none_of_the_above: None of the above.
@@ -224,7 +224,7 @@ en:
     untitled_note: Untitled note
     updated: Note updated
   pundit:
-    default: Permission denied
+    default: Sorry, you don't have access to this
     note_policy:
       destroy?: You cannot delete this note because you are not the owner.
       edit?: You cannot edit this note because you are not the owner.

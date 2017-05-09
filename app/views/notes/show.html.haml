@@ -12,7 +12,7 @@
 
 .container
   .row
-    .card-panel.qa-note
+    .card-panel.qa-note{ class: @note.css_class }
       = render 'notes/info', note: @note
       %p= raw(@note.content)
       %br

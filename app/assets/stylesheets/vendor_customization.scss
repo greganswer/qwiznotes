@@ -86,8 +86,9 @@ a.brand-logo {
 }
 
 .collection {
-  .collection-item.no-border {
-    margin-bottom: 1em;
+  .collection-item {
+    padding-bottom: 1.5em;
+    padding-top: 1.5em;
   }
 }
 
@@ -320,9 +321,17 @@ li.search {
       padding: 32px 16px 0;
       input { width: 205px }
     }
-    > a > i {
-      margin: 0;
+    a:hover,
+    a.active:not(.collapsible-header) {
+      background: change_color($primary-color, $saturation: 30%, $lightness: 85%);
     }
+    > a > i { margin: 0 }
+  }
+
+  li a.active,
+  .collapsible-header:hover,
+  &.fixed .collapsible-header:hover {
+    background: change_color($primary-color, $saturation: 50%, $lightness: 95%);
   }
 }
 
