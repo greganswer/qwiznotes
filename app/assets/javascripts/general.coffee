@@ -5,10 +5,10 @@ $(document).ready ->
   # @reference: https://github.com/devbridge/jQuery-Autocomplete
   #
 
-  source = $(".jsAjaxAutocomplete").data("source")
-  noSuggestionNotice = $(".jsAjaxAutocomplete").data("no-suggestion-notice")
+  source = $(".jsGlobalSearchAutocomplete").data("source")
+  noSuggestionNotice = $(".jsGlobalSearchAutocomplete").data("no-suggestion-notice")
 
-  $(".jsAjaxAutocomplete").devbridgeAutocomplete
+  $(".jsGlobalSearchAutocomplete").devbridgeAutocomplete
     paramName: "q"
     serviceUrl: source
     minChars: 2

@@ -3,8 +3,8 @@
 #
 
 def submit_comment_form(content: "I am so happy that I get to use this site")
-  fill_in 'comment_content', with: @comment_content = content
-  click_button "qa-comment-save"
+  fill_in 'comment_content', with: @comment_content = content + "\n"
+  # click_button "qa-comment-save"
 end
 
 #

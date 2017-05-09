@@ -1,4 +1,4 @@
 - width ||= 40
 
 = link_to_hash_if_current user do
-  = image_tag user.image_url, alt: user, style: "width: 100%; max-width: #{width}px", class: "circle"
+  = image_tag user.image_url, alt: user, style: "width: 100%; max-width: #{width}px", class: "circle tooltipped", "data-tooltip": user, "data-position": :bottom
