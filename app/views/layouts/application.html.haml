@@ -30,6 +30,8 @@
   -#
 
   %body{ role: :document }
+    = render "layouts/google_analytics"
+
     - if Rails.env.test?
       %span{ class: "qa-page #{controller_path.gsub("/", " ")} #{action_name}" }
     = link_to(t("app.skip_to_content"), "#content-wrapper", class: "hide")
