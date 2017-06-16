@@ -59,7 +59,7 @@ en:
     direction: Direction
     down: Down
     email_me_instructions: Enter the email address associated with your account and you will receive an email with instructions.
-    enable_javascript_html: Please enable Javascript to view this site. For instructions %{link}.
+    enable_javascript_html: Please enable JavaScript to view this site. For instructions %{link}.
     end_date: Ending
     filter: Filter
     filter_suggestion: Did you mean

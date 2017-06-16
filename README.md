@@ -107,7 +107,7 @@ This app is for students from Elementary to post-secondary school level.
 
 - [Barsoom Rails style guide](https://github.com/barsoom/devbook/tree/master/styleguide)
 - [UI Namespaces](https://csswizardry.com/2015/03/more-transparent-ui-code-with-namespaces/#javascript-namespaces-js-)
-    - Javascript classes: `jsButtonCollapse` (*'js'*, followed by *'noun/namespace'* followed by *'verb'*, in *camel case*)
+    - JavaScript classes: `jsButtonCollapse` (*'js'*, followed by *'noun/namespace'* followed by *'verb'*, in *camel case*)
 
 ### Localization
 
