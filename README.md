@@ -68,7 +68,7 @@ bundle exec guard
 ### Proposal
 
 I propose that we create a social network that has tools that are condusive to studying. There should be a simple and clean text editor. There should be tools for making quizzes and even strategies for making quizzes automatically. Users should be able to favorite other users and their notes. The app should be fast and have calm yet welcoming colors. There should be no advertisements or constant notifications. 
-The web app will be available through any device with a web browser and an internet connection. Native mobile apps can be created once this web app becomes popular enough.  Offline access would be prefered for situations where an internet connection is not possible.
+The web app will be available through any device with a web browser and an Internet connection. Native mobile apps can be created once this web app becomes popular enough.  Offline access would be prefered for situations where an Internet connection is not possible.
 
 ### Target
 

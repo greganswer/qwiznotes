@@ -192,7 +192,7 @@ en:
     mobile:
       heading: Mobile ready
       image_alt: Sample of mobile view
-      text_html: Login to the app using any web browser on any device and continue where you left off. This means your team can be more productive in any environment with an internet connection.
+      text_html: Login to the app using any web browser on any device and continue where you left off. This means your team can be more productive in any environment with an Internet connection.
     review_table:
       heading: Review your notes
       image_alt: Sample of review table
