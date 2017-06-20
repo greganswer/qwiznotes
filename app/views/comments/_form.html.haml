@@ -3,6 +3,7 @@
   %h3= t("comment.count", count: item.comments.count)
   .row
 
+
     - #
     - # Comments
     - #
@@ -53,5 +54,6 @@
       %br
       - link = link_to t("app.sign_in").downcase, new_user_session_path
       %h3.center= t("comment.needs_login_html", link: link)
+
 
   = render "pagination", records: comments

@@ -48,10 +48,6 @@ group :development, :test do
   gem 'i18n-tasks', '~> 0.9.12'
   gem 'letter_opener'
   gem 'rspec-rails', '~> 3.5'
-  # gem 'terminal-notifier-guard', '~> 1.6.1'
-  # Add the 2 lines below to the `Guardfile` if desired
-  # Terminal notifier for OSX
-  # notification :terminal_notifier, activate: 'com.googlecode.iTerm2' if `uname` =~ /Darwin/
 end
 
 group :development do
@@ -84,7 +80,6 @@ end
 
 # Annotations
 # Open links in Atom text editor -> Place cursor in the link and pres CTRL-SHIFT-O
-# Open links in Atom editor -> Place cursor in the link and pres CTRL-SHIFT-O
 #-----------------------------------------------------------------------------------------------------------
 #
 # autoprefixer-rails -> Parse CSS and add vendor prefixes

@@ -139,16 +139,27 @@ input.browser-default {
 
 // HIde and show
 
-.hide-on-extra-large-only {
+.hide-on-large-and-up {
+  @media #{$large-and-up} {
+    display: none !important;
+  }
+}
+.hide-on-large-and-down {
+  @media #{$large-and-down} {
+    display: none !important;
+  }
+}
+.hide-on-xlarge-and-up {
   @media #{$xlarge-and-up} {
     display: none !important;
   }
 }
-.hide-on-extra-large-and-down {
+.hide-on-xlarge-and-down {
   @media #{$xlarge-and-down} {
     display: none !important;
   }
 }
+
 
 //
 // M

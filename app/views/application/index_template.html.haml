@@ -16,7 +16,7 @@
 -# Content
 -#
 
-.hide-on-extra-large-only= render "notes/recently_viewed"
+.hide-on-xlarge-and-up= render "notes/recently_viewed"
 
 = render "pagination", records: records
 
@@ -57,7 +57,7 @@
 
 
   .col.s12.xl4.xxl3
-    .hide-on-extra-large-and-down= render "notes/recently_viewed"
+    .hide-on-xlarge-and-down= render "notes/recently_viewed"
 
     -#
     -# Filter panel
