@@ -13,8 +13,8 @@ class Quiz
     # @param :number [String] The number of the question. This is not required.
     # @param :options [Array<String>] An array of options for the question
     #
-    def initialize(text:, correct_answer:, number: '', options: [])
-      @text = text.sub(/[,!\.\?]$/, '') + '?'
+    def initialize(text:, correct_answer:, number: "", options: [])
+      @text = text.sub(/[,!\.\?]$/, "") + "?"
       @number = number
       @correct_answer = correct_answer
       @options = []
@@ -28,7 +28,11 @@ class Quiz
     #
     def build_options_from_hash(options_array, user_answers = {})
       # FIXME: This method should be able to take either a JSON or an Array of Hashes without the need for rescue
-      options_array = JSON.parse(options_array).with_indifferent_access rescue options_array
+      options_array = begin
+          JSON.parse(options_array).with_indifferent_access
+        rescue
+          options_array
+        end
       options_array.each do |option_hash|
         is_selected = user_answers[number.to_s] == option_hash[:text]
         build_option(option_hash.merge(is_selected: is_selected))
@@ -49,11 +53,11 @@ class Quiz
     end
 
     def answered_incorrectly?
-      @answered_incorrectly ||= options.select { |option| option.answered_incorrectly?  }.count >= 1
+      @answered_incorrectly ||= options.select(&:answered_incorrectly?).count >= 1
     end
 
     def toggle_select_for_option(letter)
-      options.select { |option| option.letter.downcase == letter.downcase }&.first&.toggle_select
+      options.select { |option| option.letter.casecmp(letter.downcase).zero? }&.first&.toggle_select
     end
 
     def to_json
@@ -78,7 +82,7 @@ class Quiz
     def build_options_from_array_of_strings(selection)
       selection.each_with_index do |option, index|
         option_is_none = option == I18n.t("app.none_of_the_above")
-        none_is_correct_answer =  option_is_none && !options_includes_correct_answer?
+        none_is_correct_answer = option_is_none && !options_includes_correct_answer?
         is_correct_answer = (option == correct_answer) || none_is_correct_answer
         build_option(text: option, letter: (index + 65).chr, is_correct_answer: is_correct_answer)
       end

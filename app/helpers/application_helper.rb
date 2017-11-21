@@ -7,7 +7,7 @@ module ApplicationHelper
 
   SAFE_HTML_TAGS = %w(
     a abbr acronym address area b bdo big blockquote br button caption center cite code col colgroup dd del dfn dir div dl dt em fieldset font form h1 h2 h3 h4 h5 h6 hr i img input ins kbd label legend li map mark menu ol optgroup option p pre q s samp select small span strike strong sub sup table tbody td textarea tfoot th thead u tr tt u ul var
-  )
+  ).freeze
 
   #
   # HTML
@@ -28,11 +28,11 @@ module ApplicationHelper
     entry_name = entry_name.pluralize unless collection.total_count == 1
 
     if collection.total_pages < 2
-      t('helpers.page_entries_info.one_page.display_entries', :entry_name => entry_name, :count => collection.total_count)
+      t("helpers.page_entries_info.one_page.display_entries", entry_name: entry_name, count: collection.total_count)
     else
       first = collection.offset_value + 1
       last = collection.last_page? ? collection.total_count : collection.offset_value + collection.limit_value
-      t('helpers.page_entries_info.more_pages.display_entries', :entry_name => entry_name, :first => first, :last => last, :total => collection.total_count)
+      t("helpers.page_entries_info.more_pages.display_entries", entry_name: entry_name, first: first, last: last, total: collection.total_count)
     end.html_safe
   end
 
@@ -46,18 +46,14 @@ module ApplicationHelper
   #
   def link_to_hash_if_current(name = nil, options = nil, html_options = nil, &block)
     if !block && options.present? && request.fullpath == url_for(options)
-      options = '#'
+      options = "#"
       ((html_options ||= {})[:class] ||= "") << "active"
     end
     if block && name.present? && request.fullpath == url_for(name)
-      name = '#'
+      name = "#"
       ((options ||= {})[:class] ||= "") << "active"
     end
     link_to(name, options, html_options, &block)
-  end
-
-  def link_to_external_page(link)
-    link_to raw("#{link} #{fa_icon "external-link"}"), link
   end
 
   def link_to_external_page(link)

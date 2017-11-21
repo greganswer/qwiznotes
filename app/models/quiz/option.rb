@@ -13,11 +13,11 @@ class Quiz
     # @param :is_correct_answer [Boolean] Is this option the correct answer?
     # @param :is_selected [Boolean] Is this option the selected?
     #
-    def initialize(text:, letter: '', is_correct_answer: false, is_selected: false)
-        @text = text
-        @letter = letter
-        @is_correct_answer = is_correct_answer
-        @is_selected = is_selected
+    def initialize(text:, letter: "", is_correct_answer: false, is_selected: false)
+      @text = text
+      @letter = letter
+      @is_correct_answer = is_correct_answer
+      @is_selected = is_selected
     end
 
     def answered_correctly?

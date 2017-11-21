@@ -1,6 +1,6 @@
 class Note < ApplicationRecord
-  DEFAULT_SORT_BY = "notes.created_at"
-  DEFAULT_SORT_DIRECTION = "desc"
+  DEFAULT_SORT_BY = "notes.created_at".freeze
+  DEFAULT_SORT_DIRECTION = "desc".freeze
   MINIMUM_NUMBER_OF_CONCEPTS = Quiz::OPTIONS_COUNT + 1
 
   belongs_to :user, counter_cache: true
@@ -50,7 +50,7 @@ class Note < ApplicationRecord
   end
 
   def quiz
-    @quiz ||= Quiz.build_from_concepts(self.concepts)
+    @quiz ||= Quiz.build_from_concepts(concepts)
   end
 
   def quiz_results(quiz_hash = nil, user_answers = {})
@@ -59,9 +59,9 @@ class Note < ApplicationRecord
   end
 
   def prepare_inputs
-    self.title = html_clean(self.title.to_s)
-    self.title = I18n.t('note.untitled_note') if self.title.blank?
-    self.content = html_clean(self.content.to_s)
+    self.title = html_clean(title.to_s)
+    self.title = I18n.t("note.untitled_note") if title.blank?
+    self.content = html_clean(content.to_s)
     @concepts = nil
     self.concepts_count = concepts.count
     self
@@ -74,6 +74,6 @@ class Note < ApplicationRecord
   private
 
   def set_defaults
-    self.content = '' if self.content.blank?
+    self.content = "" if content.blank?
   end
 end

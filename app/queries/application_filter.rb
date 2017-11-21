@@ -14,12 +14,12 @@ class ApplicationFilter
   attr_reader :params, :cookies
 
   def filter_params
-    @filter_params ||=  begin
+    @filter_params ||= begin
       args = {}
       (params[:filter] || {}).each do |key, value|
         args[key.to_sym] = value.is_a?(Array) ? value.select(&:present?) : value
       end
-      args.select { |key, value| value.present? }
+      args.select { |_key, value| value.present? }
     end
   end
 
@@ -40,7 +40,7 @@ class ApplicationFilter
   def date_type
     return @scope.model_name.plural + ".created_at" unless filter_params[:date_type]
     model = @scope.model_name.singular.classify.constantize
-    return filter_params[:date_type] if model::sort_by.include?(filter_params[:date_type])
+    return filter_params[:date_type] if model.class.sort_by.include?(filter_params[:date_type])
   end
 
   def user

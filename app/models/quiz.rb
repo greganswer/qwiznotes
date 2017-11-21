@@ -50,47 +50,17 @@ class Quiz
   def self.build_from_quiz_hash(quiz_hash, user_answers)
     user_answers = user_answers.with_indifferent_access
     # FIXME: This method should be able to take either a JSON or an Array of Hashes without the need for rescue
-    quiz_hash = JSON.parse(quiz_hash).with_indifferent_access rescue quiz_hash
+    quiz_hash = begin
+        JSON.parse(quiz_hash).with_indifferent_access
+      rescue
+        quiz_hash
+      end
     quiz = new
     quiz_hash[:questions].each do |question|
       quiz.add_question(question.except(:options)).build_options_from_hash(question[:options], user_answers)
     end
     quiz
   end
-
-  def initialize
-    @questions ||= []
-  end
-
-  def to_json
-    { questions: questions }.to_json
-  end
-
-  def add_question(input)
-    Quiz::Question.new(input.symbolize_keys).tap { |question| @questions << question }
-  end
-
-  def correct_answers
-    @correct_answers ||= questions.select { |question| question.answered_correctly? }
-  end
-
-  def incorrect_answers
-    @incorrect_answers ||= questions.select { |question| question.answered_incorrectly? }
-  end
-
-  def unanswerd_questions
-    @unanswerd_questions ||= questions.select { |question| !question.answered? }
-  end
-
-  def percent_correct
-    (correct_answers.count * 100 / questions.count).floor
-  end
-
-  #
-  # Private
-  #
-
-  private
 
   # Get random options as text and exclude the correct answer
   #
@@ -103,7 +73,7 @@ class Quiz
   #
   def self.option_texts(concepts, question_is_a_term, correct_answer)
     answer_type = question_is_a_term ? :definition : :term
-    concepts.map { |item| item[answer_type] }.reject { |item| item  == correct_answer }.sample(OPTIONS_COUNT)
+    concepts.map { |item| item[answer_type] }.reject { |item| item == correct_answer }.sample(OPTIONS_COUNT)
   end
 
   # Randomly add "None of the above." as the last option then randomly set one of the options as the correct option.
@@ -119,5 +89,33 @@ class Quiz
     random_index = rand(0..option_texts.count - 1)
     option_texts[random_index] = correct_answer unless none_is_an_option && rand(3).zero?
     option_texts
+  end
+
+  def initialize
+    @questions ||= []
+  end
+
+  def to_json
+    { questions: questions }.to_json
+  end
+
+  def add_question(input)
+    Quiz::Question.new(input.symbolize_keys).tap { |question| @questions << question }
+  end
+
+  def correct_answers
+    @correct_answers ||= questions.select(&:answered_correctly?)
+  end
+
+  def incorrect_answers
+    @incorrect_answers ||= questions.select(&:answered_incorrectly?)
+  end
+
+  def unanswerd_questions
+    @unanswerd_questions ||= questions.select { |question| !question.answered? }
+  end
+
+  def percent_correct
+    (correct_answers.count * 100 / questions.count).floor
   end
 end

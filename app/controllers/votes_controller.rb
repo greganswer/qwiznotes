@@ -19,13 +19,11 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       if @vote.try(:save)
-        @votable.reload
-        format.html { redirect_to @votable, notice: t("vote.created", item: item_name) }
-        format.js
+        format.html { redirect_to @votable.reload, notice: t("vote.created", item: item_name) }
       else
         format.html { redirect_to :back, notice: t("vote.not_created", item: item_name) }
-        format.js
       end
+      format.js
     end
   end
 
@@ -40,13 +38,11 @@ class VotesController < ApplicationController
 
     respond_to do |format|
       if @votes.try(:destroy_all)
-        @votable.reload
-        format.html { redirect_to @votable, notice: t("vote.created", item: item_name) }
-        format.js
+        format.html { redirect_to @votable.reload, notice: t("vote.created", item: item_name) }
       else
         format.html { redirect_to :back, notice: t("vote.not_created", item: item_name) }
-        format.js
       end
+      format.js
     end
   end
 

@@ -1,81 +1,82 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
+ruby "2.4.0"
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'autoprefixer-rails'
-gem 'coffee-rails', '~> 4.2'
-gem 'devise'
-gem 'enumerize'
-gem 'font-awesome-rails'
-gem 'gretel'
-gem 'haml-rails'
-gem 'hashids'
-gem 'jquery-rails'
-gem 'kaminari'
-gem 'local_time'
-gem 'lograge'
-gem 'mail_form'
-gem 'material_icons'
-gem 'materialize-sass'
-gem 'paranoia', '~> 2.2'
-gem 'pg', '~> 0.18'
-gem 'puma', '~> 3.0'
-gem 'pundit'
-gem 'rails', '~> 5.0.2'
-gem 'ransack'
-gem 'redis', '~> 3.0'
-gem 'roadie', '~> 3.1.1'
-gem 'sass-rails', '~> 5.0'
-gem 'sidekiq'
-gem 'simple_form'
-gem 'tinymce-rails'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'uglifier', '>= 1.3.0'
+gem "autoprefixer-rails"
+gem "coffee-rails", "~> 4.2"
+gem "devise"
+gem "enumerize"
+gem "font-awesome-rails"
+gem "gretel"
+gem "haml-rails"
+gem "hashids"
+gem "jquery-rails"
+gem "kaminari"
+gem "local_time"
+gem "lograge"
+gem "mail_form"
+gem "material_icons"
+gem "materialize-sass"
+gem "paranoia", "~> 2.2"
+gem "pg", "~> 0.18"
+gem "puma", "~> 3.0"
+gem "pundit"
+gem "rails", "~> 5.0.2"
+gem "ransack"
+gem "redis", "~> 3.0"
+gem "roadie", "~> 3.1.1"
+gem "sass-rails", "~> 5.0"
+gem "sidekiq"
+gem "simple_form"
+gem "tinymce-rails"
+gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "uglifier", ">= 1.3.0"
 
 group :development, :test, :staging do
-  gem 'factory_girl_rails'
-  gem 'faker'
+  gem "factory_girl_rails"
+  gem "faker"
 end
 
 group :development, :test do
-  gem 'byebug', platform: :mri
-  gem 'cucumber-rails', require: false
-  gem 'guard-cucumber'
-  gem 'guard-rspec', require: false
-  gem 'i18n-tasks', '~> 0.9.12'
-  gem 'letter_opener'
-  gem 'rspec-rails', '~> 3.5'
+  gem "byebug", platform: :mri
+  gem "cucumber-rails", require: false
+  gem "guard-cucumber"
+  gem "guard-rspec", require: false
+  gem "i18n-tasks", "~> 0.9.12"
+  gem "letter_opener"
+  gem "rspec-rails", "~> 3.5"
 end
 
 group :development do
   gem "binding_of_caller"
-  gem 'better_errors'
-  gem 'brakeman', require: false
-  gem 'bullet'
-  gem 'bundler-audit'
-  gem 'capistrano', '~> 3.7', '>= 3.7.1'
-  gem 'capistrano-passenger', '~> 0.2.0'
-  gem 'capistrano-rails', '~> 1.2'
-  gem 'capistrano-rbenv', '~> 2.1'
-  gem 'listen', '~> 3.0.5'
-  gem 'meta_request'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem "better_errors"
+  gem "brakeman", require: false
+  gem "bullet"
+  gem "bundler-audit"
+  gem "capistrano", "~> 3.7", ">= 3.7.1"
+  gem "capistrano-passenger", "~> 0.2.0"
+  gem "capistrano-rails", "~> 1.2"
+  gem "capistrano-rbenv", "~> 2.1"
+  gem "listen", "~> 3.0.5"
+  gem "meta_request"
+  gem "spring"
+  gem "spring-watcher-listen", "~> 2.0.0"
+  gem "web-console", ">= 3.3.0"
 end
 
 group :test do
-  gem 'capybara-webkit'
-  gem 'capybara-screenshot'
-  gem 'database_cleaner'
-  gem 'email_spec'
-  gem 'launchy'
-  gem 'shoulda-matchers', '~> 3.1'
-  gem 'spring-commands-cucumber'
-  gem 'spring-commands-rspec'
+  gem "capybara-webkit"
+  gem "capybara-screenshot"
+  gem "database_cleaner"
+  gem "email_spec"
+  gem "launchy"
+  gem "shoulda-matchers", "~> 3.1"
+  gem "spring-commands-cucumber"
+  gem "spring-commands-rspec"
 end
 
 # Annotations

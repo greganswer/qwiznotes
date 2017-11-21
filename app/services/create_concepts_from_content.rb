@@ -22,7 +22,7 @@ class CreateConceptsFromContent
       tilde: "~",
       hyphen: " -",
     },
-  }
+  }.freeze
 
   SETTINGS = {
     accept_styling: true,
@@ -37,9 +37,9 @@ class CreateConceptsFromContent
     equal: true,
     tilde: true,
     hyphen: true,
-  }
+  }.freeze
 
-  HTML_TAGS = { bold: %w(b strong), definition_list: %w(dt) }
+  HTML_TAGS = { bold: %w(b strong), definition_list: %w(dt) }.freeze
 
   # @param content [String] The content to be converted
   # @param settings_attributes [Hash] List of settings for converting content to concepts
