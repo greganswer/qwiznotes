@@ -52,7 +52,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "binding_of_caller"
+  gem "binding_of_caller" # Needed for the better_errors gem below
   gem "better_errors"
   gem "brakeman", require: false
   gem "bullet"
