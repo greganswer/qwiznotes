@@ -44,7 +44,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'cucumber-rails', require: false
   gem 'guard-cucumber'
-  gem 'guard-rspec', require: false
+  gem 'guard-rspec', '>= 4.7.3', require: false
   gem 'i18n-tasks', '~> 0.9.12'
   gem 'letter_opener'
   gem 'rspec-rails', '~> 3.5'
@@ -60,10 +60,10 @@ group :development do
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-rbenv', '~> 2.1'
-  gem 'listen', '~> 3.0.5'
+  gem 'listen', '~> 3.0.8'
   gem 'meta_request'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen', '~> 2.0.1'
   gem 'web-console', '>= 3.3.0'
 end
 
