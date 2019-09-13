@@ -7,7 +7,7 @@ end
 
 gem 'autoprefixer-rails'
 gem 'coffee-rails', '~> 4.2'
-gem 'devise'
+gem 'devise', '>= 4.7.1'
 gem 'enumerize'
 gem 'font-awesome-rails'
 gem 'gretel'
