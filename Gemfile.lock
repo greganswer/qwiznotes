@@ -280,7 +280,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     public_suffix (2.0.5)
-    puma (3.8.1)
+    puma (3.12.3)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.1)
@@ -466,7 +466,7 @@ DEPENDENCIES
   meta_request
   paranoia (~> 2.2)
   pg (~> 0.18)
-  puma (~> 3.0)
+  puma (~> 3.12)
   pundit
   rails (~> 5.0.2)
   ransack
