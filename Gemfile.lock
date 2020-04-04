@@ -441,7 +441,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   cucumber-rails
   database_cleaner
-  devise
+  devise (>= 4.7.1)
   email_spec
   enumerize
   factory_girl_rails
@@ -452,7 +452,7 @@ DEPENDENCIES
   guard-rspec
   haml-rails
   hashids
-  i18n-tasks (~> 0.9.12)
+  i18n-tasks (~> 0.9.31)
   jquery-rails
   kaminari
   launchy
@@ -490,4 +490,4 @@ RUBY VERSION
    ruby 2.6.3p62
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
