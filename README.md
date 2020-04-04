@@ -39,7 +39,6 @@
 1. [Install Rails](https://github.com/rails/rails) *(if not already installed)*
 1. Install PostgreSQL *(if not already installed)*. Here is a list of [installation options](https://www.postgresql.org/download/) based on your development machine's operating system. I am currently using [Postgresapp](https://postgresapp.com/) and have used [Homebrew](https://brew.sh/) (Not sure why, but I had issues restarting the service this time)
 1. `cd` into project directory *(If not already there)*
-1. `cp config/database.yml.example config/database.yml`
 1. `cp config/secrets.yml.example config/secrets.yml`
 1. `rake db:create:all db:setup`
 1. `rails s`
