@@ -28,11 +28,10 @@ Rails.application.routes.draw do
       %w[privacy terms].each { |route| get route }
     end
 
-    # NOTE: Temporarily removed contact page.
-    # scope "/", controller: :home do
-    #   get "contact" => redirect("/:locale/help")
-    #   match "help", via: %i(get post)
-    # end
+    scope '/', controller: :home do
+      get 'contact' => redirect('/:locale/help')
+      match 'help', via: %i[get post]
+    end
 
     scope '/demo', as: :demo, controller: :demo do
       get '/' => 'demo#index'

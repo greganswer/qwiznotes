@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.4.0'
+ruby '2.6.3'
 
 gem 'autoprefixer-rails'
 gem 'coffee-rails', '~> 4.2'
@@ -21,7 +23,7 @@ gem 'local_time'
 gem 'lograge'
 gem 'mail_form'
 gem 'material_icons'
-gem 'materialize-sass'
+gem 'materialize-sass', '~> 0.98.0'
 gem 'paranoia', '~> 2.2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
@@ -34,7 +36,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'sidekiq'
 gem 'simple_form'
 gem 'tinymce-rails'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test, :staging do
@@ -53,8 +55,8 @@ group :development, :test do
 end
 
 group :development do
-  gem "binding_of_caller"
   gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'brakeman', require: false
   gem 'bullet'
   gem 'bundler-audit'
@@ -70,7 +72,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara-webkit'
+  # gem 'capybara-webkit'
   gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'email_spec'

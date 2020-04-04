@@ -1,4 +1,6 @@
-require_relative "seed_helper.rb"
+# frozen_string_literal: true
+
+require_relative 'seed_helper.rb'
 
 ActionMailer::Base.perform_deliveries = false
 
@@ -25,7 +27,7 @@ end
 USER_COUNT = 4
 puts "SEEDING #{USER_COUNT + 1} USERS"
 users = []
-users << create_first_user if !Rails.env.staging?
+users << create_first_user unless Rails.env.staging?
 users += create_list(:random_user, USER_COUNT)
 
 #
@@ -49,7 +51,7 @@ user_ids = User.ids
 Note.find_each do |note|
   puts "SEEDING #{COMMENTS_PER_NOTE} COMMENTS FOR NOTE ##{note.id}"
   COMMENTS_PER_NOTE.times do
-    created_at = Faker::Time.between(note.created_at, Time.current)
+    created_at = Faker::Time.between(from: note.created_at, to: Time.current)
     create(:random_comment, user_id: user_ids.sample, item: note, created_at: created_at)
   end
 end
@@ -64,7 +66,7 @@ Note.find_each do |note|
   puts "SEEDING UP TO #{MAX_VOTES_PER_ITEM} VOTES FOR NOTE ##{note.id}"
   count = rand(0..MAX_VOTES_PER_ITEM)
   count.times do
-    created_at = Faker::Time.between(note.created_at, Time.current)
+    created_at = Faker::Time.between(from: note.created_at, to: Time.current)
     create(:vote, user_id: user_ids.sample, item: note, created_at: created_at)
   end
 end

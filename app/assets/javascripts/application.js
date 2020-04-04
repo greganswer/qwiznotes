@@ -13,5 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require materialize
-//= require local_time
+//= require local-time
 //= require_tree .
