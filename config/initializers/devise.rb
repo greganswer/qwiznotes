@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -6,6 +8,8 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
+
+  config.secret_key = ENV['SECRET_KEY_BASE'] if Rails.env.production?
   # config.secret_key = '22aa558edfe76c611550d6a56d07705855cf5f1ce4ee76e9118b78c1cf9595f494bed36951969b2a112502ac9f3a32b5ebf762dfcb0276ddf286a9d56ac52e8d'
 
   # ==> Mailer Configuration
