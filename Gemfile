@@ -11,7 +11,7 @@ ruby '2.6.3'
 
 gem 'autoprefixer-rails'
 gem 'coffee-rails', '~> 4.2'
-gem 'devise'
+gem 'devise', '>= 4.7.1'
 gem 'enumerize'
 gem 'font-awesome-rails'
 gem 'gretel'
@@ -49,7 +49,7 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'guard-cucumber'
   gem 'guard-rspec', require: false
-  gem 'i18n-tasks', '~> 0.9.12'
+  gem 'i18n-tasks', '~> 0.9.31'
   gem 'letter_opener'
   gem 'rspec-rails', '~> 3.5'
 end
