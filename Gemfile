@@ -46,11 +46,11 @@ end
 
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 1.5.0', require: false
   gem 'guard-cucumber'
   gem 'guard-rspec', require: false
   gem 'i18n-tasks', '~> 0.9.12'
-  gem 'letter_opener'
+  gem 'letter_opener', '>= 1.7.0'
   gem 'rspec-rails', '~> 3.5'
 end
 
@@ -73,10 +73,10 @@ end
 
 group :test do
   # gem 'capybara-webkit'
-  gem 'capybara-screenshot'
+  gem 'capybara-screenshot', '>= 1.0.24'
   gem 'database_cleaner'
-  gem 'email_spec'
-  gem 'launchy'
+  gem 'email_spec', '>= 2.2.0'
+  gem 'launchy', '>= 2.5.0'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'
