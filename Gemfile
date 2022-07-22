@@ -10,7 +10,7 @@ end
 ruby '2.6.3'
 
 gem 'autoprefixer-rails'
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '~> 4.2', '>= 4.2.2'
 gem 'devise'
 gem 'enumerize'
 gem 'font-awesome-rails'
@@ -24,15 +24,15 @@ gem 'lograge'
 gem 'mail_form'
 gem 'material_icons'
 gem 'materialize-sass', '~> 0.98.0'
-gem 'paranoia', '~> 2.2'
+gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'pundit'
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.0.7', '>= 5.0.7.2'
 gem 'ransack'
 gem 'redis', '~> 3.0'
 gem 'roadie', '~> 3.1.1'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0', '>= 5.0.7'
 gem 'sidekiq'
 gem 'simple_form'
 gem 'tinymce-rails'
@@ -49,9 +49,9 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'guard-cucumber'
   gem 'guard-rspec', require: false
-  gem 'i18n-tasks', '~> 0.9.12'
+  gem 'i18n-tasks', '~> 0.9.31'
   gem 'letter_opener'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 3.9', '>= 3.9.1'
 end
 
 group :development do
@@ -68,7 +68,7 @@ group :development do
   gem 'meta_request'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '>= 3.7.0'
 end
 
 group :test do
@@ -77,7 +77,7 @@ group :test do
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'launchy'
-  gem 'shoulda-matchers', '~> 3.1'
+  gem 'shoulda-matchers', '~> 3.1', '>= 3.1.3'
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'
 end
