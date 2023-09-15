@@ -33,7 +33,7 @@ gem 'ransack'
 gem 'redis', '~> 3.0'
 gem 'roadie', '~> 3.1.1'
 gem 'sass-rails', '~> 5.0'
-gem 'sidekiq'
+gem 'sidekiq', '>= 7.1.3'
 gem 'simple_form'
 gem 'tinymce-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
