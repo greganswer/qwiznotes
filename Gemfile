@@ -10,32 +10,32 @@ end
 ruby '2.6.3'
 
 gem 'autoprefixer-rails'
-gem 'coffee-rails', '~> 4.2'
-gem 'devise'
+gem 'coffee-rails', '~> 5.0', '>= 5.0.0'
+gem 'devise', '>= 4.7.2'
 gem 'enumerize'
-gem 'font-awesome-rails'
-gem 'gretel'
-gem 'haml-rails'
+gem 'font-awesome-rails', '>= 4.7.0.8'
+gem 'gretel', '>= 4.1.0'
+gem 'haml-rails', '>= 2.1.0'
 gem 'hashids'
-gem 'jquery-rails'
-gem 'kaminari'
+gem 'jquery-rails', '>= 4.4.0'
+gem 'kaminari', '>= 1.2.1'
 gem 'local_time'
-gem 'lograge'
-gem 'mail_form'
-gem 'material_icons'
+gem 'lograge', '>= 0.12.0'
+gem 'mail_form', '>= 1.8.1'
+gem 'material_icons', '>= 4.0.0'
 gem 'materialize-sass', '~> 0.98.0'
 gem 'paranoia', '~> 2.2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'pundit'
-gem 'rails', '~> 5.0.2'
-gem 'ransack'
+gem 'rails', '~> 7.1.0'
+gem 'ransack', '>= 2.3.1'
 gem 'redis', '~> 3.0'
 gem 'roadie', '~> 3.1.1'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0', '>= 5.0.8'
 gem 'sidekiq'
-gem 'simple_form'
-gem 'tinymce-rails'
+gem 'simple_form', '>= 5.0.3'
+gem 'tinymce-rails', '>= 5.2.2'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'uglifier', '>= 1.3.0'
 
@@ -46,12 +46,12 @@ end
 
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 2.1.0', require: false
   gem 'guard-cucumber'
   gem 'guard-rspec', require: false
-  gem 'i18n-tasks', '~> 0.9.12'
+  gem 'i18n-tasks', '~> 0.9.32'
   gem 'letter_opener'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 4.0', '>= 4.0.0'
 end
 
 group :development do
@@ -65,10 +65,10 @@ group :development do
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'listen', '~> 3.0.5'
-  gem 'meta_request'
+  gem 'meta_request', '>= 0.7.3'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '>= 4.0.0'
 end
 
 group :test do
