@@ -65,7 +65,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'listen', '~> 3.0.5'
-  gem 'meta_request'
+  gem 'meta_request', '>= 0.7.3'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
