@@ -14,8 +14,8 @@ gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'enumerize'
 gem 'font-awesome-rails'
-gem 'gretel'
-gem 'haml-rails'
+gem 'gretel', '>= 4.1.0'
+gem 'haml-rails', '>= 2.1.0'
 gem 'hashids'
 gem 'jquery-rails'
 gem 'kaminari'
@@ -28,11 +28,11 @@ gem 'paranoia', '~> 2.2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'pundit'
-gem 'rails', '~> 5.0.2'
-gem 'ransack'
+gem 'rails', '~> 7.0.0'
+gem 'ransack', '>= 2.3.1'
 gem 'redis', '~> 3.0'
 gem 'roadie', '~> 3.1.1'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 6.0', '>= 6.0.0'
 gem 'sidekiq'
 gem 'simple_form'
 gem 'tinymce-rails'
@@ -46,7 +46,7 @@ end
 
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 3.0.0', require: false
   gem 'guard-cucumber'
   gem 'guard-rspec', require: false
   gem 'i18n-tasks', '~> 0.9.12'
