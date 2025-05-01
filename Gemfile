@@ -51,7 +51,7 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'i18n-tasks', '~> 0.9.12'
   gem 'letter_opener'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 8.0', '>= 8.0.0'
 end
 
 group :development do
